@@ -7,22 +7,7 @@ import { map } from 'rxjs'
 @Injectable({
   providedIn: 'root'
 })
-// export class UserService {
 
-//   private baseUrl = 'http://localhost:8080/user/all'
-
-//   constructor(private httpClient: HttpClient) { }
-
-//   getUserList(): Observable<User[]> {
-//     return this.httpClient.get<GetResponse>(this.baseUrl).pipe(
-//       map(response => response.user)
-//     );
-//   }
-// }
-
-// interface GetResponse {
-//   user: User[];
-// }
 export class UserService {
 
   private baseUrl = "http://localhost:8080/user/all";
