@@ -1,3 +1,5 @@
+import { Account } from "./account"
+
 export class User {
     public id: number 
     public firstName: string
@@ -8,5 +10,5 @@ export class User {
     public username: string
     public password: string
     public role: string
-    public accountList: object[]
+    public accountList: Account[]
 }

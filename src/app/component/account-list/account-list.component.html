@@ -1,0 +1,16 @@
+<div>
+    <table class="table">
+        <thead>
+            <th>Id</th>
+            <th>Account Type</th>
+            <th>Account Number</th>
+        </thead>
+        <tbody *ngFor="let tempAccounts of accounts">
+            <tr>
+                <td>{{ tempAccounts.id}}</td>
+                <td>{{ tempAccounts.accountType}}</td>
+                <td>{{ tempAccounts.accountNumber}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
