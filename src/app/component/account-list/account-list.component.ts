@@ -8,7 +8,7 @@ import { AccountService } from 'src/app/services/account.service';
   styleUrls: ['./account-list.component.css']
 })
 export class AccountListComponent {
-  accounts: Account[];
+  accounts: Account[] = [];
   constructor(private accountService: AccountService) { }
 
   ngOnInit(): void {

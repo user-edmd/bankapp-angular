@@ -9,11 +9,16 @@ import { User } from '../common/user';
 
 export class UserService {
 
-  private baseUrl = "http://localhost:8080/user/all";
+  private baseUrl = "http://localhost:8080/user";
 
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<User[]>{
-    return this.http.get<User[]>(`${this.baseUrl}`);
+    return this.http.get<User[]>(`${this.baseUrl}/all`);
   }
+
+  getUser(id: number): Observable<User>{
+    return this.http.get<User>(`${this.baseUrl}/${id}`);
+  }
+
 }
