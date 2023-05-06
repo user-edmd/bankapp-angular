@@ -18,3 +18,19 @@
         </tbody>
     </table>
 </div>
+<div *ngIf="user">
+    <table class="table">
+        <thead>
+            <th>Id</th>
+            <th>Account Number</th>
+            <th>Account Type</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let account of user.accountList">
+                <td>{{account.id}}</td>
+                <td>{{account.accountNumber}}</td>
+                <td>{{account.accountType}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

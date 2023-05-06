@@ -9,11 +9,11 @@ import { Observable } from 'rxjs';
 
 export class AccountService {
 
-  private baseUrl = "http://localhost:8080/accounts/all";
+  private baseUrl = "http://localhost:8080";
 
   constructor(private http: HttpClient) { }
 
   getAccounts(): Observable<Account[]>{
-    return this.http.get<Account[]>(`${this.baseUrl}`);
+    return this.http.get<Account[]>(`${this.baseUrl}/accounts/all`);
   }
 }
