@@ -24,12 +24,14 @@
             <th>Id</th>
             <th>Account Number</th>
             <th>Account Type</th>
+            <th>Account Balance</th>
         </thead>
         <tbody>
             <tr *ngFor="let account of user.accountList">
-                <td>{{account.id}}</td>
+                <td><a routerLink="/account/{{account.id}}">{{account.id}}</a></td>
                 <td>{{account.accountNumber}}</td>
                 <td>{{account.accountType}}</td>
+                <td>{{account.accountBalance}}</td>
             </tr>
         </tbody>
     </table>
