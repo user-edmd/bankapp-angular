@@ -8,13 +8,15 @@ import { UserService } from './services/user.service';
 import { AppRoutingModule } from './app-routing.module';
 import { UserDetailComponent } from './component/user-detail/user-detail.component';
 import { AccountDetailComponent } from './component/account-detail/account-detail.component';
+import { TransactionDetailComponent } from './component/transaction-detail/transaction-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserListComponent,
     UserDetailComponent,
-    AccountDetailComponent
+    AccountDetailComponent,
+    TransactionDetailComponent
   ],
   imports: [
     BrowserModule,
