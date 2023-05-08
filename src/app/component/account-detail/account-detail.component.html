@@ -14,7 +14,7 @@
         </tbody>
     </table>
 </div>
-<div *ngIf="account">
+<!-- <div *ngIf="transaction">
     <table class="table">
         <thead>
             <th>Id</th>
@@ -23,7 +23,7 @@
             <th>Date</th>
         </thead>
         <tbody>
-            <tr *ngFor="let transaction of account.transactionsList">
+            <tr>
                 <td><a routerLink="/transaction/{{transaction.id}}">{{transaction.id}}</a></td>
                 <td>{{transaction.transactionType}}</td>
                 <td>{{transaction.amount}}</td>
@@ -31,5 +31,22 @@
             </tr>
         </tbody>
     </table>
+</div> -->
+<div *ngIf="transactions">
+    <table class="table">
+        <thead>
+            <th>Id</th>
+            <th>Transaction Type</th>
+            <th>Amount</th>
+            <th>Date</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let transaction of transactions">
+                <td>{{transaction.id}}</td>
+                <td>{{transaction.transactionType}}</td>
+                <td>{{transaction.amount}}</td>
+                <td>{{transaction.date}}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
-

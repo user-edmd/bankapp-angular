@@ -12,8 +12,8 @@ export class TransactionService {
 
   constructor(private http: HttpClient) { }
 
-  getTransactions(): Observable<Transaction[]> {
-    return this.http.get<GetResponse>(`${this.baseUrl}/transactions/all`).pipe(
+  getTransactions(accountId: number): Observable<Transaction[]> {
+    return this.http.get<GetResponse>(`${this.baseUrl}/account/${accountId}/transactions`).pipe(
     map(response => response.content));
     }
 
