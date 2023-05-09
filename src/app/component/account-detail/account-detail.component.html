@@ -1,39 +1,5 @@
-<div *ngIf="account">
-    <table class="table">
-        <thead>
-            <th>Account Number</th>
-            <th>Account Type</th>
-            <th>Account Balance</th>
-        </thead>
-        <tbody>
-            <tr>
-                <td>[...{{account.accountNumber | slice:12:16}}]</td>
-                <td>{{account.accountType}}</td>
-                <td>{{account.accountBalance | currency}}</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-<!-- <div *ngIf="transaction">
-    <table class="table">
-        <thead>
-            <th>Id</th>
-            <th>Transaction Type</th>
-            <th>Amount</th>
-            <th>Date</th>
-        </thead>
-        <tbody>
-            <tr>
-                <td><a routerLink="/transaction/{{transaction.id}}">{{transaction.id}}</a></td>
-                <td>{{transaction.transactionType}}</td>
-                <td>{{transaction.amount}}</td>
-                <td>{{transaction.date}}</td>
-            </tr>
-        </tbody>
-    </table>
-</div> -->
 <div *ngIf="transactions">
-    <table class="table">
+    <table class="table table-bordered">
         <thead>
             <th>Date</th>
             <th>Transaction Type</th>

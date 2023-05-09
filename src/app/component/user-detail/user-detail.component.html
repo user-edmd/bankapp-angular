@@ -1,38 +1,56 @@
 <div *ngIf="user">
-    <table class="table">
-        <thead>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Address</th>
-            <th>Date of Birth</th>
-            <th>Role</th>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{user.firstName}}</td>
-                <td>{{user.lastName}}</td>
-                <td>{{user.address}}</td>
-                <td>{{user.dob}}</td>
-                <td>{{user.role}}</td>
-            </tr>
-        </tbody>
-    </table>
+  <div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold text-body-emphasis">Welcome, {{user.firstName}}!</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most
+        popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive
+        prebuilt components, and powerful JavaScript plugins.</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Open New Account</button>
+        <button type="button" class="btn btn-outline-secondary btn-lg px-4">Edit Profile</button>
+      </div>
+    </div>
+  </div>
 </div>
 <div *ngIf="user">
-    <table class="table">
-        <thead>
-            <th>Id</th>
-            <th>Account Number</th>
-            <th>Account Type</th>
-            <th>Account Balance</th>
-        </thead>
-        <tbody>
-            <tr *ngFor="let account of user.accountList">
-                <td><a routerLink="/account/{{account.id}}">{{account.id}}</a></td>
-                <td>{{account.accountNumber}}</td>
-                <td>{{account.accountType}}</td>
-                <td>{{account.accountBalance | currency}}</td>
-            </tr>
-        </tbody>
-    </table>
+  <div class="card">
+    <div *ngFor="let account of user.accountList">
+      <h5 class="card-header">{{account.accountType}}</h5>
+      <div class="card-body">
+        <h5 class="card-title">{{account.accountBalance | currency}}</h5>
+        <p class="card-text">Account Number: {{account.accountNumber}}</p>
+        <a routerLink="/account/{{account.id}}" class="btn btn-primary">View Transactions</a>
+      </div>
+    </div>
+  </div>
+</div>
+<a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
+  aria-controls="offcanvasExample">
+  Link with href
+</a>
+<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+  aria-controls="offcanvasExample">
+  Button with data-bs-target
+</button>
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div>
+      Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+    </div>
+    <div class="dropdown mt-3">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+        Dropdown button
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+      </ul>
+    </div>
+  </div>
 </div>
