@@ -13,7 +13,7 @@ export class TransactionService {
   constructor(private http: HttpClient) { }
 
   getTransactions(accountId: number): Observable<Transaction[]> {
-    return this.http.get<GetResponse>(`${this.baseUrl}/account/${accountId}/transactions`).pipe(
+    return this.http.get<GetResponse>(`${this.baseUrl}/account/${accountId}/transactions?size=10&sort=date,desc`).pipe(
     map(response => response.content));
     }
 

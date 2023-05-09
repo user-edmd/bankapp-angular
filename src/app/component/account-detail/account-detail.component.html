@@ -7,9 +7,9 @@
         </thead>
         <tbody>
             <tr>
-                <td>{{account.accountNumber}}</td>
+                <td>[...{{account.accountNumber | slice:12:16}}]</td>
                 <td>{{account.accountType}}</td>
-                <td>{{account.accountBalance}}</td>
+                <td>{{account.accountBalance | currency}}</td>
             </tr>
         </tbody>
     </table>
@@ -35,17 +35,15 @@
 <div *ngIf="transactions">
     <table class="table">
         <thead>
-            <th>Id</th>
+            <th>Date</th>
             <th>Transaction Type</th>
             <th>Amount</th>
-            <th>Date</th>
         </thead>
         <tbody>
             <tr *ngFor="let transaction of transactions">
-                <td>{{transaction.id}}</td>
+                <td>{{transaction.date | date:'mediumDate'}}</td>
                 <td>{{transaction.transactionType}}</td>
-                <td>{{transaction.amount}}</td>
-                <td>{{transaction.date}}</td>
+                <td>{{transaction.amount | currency}}</td>
             </tr>
         </tbody>
     </table>

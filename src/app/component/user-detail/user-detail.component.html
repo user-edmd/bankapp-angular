@@ -31,7 +31,7 @@
                 <td><a routerLink="/account/{{account.id}}">{{account.id}}</a></td>
                 <td>{{account.accountNumber}}</td>
                 <td>{{account.accountType}}</td>
-                <td>{{account.accountBalance}}</td>
+                <td>{{account.accountBalance | currency}}</td>
             </tr>
         </tbody>
     </table>
