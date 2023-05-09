@@ -13,6 +13,11 @@ import { TransactionService } from 'src/app/services/transaction.service';
 export class AccountDetailComponent implements OnInit {
   account: Account | undefined;
   transactions: Transaction[] = [];
+  pages: string[] = [];
+
+  page: number = 0;
+  size: number = 10;
+  total: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -34,9 +39,17 @@ export class AccountDetailComponent implements OnInit {
   getTransactions() {
     const routeParams = this.route.snapshot.paramMap;
     const accountIdFromRouter = Number(routeParams.get('id'));
-    this.transactionService.getTransactions(accountIdFromRouter).subscribe((data: Transaction[]) => {
-      console.log(data);
-      this.transactions = data;
+    this.transactionService.getTransactions(accountIdFromRouter, this.page, this.size).subscribe(({content, size, number, totalPages}) => {
+      this.page = number
+      this.size = size
+      this.total = totalPages
+
+      console.log(content);
+      this.transactions = content;
     });
+  }
+
+  onClickPage() {
+    
   }
 }
