@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Transaction } from '../common/transaction';
+import { TransactionResponse } from '../common/TransactionResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +13,9 @@ export class TransactionService {
 
   constructor(private http: HttpClient) { }
 
-  getTransactions(accountId: number): Observable<Transaction[]> {
-    return this.http.get<GetResponse>(`${this.baseUrl}/account/${accountId}/transactions?size=10&sort=date,desc`).pipe(
-    map(response => response.content));
-    }
+  getTransactions(accountId: number, size: number, page: number): Observable<TransactionResponse> {
+    return this.http.get<TransactionResponse>(`${this.baseUrl}/account/${accountId}/transactions?size=${size}&sort=date,desc&page=${page}`)
+    } 
 
   getTransaction(transactionId: number): Observable<Transaction>{
     return this.http.get<Transaction>(`${this.baseUrl}/transaction/${transactionId}`);
