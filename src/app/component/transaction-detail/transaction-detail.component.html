@@ -1,0 +1,16 @@
+<div *ngIf="transaction">
+    <table class="table">
+        <thead>
+            <th>Transaction Type</th>
+            <th>Amount</th>
+            <th>Date</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{transaction.transactionType}}</td>
+                <td>{{transaction.amount}}</td>
+                <td>{{transaction.date}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,14 @@
+<div>
+    <table class="table">
+        <thead>
+            <th>Id</th>
+            <th>Username</th>
+        </thead>
+        <tbody *ngFor="let tempUser of users">
+            <tr>
+                <td><a routerLink="/user/{{tempUser.id}}">{{ tempUser.id}}</a></td>
+                <td>{{ tempUser.username}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
