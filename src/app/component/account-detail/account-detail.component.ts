@@ -22,7 +22,7 @@ export class AccountDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private accountService: AccountService,
-    private transactionService: TransactionService
+    private transactionService: TransactionService,
   ) {}
 
   ngOnInit(): void {
@@ -40,7 +40,7 @@ export class AccountDetailComponent implements OnInit {
     const routeParams = this.route.snapshot.paramMap;
     const accountIdFromRouter = Number(routeParams.get('id'));
     this.transactionService.getTransactions(accountIdFromRouter, this.size, this.page).subscribe(({content, size, number, totalPages}) => {
-      this.page = number + 1
+      this.page = number
       this.size = size
       this.total = totalPages
 
@@ -53,7 +53,29 @@ export class AccountDetailComponent implements OnInit {
     });
   }
 
-  onClickPage() {
-    
+  goToPage(pageSelected: number) {
+    this.page = pageSelected;
+    const routeParams = this.route.snapshot.paramMap;
+    const accountIdFromRouter = Number(routeParams.get('id'));
+    this.transactionService.getTransactions(accountIdFromRouter, this.size, this.page).subscribe(({content, size, number, totalPages}) => {
+      this.page = number
+      this.size = size
+      this.total = totalPages
+      this.transactions = content;
+    });
+  }
+
+  goToPrevOrNext(buttonSelected: string) {
+    if (this.page >= 0 && this.page < this.total - 1) {
+      buttonSelected === 'prev' ? this.page-- : this.page++
+      const routeParams = this.route.snapshot.paramMap;
+      const accountIdFromRouter = Number(routeParams.get('id'));
+      this.transactionService.getTransactions(accountIdFromRouter, this.size, this.page).subscribe(({content, size, number, totalPages}) => {
+        this.page = number
+        this.size = size
+        this.total = totalPages
+        this.transactions = content;
+      });
+   }
   }
 }
