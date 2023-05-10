@@ -54,9 +54,17 @@ export class AccountDetailComponent implements OnInit {
   }
 
   goToPrevOrNext(buttonSelected: string) {
-    if (this.page - 1 >= 0 && this.page + 1 < this.total) {
-      buttonSelected === 'prev' ? this.page-- : this.page++
-      this.getTransactions(this.page);
-   }
+      if (buttonSelected === 'prev') {
+        if (this.page - 1 >= 0) {
+          this.page--
+          this.getTransactions(this.page);
+        }
+      } else if (buttonSelected === 'next') {
+        if (this.page + 1 < this.total) {
+          this.page++
+          this.getTransactions(this.page);
+        }
+      }
+      
   }
 }
