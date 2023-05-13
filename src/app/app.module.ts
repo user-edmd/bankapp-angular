@@ -11,6 +11,7 @@ import { AccountDetailComponent } from './component/account-detail/account-detai
 import { TransactionDetailComponent } from './component/transaction-detail/transaction-detail.component';
 import { CreateUserComponent } from './component/create-user/create-user.component';
 import { FormsModule } from '@angular/forms';
+import { CreateAccountComponent } from './component/create-account/create-account.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { FormsModule } from '@angular/forms';
     UserDetailComponent,
     AccountDetailComponent,
     TransactionDetailComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    CreateAccountComponent
   ],
   imports: [
     BrowserModule,

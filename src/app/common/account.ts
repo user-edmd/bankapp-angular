@@ -1,6 +1,6 @@
 import { Transaction } from "./transaction";
 
-export interface Account {
+export class Account {
     id: number 
     accountType: string
     accountNumber: string
