@@ -1,7 +1,7 @@
 import { Account } from "./account"
 
-export interface User {
-    id: number 
+export class User {
+    id: number
     firstName: string
     lastName: string
     address: string

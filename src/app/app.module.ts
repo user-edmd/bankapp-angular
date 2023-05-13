@@ -9,6 +9,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { UserDetailComponent } from './component/user-detail/user-detail.component';
 import { AccountDetailComponent } from './component/account-detail/account-detail.component';
 import { TransactionDetailComponent } from './component/transaction-detail/transaction-detail.component';
+import { CreateUserComponent } from './component/create-user/create-user.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,12 +18,14 @@ import { TransactionDetailComponent } from './component/transaction-detail/trans
     UserListComponent,
     UserDetailComponent,
     AccountDetailComponent,
-    TransactionDetailComponent
+    TransactionDetailComponent,
+    CreateUserComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
