@@ -1,5 +1,5 @@
 .offcanvas-size-xl {
-    --bs-offcanvas-height: min(60vh) !important;
+    --bs-offcanvas-height: min(70vh) !important;
 }
 .offcanvas-size-xxl {
     --bs-offcanvas-width: min(95vw, 90vw) !important;
