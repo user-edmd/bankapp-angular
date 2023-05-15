@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Account } from 'src/app/common/account';
-import { UserService } from 'src/app/services/user.service';
+import { AccountService } from 'src/app/services/account.service';
 
 @Component({
   selector: 'app-create-account',
@@ -12,11 +12,15 @@ export class CreateAccountComponent {
   account: Account;
 
   constructor(
+    private route: ActivatedRoute,
     private router: Router,
-    private userService: UserService) {
+    private accountService: AccountService) {
       this.account = new Account;
   }
 
   onSubmit() {
+    this.account.userId = Number(this.route.snapshot.paramMap.get('id'))
+    this.accountService.createAccount(this.account).subscribe();
+    this.router.navigate(['/users']);
   }
 }

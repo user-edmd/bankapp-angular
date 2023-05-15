@@ -5,5 +5,6 @@ export class Account {
     accountType: string
     accountNumber: string
     accountBalance: number
+    userId: number
     transactionsList: Transaction[]
 }

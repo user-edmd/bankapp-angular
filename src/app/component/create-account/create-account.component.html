@@ -1,13 +1,13 @@
-<h2>Select an Account Type to Open</h2>
-<form>
+<h2>Select an Account</h2>
+<form #accountForm="ngForm" (ngSubmit)="onSubmit()">
     <div class="form-check mb-3">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+        <input value="Checking" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" required [(ngModel)]="account.accountType">
         <label class="form-check-label" for="flexRadioDefault1">
             Checking Account
         </label>
     </div>
     <div class="form-check mb-3">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+        <input value="Savings" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" required [(ngModel)]="account.accountType">
         <label class="form-check-label" for="flexRadioDefault2">
             Savings Account
         </label>
