@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Account } from 'src/app/common/account';
 import { Transaction } from 'src/app/common/transaction';
 import { User } from 'src/app/common/user';
 import { AccountService } from 'src/app/services/account.service';
@@ -13,7 +14,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserDetailComponent implements OnInit {
   user: User | undefined;
-  transactions: Transaction[] = [];
+  accounts: Account[] = []
+  transactions: Transaction[] = []
 
   page: number = 0;
   size: number = 8;
@@ -30,6 +32,7 @@ export class UserDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUser();
+    this.getAccounts();
   }
 
   getUser(): void {
@@ -45,6 +48,13 @@ export class UserDetailComponent implements OnInit {
     //this.userService.createUser(id, )
 
 
+  }
+
+  getAccounts(): void {
+    const routeParams = this.route.snapshot.paramMap;
+    const userIdFromRouter = Number(routeParams.get('id'));
+    this.accountService.getAccountsFromUser(userIdFromRouter)
+      .subscribe(accounts => this.accounts = accounts)
   }
 
   openTransactions(accountId : number) {

@@ -13,8 +13,8 @@
     </div>
   </div>
 </div>
-<div *ngIf="user">
-  <div class="card m-3" *ngFor="let account of user.accountList">
+<div *ngIf="accounts">
+  <div class="card m-3" *ngFor="let account of accounts">
     <h5 class="card-header">{{account.accountType}}</h5>
     <div class="card-body">
       <h5 class="card-title">{{account.accountBalance | currency}}</h5>
@@ -73,4 +73,7 @@
       </div>
     </div>
   </div>
+</div>
+<div *ngIfElse>
+
 </div>
