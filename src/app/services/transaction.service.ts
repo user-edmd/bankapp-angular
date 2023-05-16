@@ -20,9 +20,8 @@ export class TransactionService {
   getTransaction(transactionId: number): Observable<Transaction>{
     return this.http.get<Transaction>(`${this.baseUrl}/transaction/${transactionId}`);
   }
-}
 
-
-interface GetResponse {
-    content: Transaction[];
+  addTransaction(transaction: Transaction, accountId: number): Observable<Transaction>{
+    return this.http.post<Transaction>(`${this.baseUrl}/account/${accountId}/transactions`, transaction);
+  }
 }
