@@ -21,10 +21,7 @@ export class CreateTransactionComponent {
 
   onSubmit() {
     this.transaction.accountId = Number(this.route.snapshot.paramMap.get('id'));
-    this.transaction.amount = 1000.0
-    this.transaction.transactionType = "Deposit"
-    this.transaction.date = this.transactionDate
-    console.log(this.transaction)
+    this.transaction.date = this.transactionDate;
     this.transactionService.addTransaction(this.transaction, this.transaction.accountId).subscribe();
 
   }

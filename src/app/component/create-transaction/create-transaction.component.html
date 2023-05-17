@@ -1,2 +1,22 @@
-<p>create-transaction works!</p>
-<button type="button" class="btn btn-outline-secondary btn-lg px-4" (click)="onSubmit()">Edit Profile</button>
+<form #transactionForm="ngForm" (ngSubmit)="onSubmit()">
+    <label for="flexRadioDefault1" class="form-label">Select Transaction type</label>
+    <div class="form-check mb-3">
+        <input value="Deposit" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
+            required [(ngModel)]="transaction.transactionType">
+        <label class="form-check-label" for="flexRadioDefault1">
+            Deposit
+        </label>
+    </div>
+    <div class="form-check mb-3">
+        <input value="Withdraw" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
+            required [(ngModel)]="transaction.transactionType">
+        <label class="form-check-label" for="flexRadioDefault2">
+            Withdraw
+        </label>
+    </div>
+    <div class="mb-3">
+        <label for="inputAmount" class="form-label">Amount</label>
+        <input type="number" class="form-control" id="inputAmount" [(ngModel)]="transaction.amount" name="Amount">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
