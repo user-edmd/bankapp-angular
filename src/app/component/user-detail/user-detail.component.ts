@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Account } from 'src/app/common/account';
 import { Transaction } from 'src/app/common/transaction';
 import { User } from 'src/app/common/user';
@@ -24,6 +24,7 @@ export class UserDetailComponent implements OnInit {
   
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private userService: UserService,
     private accountService: AccountService,
@@ -42,12 +43,9 @@ export class UserDetailComponent implements OnInit {
       .subscribe(user => this.user = user);
   }
 
-  openAccount(): void {
-    console.log('open account', this.route.snapshot.paramMap.get('id'))
-
-    //this.userService.createUser(id, )
-
-
+  openTransactionsPage(): void {
+    console.log('open account', this.accId)
+    this.router.navigateByUrl(`/account/${this.accId}/addTransaction`);
   }
 
   getAccounts(): void {
