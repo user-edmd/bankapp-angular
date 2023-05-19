@@ -7,6 +7,7 @@ import { TransactionDetailComponent } from './component/transaction-detail/trans
 import { CreateUserComponent } from './component/create-user/create-user.component';
 import { CreateAccountComponent } from './component/create-account/create-account.component';
 import { CreateTransactionComponent } from './component/create-transaction/create-transaction.component';
+import { TransferAmountComponent } from './component/transfer-amount/transfer-amount.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/users', pathMatch: 'full' },
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'transaction/:id', component: TransactionDetailComponent },
   { path: 'register', component: CreateUserComponent },
   { path: 'user/:id/addAccount', component: CreateAccountComponent },
-  { path: 'account/:id/addTransaction', component: CreateTransactionComponent }
+  { path: 'account/:id/addTransaction', component: CreateTransactionComponent },
+  { path: 'user/:id/transfer', component: TransferAmountComponent }
   // { path: 'transactions', component: TransactionDetailComponent }
 ];
 

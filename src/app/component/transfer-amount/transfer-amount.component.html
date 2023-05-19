@@ -1,0 +1,19 @@
+<p>transfer-amount works!</p>
+
+
+
+  <form #transactionForm="ngForm" (ngSubmit)="onSubmit()">
+    <select class="form-select mb-3" aria-label="Default select example">
+        <option selected>Select Account to Transfer From</option>
+        <option *ngFor="let account of accounts">{{account.accountType}}: {{account.accountNumber}}</option>
+      </select>
+    
+      <select class="form-select mb-3" aria-label="Default select example">
+        <option selected>Select Account to Transfer To</option>
+        <option *ngFor="let account of accounts" value="{{account.id}}">{{account.accountType}}: {{account.accountNumber}}</option>
+      </select>
+    <div class="mb-3">
+        <input type="number" class="form-control" id="inputAmount" placeholder="Amount">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

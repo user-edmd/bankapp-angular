@@ -13,6 +13,7 @@ import { CreateUserComponent } from './component/create-user/create-user.compone
 import { FormsModule } from '@angular/forms';
 import { CreateAccountComponent } from './component/create-account/create-account.component';
 import { CreateTransactionComponent } from './component/create-transaction/create-transaction.component';
+import { TransferAmountComponent } from './component/transfer-amount/transfer-amount.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CreateTransactionComponent } from './component/create-transaction/creat
     TransactionDetailComponent,
     CreateUserComponent,
     CreateAccountComponent,
-    CreateTransactionComponent
+    CreateTransactionComponent,
+    TransferAmountComponent
   ],
   imports: [
     BrowserModule,
