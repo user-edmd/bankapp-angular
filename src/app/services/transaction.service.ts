@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Transaction } from '../common/transaction';
 import { TransactionResponse } from '../common/TransactionResponse';
+import { TransferForm } from '../common/transfer-form';
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +24,9 @@ export class TransactionService {
 
   addTransaction(transaction: Transaction, accountId: number): Observable<Transaction>{
     return this.http.post<Transaction>(`${this.baseUrl}/account/${accountId}/transactions`, transaction);
+  }
+
+  transferMoney(transferForm: TransferForm): Observable<TransferForm>{
+    return this.http.post<TransferForm>(`${this.baseUrl}/transactions/transferMoney`, transferForm);
   }
 }

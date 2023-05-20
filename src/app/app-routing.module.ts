@@ -19,7 +19,6 @@ const routes: Routes = [
   { path: 'user/:id/addAccount', component: CreateAccountComponent },
   { path: 'account/:id/addTransaction', component: CreateTransactionComponent },
   { path: 'user/:id/transfer', component: TransferAmountComponent }
-  // { path: 'transactions', component: TransactionDetailComponent }
 ];
 
 @NgModule({

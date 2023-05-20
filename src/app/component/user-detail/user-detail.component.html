@@ -74,7 +74,7 @@
         </button>
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" role="button" (click)="openTransactionsPage()">Add Transaction</a></li>
-          <li><a class="dropdown-item" href="#">Transfer</a></li>
+          <li><a class="dropdown-item" *ngIf="user" routerLink="/user/{{user.id}}/transfer">Transfer</a></li>
         </ul>
       </div>
     </div>
