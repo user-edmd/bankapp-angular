@@ -14,7 +14,7 @@ export class CreateUserComponent {
   constructor(
     private router: Router,
     private userService: UserService) {
-      this.user = new User;
+      this.user = new User();
   }
 
   onSubmit() {
