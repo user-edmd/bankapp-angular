@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Transaction } from 'src/app/common/transaction';
 import { TransactionService } from 'src/app/services/transaction.service';
@@ -20,9 +20,11 @@ export class CreateTransactionComponent {
   }
 
   onSubmit() {
+    const routeParams = this.route.snapshot.paramMap;
+    const userIdFromRouter = Number(routeParams.get('id'));
     this.transaction.accountId = Number(this.route.snapshot.paramMap.get('id'));
     this.transaction.date = this.transactionDate;
     this.transactionService.addTransaction(this.transaction, this.transaction.accountId).subscribe();
-    this.router.navigateByUrl(`/account/${this.transaction.accountId}`);
+    this.router.navigateByUrl(`/user/${userIdFromRouter}`);
   }
 }

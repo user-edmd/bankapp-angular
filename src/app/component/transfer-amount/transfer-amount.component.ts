@@ -34,9 +34,12 @@ export class TransferAmountComponent {
   }
 
   onSubmit() {
+    const routeParams = this.route.snapshot.paramMap;
+    const userIdFromRouter = Number(routeParams.get('id'));
     console.log('AccId From ' + this.transferForm.accountIdFrom)
     console.log('AccId To ' + this.transferForm.accountIdTo)
     console.log('amount ' + this.transferForm.amountToTransfer)
     this.transactionService.transferMoney(this.transferForm).subscribe();
+    this.router.navigateByUrl(`/user/${userIdFromRouter}`);
   }
 }
