@@ -40,6 +40,8 @@ export class TransferAmountComponent {
     console.log('AccId To ' + this.transferForm.accountIdTo)
     console.log('amount ' + this.transferForm.amountToTransfer)
     this.transactionService.transferMoney(this.transferForm).subscribe();
-    this.router.navigateByUrl(`/user/${userIdFromRouter}`);
+    this.router.navigateByUrl(`/user/${userIdFromRouter}`).then(() => {
+      window.location.reload();
+    });;
   }
 }

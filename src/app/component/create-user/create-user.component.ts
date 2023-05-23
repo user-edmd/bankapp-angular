@@ -19,6 +19,8 @@ export class CreateUserComponent {
 
   onSubmit() {
     this.userService.createUser(this.user).subscribe();
-    this.router.navigate(['/users']);
+    this.router.navigate(['/users']).then(() => {
+      window.location.reload();
+    });;
   }
 }
