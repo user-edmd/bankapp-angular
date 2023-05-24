@@ -8,7 +8,7 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './edit-user.component.html',
   styleUrls: ['./edit-user.component.css']
 })
-export class EditUserComponent {
+export class EditUserComponent implements OnInit {
   user: User;
   routeParams = this.route.snapshot.paramMap;
   userIdFromRouter = Number(this.routeParams.get('id'));
@@ -17,12 +17,16 @@ export class EditUserComponent {
     private router: Router,
     private route: ActivatedRoute,
     private userService: UserService) {
-      this.user = new User();
+  }
+  ngOnInit(): void {
+    this.getUser()
+  }
 
+  getUser(): void {
+    this.userService.getUser(this.userIdFromRouter).subscribe(user => this.user = user)
   }
 
   onSubmit() {
-    this.user.id = this.userIdFromRouter
     this.userService.editUser(this.user).subscribe(user => this.user = user);
     this.router.navigateByUrl(`/user/${this.userIdFromRouter}`).then(() => {
       window.location.reload();
