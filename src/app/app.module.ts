@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { CreateAccountComponent } from './component/create-account/create-account.component';
 import { CreateTransactionComponent } from './component/create-transaction/create-transaction.component';
 import { TransferAmountComponent } from './component/transfer-amount/transfer-amount.component';
+import { EditUserComponent } from './component/edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { TransferAmountComponent } from './component/transfer-amount/transfer-am
     CreateUserComponent,
     CreateAccountComponent,
     CreateTransactionComponent,
-    TransferAmountComponent
+    TransferAmountComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,
