@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/common/user';
 import { UserService } from 'src/app/services/user.service';
 
@@ -10,16 +10,22 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class EditUserComponent {
   user: User;
+  routeParams = this.route.snapshot.paramMap;
+  userIdFromRouter = Number(this.routeParams.get('id'));
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private userService: UserService) {
       this.user = new User();
+
   }
 
   onSubmit() {
-    console.log(this.user)
+    this.user.id = this.userIdFromRouter
     this.userService.editUser(this.user).subscribe(user => this.user = user);
-    // this.router.navigate(['/users']);
+    this.router.navigateByUrl(`/user/${this.userIdFromRouter}`).then(() => {
+      window.location.reload();
+    });;
   }
 }

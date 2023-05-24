@@ -14,6 +14,9 @@ import { TransactionService } from 'src/app/services/transaction.service';
 export class TransferAmountComponent {
   accounts: Account[] = []
   transferForm: TransferForm
+  routeParams = this.route.snapshot.paramMap;
+  userIdFromRouter = Number(this.routeParams.get('id'));
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -27,21 +30,14 @@ export class TransferAmountComponent {
     this.getAccounts();
   }
   getAccounts(): void {
-    const routeParams = this.route.snapshot.paramMap;
-    const userIdFromRouter = Number(routeParams.get('id'));
-    this.accountService.getAccountsFromUser(userIdFromRouter)
+    this.accountService.getAccountsFromUser(this.userIdFromRouter)
       .subscribe(accounts => this.accounts = accounts)
   }
 
   onSubmit() {
-    const routeParams = this.route.snapshot.paramMap;
-    const userIdFromRouter = Number(routeParams.get('id'));
-    console.log('AccId From ' + this.transferForm.accountIdFrom)
-    console.log('AccId To ' + this.transferForm.accountIdTo)
-    console.log('amount ' + this.transferForm.amountToTransfer)
     this.transactionService.transferMoney(this.transferForm).subscribe();
-    this.router.navigateByUrl(`/user/${userIdFromRouter}`).then(() => {
+    this.router.navigateByUrl(`/user/${this.userIdFromRouter}`).then(() => {
       window.location.reload();
-    });;
+    });
   }
 }
