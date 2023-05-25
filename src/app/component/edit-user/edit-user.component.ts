@@ -9,7 +9,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./edit-user.component.css']
 })
 export class EditUserComponent implements OnInit {
-  user: User;
+  user: any = {}
   routeParams = this.route.snapshot.paramMap;
   userIdFromRouter = Number(this.routeParams.get('id'));
 
