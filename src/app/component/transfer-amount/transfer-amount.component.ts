@@ -16,6 +16,7 @@ export class TransferAmountComponent {
   transferForm: TransferForm
   routeParams = this.route.snapshot.paramMap;
   userIdFromRouter = Number(this.routeParams.get('id'));
+  amountToCurrency: string
 
   constructor(
     private router: Router,
@@ -39,5 +40,13 @@ export class TransferAmountComponent {
     this.router.navigateByUrl(`/user/${this.userIdFromRouter}`).then(() => {
       window.location.reload();
     });
+  }
+  
+  onKeydown(event: any) {
+    let amountValue = event.target.value;
+      this.amountToCurrency = Number(amountValue).toLocaleString("en-US", {
+        style: "currency",
+        currency: "USD"
+      });
   }
 }
