@@ -1,20 +1,24 @@
 <form #transferAccountForm="ngForm" (ngSubmit)="onSubmit()" ngNativeValidate>
-  <select class="form-select mt-3 mb-3" [(ngModel)]="transferForm.accountIdFrom" name="accountIdFrom">
-    <option>Select Account to Transfer From</option>
-    <option *ngFor="let account of accounts" name="accountFrom" [value]="account.id" required>{{account.accountType}}: {{account.accountNumber}}
+  <select class="form-select mt-3 mb-3" [(ngModel)]="transferForm.accountIdFrom" name="accountIdFrom"
+    (change)='onChange($event)'>
+    <option *ngFor="let account of accountsTransferFrom" name="accountFrom" [value]="account.id" required>
+      {{account.accountType}}: {{account.accountNumber}}
     </option>
   </select>
-  <select class="form-select mt-3 mb-3" aria-label="Default select example" [(ngModel)]="transferForm.accountIdTo" name="accountIdTo">
-    <option>Select Account to Transfer To</option>
-    <option *ngFor="let account of accounts" name="accountTo" [value]="account.id" required>{{account.accountType}}: {{account.accountNumber}}
+  <select class="form-select mt-3 mb-3" aria-label="Default select example" [(ngModel)]="transferForm.accountIdTo"
+    name="accountIdTo">
+    <option *ngFor="let account of accountsTransferTo" name="accountTo" [value]="account.id" required>
+      {{account.accountType}}: {{account.accountNumber}}
     </option>
   </select>
-  <div class="mb-3" id="inputAmountTest">
+
+  <div class="form-floating mb-3">
+    <input type="number" min=1 class="form-control" id="inputAmount" step='0.01' (keyup)="onKeydown($event)"
+      [(ngModel)]="transferForm.amountToTransfer" name="Amount" required placeholder="0.00">
+    <label for="floatingInput">Amount</label>
+  </div>
+  <div class="mb-3" id="inputAmountTest"><b>
     {{amountToCurrency}}
-    </div>
-    <div class="form-floating mb-3">
-        <input type="number" min=1 class="form-control" id="inputAmount" step='0.01' (keyup)="onKeydown($event)" [(ngModel)]="transferForm.amountToTransfer" name="Amount" required placeholder="0.00">
-        <label for="floatingInput">Amount</label>
-      </div>
+  </b></div>
   <button type="submit" class="btn btn-primary" [disabled]="transferAccountForm.invalid">Submit</button>
 </form>
