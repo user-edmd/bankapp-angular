@@ -1,24 +1,23 @@
 <form #transferAccountForm="ngForm" (ngSubmit)="onSubmit()" ngNativeValidate>
-  <select class="form-select mt-3 mb-3" [(ngModel)]="transferForm.accountIdFrom" name="accountIdFrom"
-    (change)='onChange($event)'>
-    <option *ngFor="let account of accountsTransferFrom" name="accountFrom" [value]="account.id" required>
-      {{account.accountType}}: {{account.accountNumber}}
+  <select class="form-select mt-3 mb-3" [(ngModel)]="transferForm.accountIdFrom" name="accountIdFrom" required>
+    <option *ngFor="let account of accounts" name="accountFrom" [value]="account.id">
+      {{account.accountType}}: {{account.accountNumber}} (Balance: {{account.accountBalance | currency}})
     </option>
   </select>
-  <select class="form-select mt-3 mb-3" aria-label="Default select example" [(ngModel)]="transferForm.accountIdTo"
-    name="accountIdTo">
-    <option *ngFor="let account of accountsTransferTo" name="accountTo" [value]="account.id" required>
-      {{account.accountType}}: {{account.accountNumber}}
-    </option>
+  <select class="form-select mt-3 mb-3" [(ngModel)]="transferForm.accountIdTo" name="accountIdTo" required>
+    <ng-container *ngFor="let account of accounts">
+      <option *ngIf="account.id!=transferForm.accountIdFrom" name="accountTo" [value]="account.id">
+        {{account.accountType}}: {{account.accountNumber}} (Balance: {{account.accountBalance | currency}})
+      </option>
+    </ng-container>
   </select>
-
   <div class="form-floating mb-3">
     <input type="number" min=1 class="form-control" id="inputAmount" step='0.01' (keyup)="onKeydown($event)"
       [(ngModel)]="transferForm.amountToTransfer" name="Amount" required placeholder="0.00">
     <label for="floatingInput">Amount</label>
   </div>
   <div class="mb-3" id="inputAmountTest"><b>
-    {{amountToCurrency}}
-  </b></div>
+      {{amountToCurrency}}
+    </b></div>
   <button type="submit" class="btn btn-primary" [disabled]="transferAccountForm.invalid">Submit</button>
 </form>

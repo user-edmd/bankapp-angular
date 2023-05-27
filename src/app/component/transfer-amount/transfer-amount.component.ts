@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Account } from 'src/app/common/account';
 import { TransferForm } from 'src/app/common/transfer-form';
-import { User } from 'src/app/common/user';
 import { AccountService } from 'src/app/services/account.service';
 import { TransactionService } from 'src/app/services/transaction.service';
 
@@ -12,15 +11,11 @@ import { TransactionService } from 'src/app/services/transaction.service';
   styleUrls: ['./transfer-amount.component.css']
 })
 export class TransferAmountComponent {
-  accounts: Account[] = []
+  accounts: Account[]
   transferForm: TransferForm
   routeParams = this.route.snapshot.paramMap;
   userIdFromRouter = Number(this.routeParams.get('id'));
   amountToCurrency: string
-  index: number
-
-  accountsTransferFrom: Account[]
-  accountsTransferTo: Account[]
 
   constructor(
     private router: Router,
@@ -36,13 +31,7 @@ export class TransferAmountComponent {
   }
   getAccounts(): void {
     this.accountService.getAccountsFromUser(this.userIdFromRouter)
-      .subscribe(accounts => {
-        this.accountsTransferFrom = accounts
-      })
-    this.accountService.getAccountsFromUser(this.userIdFromRouter)
-      .subscribe(accounts => {
-        this.accountsTransferTo = accounts
-      })
+      .subscribe(accounts => { this.accounts = accounts })
   }
 
   onSubmit() {
@@ -58,22 +47,5 @@ export class TransferAmountComponent {
       style: "currency",
       currency: "USD"
     });
-  }
-
-  onChange(event: any) {
-
-    this.index = Number(event.target.value)
-    // console.log(this.index)
-    // console.log(this.accountsTransferTo)
-    // for (let i = 0; i < this.accountsTransferTo.length; i++) {
-    //   if (this.accountsTransferTo[i].id === this.index){
-    //     console.log('Removed ' + this.accountsTransferTo[i].id)
-    //     this.accountsTransferTo.filter(account => this.index != account.id)
-    //   }
-      
-    // }
-
-    this.accountsTransferTo = this.accountsTransferTo.filter(account => this.index != account.id)
-    console.log(this.accountsTransferTo)
   }
 }
