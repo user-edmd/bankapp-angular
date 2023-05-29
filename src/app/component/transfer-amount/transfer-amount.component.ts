@@ -11,11 +11,12 @@ import { TransactionService } from 'src/app/services/transaction.service';
   styleUrls: ['./transfer-amount.component.css']
 })
 export class TransferAmountComponent {
-  accounts: Account[]
+  accounts: Account[] = []
   transferForm: TransferForm
   routeParams = this.route.snapshot.paramMap;
   userIdFromRouter = Number(this.routeParams.get('id'));
   amountToCurrency: string
+  accountFrom: Account
 
   constructor(
     private router: Router,
@@ -47,5 +48,9 @@ export class TransferAmountComponent {
       style: "currency",
       currency: "USD"
     });
+  }
+
+  userHasMultiAccounts(): boolean {
+    return (this.accounts.length >= 2) ? true : false
   }
 }

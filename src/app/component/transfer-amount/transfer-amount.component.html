@@ -1,5 +1,7 @@
+<div *ngIf="userHasMultiAccounts(); else oneAccount">
 <form #transferAccountForm="ngForm" (ngSubmit)="onSubmit()" ngNativeValidate>
   <select class="form-select mt-3 mb-3" [(ngModel)]="transferForm.accountIdFrom" name="accountIdFrom" required>
+    <option value="undefined" disabled selected hidden>Select Account</option>
     <option *ngFor="let account of accounts" name="accountFrom" [value]="account.id">
       {{account.accountType}}: {{account.accountNumber}} (Balance: {{account.accountBalance | currency}})
     </option>
@@ -21,3 +23,7 @@
     </b></div>
   <button type="submit" class="btn btn-primary" [disabled]="transferAccountForm.invalid">Submit</button>
 </form>
+</div>
+<ng-template #oneAccount>
+<h1 class="text-danger">Cannot transfer with only one account.</h1>
+</ng-template>
