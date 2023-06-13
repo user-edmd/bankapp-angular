@@ -15,6 +15,7 @@ import { CreateAccountComponent } from './component/create-account/create-accoun
 import { CreateTransactionComponent } from './component/create-transaction/create-transaction.component';
 import { TransferAmountComponent } from './component/transfer-amount/transfer-amount.component';
 import { EditUserComponent } from './component/edit-user/edit-user.component';
+import { AuthModule } from '@auth0/auth0-angular';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,14 @@ import { EditUserComponent } from './component/edit-user/edit-user.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    AuthModule.forRoot({
+      domain: 'dev-41u3yy83f4dtjy7v.us.auth0.com',
+      clientId: 'mHi8CvJjwB4gCwubGTCZCntl1DG14m0z',
+      authorizationParams: {
+        redirect_uri: window.location.origin
+      }
+    }),
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

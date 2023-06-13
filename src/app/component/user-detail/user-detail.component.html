@@ -11,9 +11,9 @@
         blandit. Pellentesque facilisis rhoncus velit eget rutrum. Sed hendrerit magna ac nisl luctus, quis hendrerit
         lorem hendrerit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-        <button type="button" class="btn btn-primary btn-lg px-4 gap-3" routerLink="/user/{{user.id}}/addAccount">Open
+        <button type="button" class="btn btn-primary btn-lg px-4 gap-3" routerLink="/user/{{user.id}}/addAccount"><i class="bi bi-plus-circle-fill"></i> Open
           New Account</button>
-        <button type="button" class="btn btn-outline-secondary btn-lg px-4"routerLink="/user/{{user.id}}/editProfile">Edit Profile</button>
+        <button type="button" class="btn btn-outline-secondary btn-lg px-4"routerLink="/user/{{user.id}}/editProfile"><i class="bi bi-person"></i> Edit Profile</button>
       </div>
     </div>
   </div>
@@ -26,7 +26,7 @@
       <p class="card-text">Account Number: {{account.accountNumber}}</p>
       <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
         aria-controls="offcanvasExample" (click)="getTransactions2(account.id, 0)">
-        View Transactions
+        <i class="bi bi-list-columns"></i> View Transactions
       </a>
     </div>
   </div>
