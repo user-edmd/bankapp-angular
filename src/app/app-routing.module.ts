@@ -9,6 +9,7 @@ import { CreateAccountComponent } from './component/create-account/create-accoun
 import { CreateTransactionComponent } from './component/create-transaction/create-transaction.component';
 import { TransferAmountComponent } from './component/transfer-amount/transfer-amount.component';
 import { EditUserComponent } from './component/edit-user/edit-user.component';
+import { AuthButtonComponent } from './auth-button-component/auth-button-component.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/users', pathMatch: 'full' },
@@ -20,7 +21,8 @@ const routes: Routes = [
   { path: 'user/:id/addAccount', component: CreateAccountComponent },
   { path: 'account/:id/addTransaction', component: CreateTransactionComponent },
   { path: 'user/:id/transfer', component: TransferAmountComponent },
-  { path: 'user/:id/editProfile', component: EditUserComponent }
+  { path: 'user/:id/editProfile', component: EditUserComponent },
+  { path: 'login', component: AuthButtonComponent }
 ];
 
 @NgModule({

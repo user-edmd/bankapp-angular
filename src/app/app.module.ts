@@ -16,6 +16,7 @@ import { CreateTransactionComponent } from './component/create-transaction/creat
 import { TransferAmountComponent } from './component/transfer-amount/transfer-amount.component';
 import { EditUserComponent } from './component/edit-user/edit-user.component';
 import { AuthModule } from '@auth0/auth0-angular';
+import { AuthButtonComponent } from './auth-button-component/auth-button-component.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AuthModule } from '@auth0/auth0-angular';
     CreateAccountComponent,
     CreateTransactionComponent,
     TransferAmountComponent,
-    EditUserComponent
+    EditUserComponent,
+    AuthButtonComponent
   ],
   imports: [
     BrowserModule,
