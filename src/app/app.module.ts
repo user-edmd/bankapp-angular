@@ -17,6 +17,7 @@ import { TransferAmountComponent } from './component/transfer-amount/transfer-am
 import { EditUserComponent } from './component/edit-user/edit-user.component';
 import { AuthModule } from '@auth0/auth0-angular';
 import { AuthButtonComponent } from './auth-button-component/auth-button-component.component';
+import { HomepageComponent } from './component/homepage/homepage.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AuthButtonComponent } from './auth-button-component/auth-button-compone
     CreateTransactionComponent,
     TransferAmountComponent,
     EditUserComponent,
-    AuthButtonComponent
+    AuthButtonComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,

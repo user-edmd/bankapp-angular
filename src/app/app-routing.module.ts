@@ -10,9 +10,11 @@ import { CreateTransactionComponent } from './component/create-transaction/creat
 import { TransferAmountComponent } from './component/transfer-amount/transfer-amount.component';
 import { EditUserComponent } from './component/edit-user/edit-user.component';
 import { AuthButtonComponent } from './auth-button-component/auth-button-component.component';
+import { HomepageComponent } from './component/homepage/homepage.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/users', pathMatch: 'full' },
+  // { path: '', redirectTo: '/users', pathMatch: 'full' },
+  { path: '', component: HomepageComponent },
   { path: 'user/:id', component: UserDetailComponent },
   { path: 'users', component: UserListComponent },
   { path: 'account/:id', component: AccountDetailComponent },
