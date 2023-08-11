@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { UserListComponent } from './component/user-list/user-list.component';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { UserService } from './services/user.service';
 import { AppRoutingModule } from './app-routing.module';
 import { UserDetailComponent } from './component/user-detail/user-detail.component';
@@ -18,6 +18,8 @@ import { EditUserComponent } from './component/edit-user/edit-user.component';
 import { AuthModule } from '@auth0/auth0-angular';
 import { AuthButtonComponent } from './auth-button-component/auth-button-component.component';
 import { HomepageComponent } from './component/homepage/homepage.component';
+import { environment } from 'src/environments/environment';
+import { SecureInterceptor } from './auth/secure-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -40,14 +42,16 @@ import { HomepageComponent } from './component/homepage/homepage.component';
     AppRoutingModule,
     FormsModule,
     AuthModule.forRoot({
-      domain: 'dev-41u3yy83f4dtjy7v.us.auth0.com',
-      clientId: 'mHi8CvJjwB4gCwubGTCZCntl1DG14m0z',
-      authorizationParams: {
-        redirect_uri: window.location.origin
+      ...environment.auth0,
+      httpInterceptor: {
+        ...environment.httpInterceptor,
       }
     }),
   ],
-  providers: [UserService],
+  providers: [
+    UserService,
+    { provide: HTTP_INTERCEPTORS, useClass: SecureInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
