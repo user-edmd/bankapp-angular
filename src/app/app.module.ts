@@ -20,6 +20,7 @@ import { AuthButtonComponent } from './auth-button-component/auth-button-compone
 import { HomepageComponent } from './component/homepage/homepage.component';
 import { environment } from 'src/environments/environment';
 import { SecureInterceptor } from './auth/secure-interceptor.service';
+import { UnauthorizedComponent } from './component/unauthorized/unauthorized.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { SecureInterceptor } from './auth/secure-interceptor.service';
     TransferAmountComponent,
     EditUserComponent,
     AuthButtonComponent,
-    HomepageComponent
+    HomepageComponent,
+    UnauthorizedComponent
   ],
   imports: [
     BrowserModule,

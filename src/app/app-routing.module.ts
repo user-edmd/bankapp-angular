@@ -12,6 +12,7 @@ import { EditUserComponent } from './component/edit-user/edit-user.component';
 import { AuthButtonComponent } from './auth-button-component/auth-button-component.component';
 import { HomepageComponent } from './component/homepage/homepage.component';
 import { AuthGuard } from '@auth0/auth0-angular';
+import { UnauthorizedComponent } from './component/unauthorized/unauthorized.component';
 
 const routes: Routes = [
   // { path: '', redirectTo: '/users', pathMatch: 'full' },
@@ -29,7 +30,9 @@ const routes: Routes = [
   { path: 'account/:id/addTransaction', component: CreateTransactionComponent },
   { path: 'user/:id/transfer', component: TransferAmountComponent },
   { path: 'user/:id/editProfile', component: EditUserComponent },
-  { path: 'login', component: AuthButtonComponent }
+  { path: 'login', component: AuthButtonComponent },
+  { path: 'unauthorized', component: UnauthorizedComponent },
+  { path: '500', component: UnauthorizedComponent }
 ];
 
 @NgModule({
