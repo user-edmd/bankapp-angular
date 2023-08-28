@@ -21,6 +21,7 @@ import { HomepageComponent } from './component/homepage/homepage.component';
 import { environment } from 'src/environments/environment';
 import { SecureInterceptor } from './auth/secure-interceptor.service';
 import { UnauthorizedComponent } from './component/unauthorized/unauthorized.component';
+import { ExampleInterceptor } from './example.interceptor';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { UnauthorizedComponent } from './component/unauthorized/unauthorized.com
   ],
   providers: [
     UserService,
-    { provide: HTTP_INTERCEPTORS, useClass: SecureInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: SecureInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ExampleInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
