@@ -17,7 +17,7 @@ import { UnauthorizedComponent } from './component/unauthorized/unauthorized.com
 const routes: Routes = [
   // { path: '', redirectTo: '/users', pathMatch: 'full' },
   { path: '', component: HomepageComponent },
-  { path: 'user/:id', component: UserDetailComponent, canActivate: [AuthGuard] },
+  { path: 'users/:id', component: UserDetailComponent, canActivate: [AuthGuard] },
   { 
     path: 'users', 
     component: UserListComponent, 
