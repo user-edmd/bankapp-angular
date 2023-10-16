@@ -7,7 +7,7 @@ export const environment = {
   auth0: {
     domain: 'dev-41u3yy83f4dtjy7v.us.auth0.com',
     clientId: 'mHi8CvJjwB4gCwubGTCZCntl1DG14m0z',
-    scope: 'openid profile email read:appointments',
+    scope: 'openid profile email read:appointments read:user_metadata',
     authorizationParams: {
       redirect_uri: window.location.origin
     }

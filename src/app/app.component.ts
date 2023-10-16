@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-bankapp';
+
+  constructor(public auth: AuthService) {
+    console.log('AppComponent!')
+  }
+
+  public logout() {
+    this.auth.logout({ logoutParams: { returnTo: document.location.origin } })
+  }
 }
