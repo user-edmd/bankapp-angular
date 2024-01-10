@@ -23,13 +23,12 @@ export class EditUserComponent implements OnInit {
   }
 
   getUser(): void {
-    this.userService.getUser(this.userIdFromRouter).subscribe(user => this.user = user)
+    this.userService.getUser().subscribe(user => this.user = user)
   }
 
   onSubmit() {
     this.userService.editUser(this.user).subscribe(user => this.user = user);
-    this.router.navigateByUrl(`/user/${this.userIdFromRouter}`).then(() => {
-      window.location.reload();
-    });;
+
+    this.router.navigateByUrl(`/users/${this.userIdFromRouter}`);
   }
 }

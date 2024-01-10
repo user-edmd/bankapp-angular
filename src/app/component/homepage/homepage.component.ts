@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService, IdToken } from '@auth0/auth0-angular';
@@ -20,17 +20,6 @@ export class HomepageComponent implements OnInit {
     private http: HttpClient) { }
 
   ngOnInit(): void {
-    //IF this.user is available, the user must be logged in and redirect to homepage
-    //else display this page
-    
-    // this.authService.user$.subscribe((success: any) => {
-    //   console.log(success)
-    //   if(success) {
-    //     this.user = success;
-    //     this.router.navigate(['/users'])
-        
-    //   }
-    // });
     this.authService.idTokenClaims$.subscribe((token: any) => {
 
       if(token != null) {
@@ -43,9 +32,9 @@ export class HomepageComponent implements OnInit {
         }
 
         this.http.get<any>('http://localhost:8080/api/user', httpOptions).subscribe(
-          (user: BankingUser) => {
-            console.log(user)
-            this.router.navigate([`/users/${user.id}`])
+          (response: UserResponse) => {
+            console.log(response.data.id)
+            this.router.navigate([`/users/${response.data.id}`])
           }
         )
       } else {
@@ -60,6 +49,9 @@ export class HomepageComponent implements OnInit {
     this.userService.getUsers().subscribe(users => this.users = users)
   }
 
+}
+export interface UserResponse {
+  data: BankingUser
 }
 
 export interface BankingUser {

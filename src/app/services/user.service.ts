@@ -21,8 +21,8 @@ export class UserService {
     )
   }
 
-  getUser(userId: number): Observable<User>{
-    return this.http.get<SingleUser>(`${this.baseUrl}/${userId}`).pipe(
+  getUser(): Observable<User>{
+    return this.http.get<SingleUser>(`${this.baseUrl}`).pipe(
       map(response => response.data)
     )
   }
