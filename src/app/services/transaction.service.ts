@@ -10,7 +10,7 @@ import { TransferForm } from '../common/transfer-form';
 })
 export class TransactionService {
 
-  private baseUrl = "http://localhost:8080";
+  private baseUrl = "http://localhost:8080/api";
 
   constructor(private http: HttpClient) { }
 

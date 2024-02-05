@@ -37,7 +37,7 @@ export class TransferAmountComponent {
 
   onSubmit() {
     this.transactionService.transferMoney(this.transferForm).subscribe();
-    this.router.navigateByUrl(`/user/${this.userIdFromRouter}`).then(() => {
+    this.router.navigateByUrl(`/users/${this.userIdFromRouter}`).then(() => {
       window.location.reload();
     });
   }
