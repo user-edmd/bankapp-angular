@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService, IdToken } from '@auth0/auth0-angular';
 import { User } from 'src/app/common/user';
@@ -10,7 +10,7 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.css']
 })
-export class HomepageComponent implements OnInit {
+export class HomepageComponent implements OnInit, OnChanges {
   user: any;
   users: User[] = [];
   constructor(
@@ -18,12 +18,15 @@ export class HomepageComponent implements OnInit {
     private authService: AuthService, 
     private router: Router,
     private http: HttpClient) { }
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
+  }
 
   ngOnInit(): void {
-    this.authService.idTokenClaims$.subscribe((token: any) => {
+    this.authService.idTokenClaims$.subscribe((token: IdToken | null | undefined) => {
 
       if(token != null) {
-        console.log(token)
+        console.log(token.name)
         const httpOptions = {
           headers: new HttpHeaders({
             'Content-Type': 'application/json',
@@ -33,11 +36,12 @@ export class HomepageComponent implements OnInit {
 
         this.http.get<any>('http://localhost:8080/api/user', httpOptions).subscribe(
           (response: UserResponse) => {
-            console.log(response.data.id)
+            // console.log(response.data.id)
             if (response.data == null) {
               this.router.navigate([`/register`])
             } else {
-            this.router.navigate([`/users/${response.data.id}`])
+              console.log(response.data.id)
+              this.router.navigate([`/users/${response.data.id}`])
             }
           }
         )

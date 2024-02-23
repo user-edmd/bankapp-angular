@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Account } from 'src/app/common/account';
 import { Transaction } from 'src/app/common/transaction';
@@ -12,7 +12,7 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './user-detail.component.html',
   styleUrls: ['./user-detail.component.css']
 })
-export class UserDetailComponent implements OnInit {
+export class UserDetailComponent implements OnInit, OnChanges {
   user: User | undefined;
   accounts: Account[] = []
   transactions: Transaction[] = []
@@ -30,6 +30,9 @@ export class UserDetailComponent implements OnInit {
     private accountService: AccountService,
     private transactionService : TransactionService
   ) {}
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
+  }
 
   ngOnInit(): void {
     this.getUser();
