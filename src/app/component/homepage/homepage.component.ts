@@ -34,7 +34,11 @@ export class HomepageComponent implements OnInit {
         this.http.get<any>('http://localhost:8080/api/user', httpOptions).subscribe(
           (response: UserResponse) => {
             console.log(response.data.id)
+            if (response.data == null) {
+              this.router.navigate([`/register`])
+            } else {
             this.router.navigate([`/users/${response.data.id}`])
+            }
           }
         )
       } else {
