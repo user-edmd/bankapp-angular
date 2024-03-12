@@ -1,4 +1,31 @@
 <h2>Select an Account</h2>
+<div class="accordion" id="accordionExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          EB Checking Account
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <strong>Introducing the Ultimate Checking Account</strong> - where convenience meets flexibility, tailored just for you! In today’s fast-paced world, managing your finances shouldn’t slow you down. That’s why we’ve crafted a checking account that not only meets your everyday banking needs but also rewards you for doing so.
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          EB Savings Account
+        </button>
+      </h2>
+      <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <strong>Introducing the Dream Saver Savings Account</strong> where your financial aspirations become a reality. In a world where saving feels increasingly challenging, we believe in offering a savings solution that not only secures your future but also rewards your commitment to saving.
+          
+        </div>
+      </div>
+    </div>
+  </div>
 <form #accountForm="ngForm" (ngSubmit)="onSubmit()" ngNativeValidate>
     <div class="form-check mb-3">
         <input value="Checking" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" required [(ngModel)]="account.accountType">
@@ -14,3 +41,4 @@
     </div>
     <button type="submit" class="btn btn-primary" [disabled]="accountForm.invalid">Submit</button>
 </form>
+

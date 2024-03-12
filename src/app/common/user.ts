@@ -7,7 +7,7 @@ export class User {
     address: string
     ssn: string
     dob: string
-    username: string
+    username?: string
     password: string
     role: string
     accountList: Account[]
