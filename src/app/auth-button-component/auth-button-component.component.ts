@@ -6,7 +6,7 @@ import { DOCUMENT } from '@angular/common';
   selector: 'app-auth-button',
   template: `
     <ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
-      <div class="btn btn-primary" (click)="auth.logout({ logoutParams: { returnTo: document.location.origin } })">
+      <div class="btn btn-primary" (click)="logout()">
         Log out
       </div>
     </ng-container>
@@ -19,4 +19,9 @@ import { DOCUMENT } from '@angular/common';
 })
 export class AuthButtonComponent {
   constructor(@Inject(DOCUMENT) public document: Document, public auth: AuthService) {}
+
+  public logout(): void {
+    localStorage.clear();
+    this.auth.logout({ logoutParams: { returnTo: document.location.origin } });
+  }
 }

@@ -10,7 +10,7 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.css']
 })
-export class HomepageComponent implements OnInit, OnChanges {
+export class HomepageComponent implements OnInit {
   user: any;
   users: User[] = [];
   constructor(
@@ -18,9 +18,9 @@ export class HomepageComponent implements OnInit, OnChanges {
     private authService: AuthService, 
     private router: Router,
     private http: HttpClient) { }
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
-  }
+  // ngOnChanges(changes: SimpleChanges): void {
+  //   console.log(changes);
+  // }
 
   ngOnInit(): void {
     this.authService.idTokenClaims$.subscribe((token: IdToken | null | undefined) => {
