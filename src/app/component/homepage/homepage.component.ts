@@ -27,6 +27,7 @@ export class HomepageComponent implements OnInit, OnChanges {
 
       if(token != null) {
         console.log(token.name)
+        console.log(token)
         const httpOptions = {
           headers: new HttpHeaders({
             'Content-Type': 'application/json',
