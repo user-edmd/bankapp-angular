@@ -32,8 +32,12 @@ export class CreateTransactionComponent {
     this.transaction.accountId = Number(this.route.snapshot.paramMap.get('id'));
     this.transaction.date = this.transactionDate;
     this.accountService.getAccount(this.accountIdFromRouter).subscribe(account => this.account = account);
-    this.transactionService.addTransaction(this.transaction, this.transaction.accountId).subscribe();
-    this.router.navigateByUrl(`/users/${this.account.userId}`);
+    this.transactionService.addTransaction(this.transaction, this.transaction.accountId).subscribe(
+      () => {
+        this.router.navigateByUrl(`/users/${this.account.userId}`);
+      }
+    );
+    
   }
 
   onKeydown(event: any) {

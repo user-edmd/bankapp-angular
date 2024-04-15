@@ -36,8 +36,12 @@ export class TransferAmountComponent {
   }
 
   onSubmit() {
-    this.transactionService.transferMoney(this.transferForm).subscribe();
-    this.router.navigateByUrl(`/users/${this.userIdFromRouter}`);
+    this.transactionService.transferMoney(this.transferForm).subscribe(
+      () => {
+        this.router.navigateByUrl(`/users/${this.userIdFromRouter}`);
+      }
+    );
+    
   }
 
   onKeydown(event: any) {

@@ -20,7 +20,11 @@ export class CreateAccountComponent {
 
   onSubmit() {
     this.account.userId = Number(this.route.snapshot.paramMap.get('id'))
-    this.accountService.createAccount(this.account).subscribe();
-    this.router.navigate(['/users/' + this.account.userId]);
+    this.accountService.createAccount(this.account).subscribe(
+      data => {
+        console.log(data);
+        this.router.navigate(['/users/' + this.account.userId]);
+      }
+    );
   }
 }
