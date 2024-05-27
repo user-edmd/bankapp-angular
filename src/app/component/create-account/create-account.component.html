@@ -39,6 +39,25 @@
             Savings Account
         </label>
     </div>
-    <button type="submit" class="btn btn-primary" [disabled]="accountForm.invalid">Submit</button>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAccountButton"
+            [disabled]="accountForm.invalid">Submit</button>
 </form>
 
+<div class="modal fade" id="addAccountButton" tabindex="-1" aria-labelledby="addAccountButtonLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h1 class="modal-title fs-5" id="addAccountButtonLabel">Add Account</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              Are you sure you would like to add this account?
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                  (click)="onSubmit()">Submit</button>
+          </div>
+      </div>
+  </div>
+</div>

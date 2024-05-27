@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'account/:id', component: AccountDetailComponent },
   { path: 'transaction/:id', component: TransactionDetailComponent },
   { path: 'register', component: CreateUserComponent },
-  { path: 'user/:id/addAccount', component: CreateAccountComponent },
+  { path: 'addAccount', component: CreateAccountComponent },
   { path: 'account/:id/addTransaction', component: CreateTransactionComponent },
   { path: 'user/:id/transfer', component: TransferAmountComponent },
   { path: 'user/:id/editProfile', component: EditUserComponent },
