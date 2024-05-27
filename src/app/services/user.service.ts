@@ -34,4 +34,8 @@ export class UserService {
   editUser(user: User): Observable<User>{
     return this.http.put<User>(`${this.baseUrl}/${user.id}`, user);
   }
+
+  editUser2(user: User): Observable<User>{
+    return this.http.put<User>(`${this.baseUrl}`, user);
+  }
 }

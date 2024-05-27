@@ -27,5 +27,26 @@
         <label for="inputDob" class="form-label">Date of Birth</label>
         <input type="date" min="1900-01-01" class="form-control" id="inputDob" [(ngModel)]="user.dob" name="dob" required>
     </div>
-    <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">Submit</button>
+    <!-- <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">Submit</button> -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editUserButton"
+            [disabled]="userForm.invalid">Submit</button>
 </form>
+
+<div class="modal fade" id="editUserButton" tabindex="-1" aria-labelledby="editUserButtonLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="editUserButtonLabel">Edit Profile</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you would like to update your profile?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                    (click)="onSubmit()">Submit</button>
+            </div>
+        </div>
+    </div>
+  </div>

@@ -18,17 +18,15 @@ export class EditUserComponent implements OnInit {
     private route: ActivatedRoute,
     private userService: UserService) {
   }
-  ngOnInit(): void {
-    this.getUser()
-  }
 
-  getUser(): void {
+  ngOnInit(): void {
     this.userService.getUser().subscribe(user => this.user = user)
   }
 
   onSubmit() {
-    this.userService.editUser(this.user).subscribe(user => this.user = user);
-
-    this.router.navigateByUrl(`/users/${this.userIdFromRouter}`);
+    this.userService.editUser2(this.user).subscribe(user => { 
+      this.user = user;
+      this.router.navigateByUrl('/dashboard');
+    });
   }
 }

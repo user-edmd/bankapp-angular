@@ -51,7 +51,6 @@ export class DashboardComponent {
   getAccounts(): void {
     this.accountService.getAccountsFromUser2()
       .subscribe(accounts => this.accounts = accounts)
-    console.log(this.accounts);
   }
 
   openTransactions(accountId : number) {

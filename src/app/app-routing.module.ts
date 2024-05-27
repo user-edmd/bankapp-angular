@@ -30,7 +30,7 @@ const routes: Routes = [
   { path: 'addAccount', component: CreateAccountComponent },
   { path: 'account/:id/addTransaction', component: CreateTransactionComponent },
   { path: 'user/:id/transfer', component: TransferAmountComponent },
-  { path: 'user/:id/editProfile', component: EditUserComponent },
+  { path: 'editProfile', component: EditUserComponent },
   { path: 'unauthorized', component: UnauthorizedComponent },
   { path: '500', component: UnauthorizedComponent },
   { path: 'login/callback', component: OktaCallbackComponent }
