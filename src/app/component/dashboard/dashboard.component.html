@@ -1,0 +1,81 @@
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@1000&display=swap" rel="stylesheet">
+  </head>
+  <div>
+    <div class="px-4 py-5 my-5 text-center">
+      <h1 class="display-5 fw-bold text-body-emphasis">Welcome, Test!</h1>
+      <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">
+          We're delighted to have you here—your financial goals are our mission, and we're committed to providing you with seamless banking experiences and personalized support every step of the way.</p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+          <button type="button" class="btn btn-primary btn-lg px-4 gap-3" routerLink="/"><i class="bi bi-plus-circle-fill"></i> Open
+            New Account</button>
+          <button type="button" class="btn btn-outline-secondary btn-lg px-4"routerLink="/"><i class="bi bi-person"></i> Edit Profile</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="accounts">
+    <div class="card m-3" *ngFor="let account of accounts">
+      <h5 class="card-header">{{account.accountType}}</h5>
+      <div class="card-body">
+        <h5 class="card-title">{{account.accountBalance | currency}}</h5>
+        <p class="card-text">Account Number: {{account.accountNumber}}</p>
+        <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
+          aria-controls="offcanvasExample" (click)="getTransactions2(account.id, 0)">
+          <i class="bi bi-list-columns"></i> View Transactions
+        </a>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="transactions">
+    <div class="offcanvas offcanvas-bottom offcanvas-size-xl" tabindex="-1" id="offcanvasExample"
+      aria-labelledby="offcanvasExampleLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Transactions</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div>
+          <div>
+            <table class="table">
+              <thead>
+                <th>Date</th>
+                <th>Transaction Type</th>
+                <th>Amount</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let transaction of transactions">
+                  <td>{{transaction.date | date:'mediumDate'}}</td>
+                  <td>{{transaction.transactionType}}</td>
+                  <td>{{transaction.amount | currency}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item" [ngClass]="{'disabled': page === 0}"><a class="page-link" role="button"
+                (click)="goToPrevOrNext('prev')">Previous</a></li>
+            <li class="page-item" [ngClass]="{'active': page === i}"
+              *ngFor="let item of [].constructor( total ); let i = index"><a class="page-link" role="button"
+                (click)="goToPage(i)">{{i+1}}</a></li>
+            <li class="page-item" [ngClass]="{'disabled': page === total - 1}"><a class="page-link" role="button"
+                (click)="goToPrevOrNext('next')">Next</a></li>
+          </ul>
+        </nav>
+        <div class="dropdown mt-3">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+            Options
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" role="button" (click)="openTransactionsPage()">Add Transaction</a></li>
+            <!-- <li><a class="dropdown-item" *ngIf="user && this.accounts.length >= 2" routerLink="/user/{{user.id}}/transfer">Transfer</a></li> -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>

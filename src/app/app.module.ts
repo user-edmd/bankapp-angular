@@ -15,13 +15,18 @@ import { CreateAccountComponent } from './component/create-account/create-accoun
 import { CreateTransactionComponent } from './component/create-transaction/create-transaction.component';
 import { TransferAmountComponent } from './component/transfer-amount/transfer-amount.component';
 import { EditUserComponent } from './component/edit-user/edit-user.component';
-import { AuthModule } from '@auth0/auth0-angular';
-import { AuthButtonComponent } from './auth-button-component/auth-button-component.component';
 import { HomepageComponent } from './component/homepage/homepage.component';
-import { environment } from 'src/environments/environment';
-import { SecureInterceptor } from './auth/secure-interceptor.service';
 import { UnauthorizedComponent } from './component/unauthorized/unauthorized.component';
-import { ExampleInterceptor } from './example.interceptor';
+import { OktaAuthModule, OKTA_CONFIG } from '@okta/okta-angular';
+import { OktaAuth } from '@okta/okta-auth-js';
+import { AuthInterceptor } from './auth-interceptor.service';
+import { DashboardComponent } from './component/dashboard/dashboard.component';
+
+const oktaAuth = new OktaAuth({
+  issuer: 'https://dev-30779887.okta.com/oauth2/default',
+  clientId: '0oaggcnuf37Zj6EMn5d7',
+  redirectUri: window.location.origin + '/login/callback'
+});
 
 @NgModule({
   declarations: [
@@ -35,26 +40,19 @@ import { ExampleInterceptor } from './example.interceptor';
     CreateTransactionComponent,
     TransferAmountComponent,
     EditUserComponent,
-    AuthButtonComponent,
     HomepageComponent,
-    UnauthorizedComponent
+    UnauthorizedComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    AuthModule.forRoot({
-      ...environment.auth0,
-      httpInterceptor: {
-        ...environment.httpInterceptor,
-      }
-    }),
+    OktaAuthModule.forRoot({ oktaAuth })
   ],
   providers: [
-    UserService,
-    { provide: HTTP_INTERCEPTORS, useClass: SecureInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ExampleInterceptor, multi: true }
+    UserService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

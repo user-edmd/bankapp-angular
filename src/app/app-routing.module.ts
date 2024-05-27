@@ -9,20 +9,21 @@ import { CreateAccountComponent } from './component/create-account/create-accoun
 import { CreateTransactionComponent } from './component/create-transaction/create-transaction.component';
 import { TransferAmountComponent } from './component/transfer-amount/transfer-amount.component';
 import { EditUserComponent } from './component/edit-user/edit-user.component';
-import { AuthButtonComponent } from './auth-button-component/auth-button-component.component';
 import { HomepageComponent } from './component/homepage/homepage.component';
-import { AuthGuard } from '@auth0/auth0-angular';
 import { UnauthorizedComponent } from './component/unauthorized/unauthorized.component';
+import { OktaCallbackComponent } from '@okta/okta-angular';
+import { DashboardComponent } from './component/dashboard/dashboard.component';
+
 
 const routes: Routes = [
   // { path: '', redirectTo: '/users', pathMatch: 'full' },
   { path: '', component: HomepageComponent },
-  { path: 'users/:id', component: UserDetailComponent, canActivate: [AuthGuard] },
+  { path: 'users/:id', component: UserDetailComponent },
   { 
     path: 'users', 
     component: UserListComponent, 
-    canActivate: [AuthGuard] 
   },
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'account/:id', component: AccountDetailComponent },
   { path: 'transaction/:id', component: TransactionDetailComponent },
   { path: 'register', component: CreateUserComponent },
@@ -30,9 +31,9 @@ const routes: Routes = [
   { path: 'account/:id/addTransaction', component: CreateTransactionComponent },
   { path: 'user/:id/transfer', component: TransferAmountComponent },
   { path: 'user/:id/editProfile', component: EditUserComponent },
-  { path: 'login', component: AuthButtonComponent },
   { path: 'unauthorized', component: UnauthorizedComponent },
-  { path: '500', component: UnauthorizedComponent }
+  { path: '500', component: UnauthorizedComponent },
+  { path: 'login/callback', component: OktaCallbackComponent }
 ];
 
 @NgModule({

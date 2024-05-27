@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService, IdToken } from '@auth0/auth0-angular';
+import { OktaAuthStateService } from '@okta/okta-angular';
+// import { AuthService, IdToken } from '@auth0/auth0-angular';
 import { User } from 'src/app/common/user';
 import { UserService } from 'src/app/services/user.service';
 
@@ -13,64 +14,38 @@ import { UserService } from 'src/app/services/user.service';
 export class HomepageComponent implements OnInit {
   user: any;
   users: User[] = [];
-  constructor(
-    private userService: UserService,
-    private authService: AuthService, 
-    private router: Router,
-    private http: HttpClient) { }
-  // ngOnChanges(changes: SimpleChanges): void {
-  //   console.log(changes);
-  // }
+  private token$: any;
+
+  constructor(private _oktaAuthStateService: OktaAuthStateService, private router: Router) {  }
 
   ngOnInit(): void {
-    this.authService.idTokenClaims$.subscribe((token: IdToken | null | undefined) => {
-
-      if(token != null) {
-        console.log(token.name)
-        console.log(token)
-        const httpOptions = {
-          headers: new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Authentication': `Bearer ${token.__raw}`
-          })
-        }
-
-        this.http.get<any>('http://localhost:8080/api/user', httpOptions).subscribe(
-          (response: UserResponse) => {
-            // console.log(response.data.id)
-            if (response.data == null) {
-              this.router.navigate([`/register`])
-            } else {
-              console.log(response.data.id)
-              this.router.navigate([`/users/${response.data.id}`])
-            }
-          }
-        )
-      } else {
-        console.log('User not logged in!')
-      }
-    })
-    
-    // this.getUsers()
+    this._oktaAuthStateService.authState$.subscribe((data) => (this.token$ = data));
+    if (this.token$.isAuthenticated == true) {
+      console.log("Logged In");
+      // this.authService.isUserAdmin() ? this.router.navigate(['/employees']) : this.router.navigate(['/profile']);
+      this.router.navigate(['/dashboard']);
+    } else {
+      console.log("Not Logged In");
+    }
   }
 
-  getUsers(): void {
-    this.userService.getUsers().subscribe(users => this.users = users)
-  }
+  // getUsers(): void {
+  //   this.userService.getUsers().subscribe(users => this.users = users)
+  // }
 
 }
-export interface UserResponse {
-  data: BankingUser
-}
+// export interface UserResponse {
+//   data: BankingUser
+// }
 
-export interface BankingUser {
-  address: string
-  dob: string
-  firstName: string
-  id: number
-  lastName: string
-  password: string
-  role: string
-  ssn: string
-  username: string
-}
+// export interface BankingUser {
+//   address: string
+//   dob: string
+//   firstName: string
+//   id: number
+//   lastName: string
+//   password: string
+//   role: string
+//   ssn: string
+//   username: string
+// }

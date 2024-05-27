@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg" style="background-color: #005EB8;">
   <div class="container">
-    <a class="navbar-brand" href="#" style="color: white;">EB BANKING</a>
+    <a class="navbar-brand" href="/" style="color: white;">EB BANKING</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -13,11 +13,18 @@
         <li class="nav-item">
           <a class="nav-link text-underline-hover" aria-current="page" href="#">Savings</a>
         </li>
-        <li *ngIf="auth.isAuthenticated$ | async;" class="nav-item">
+        <!-- <li *ngIf="auth.isAuthenticated$ | async;" class="nav-item">
           <a class="nav-link text-underline-hover" aria-current="page" href="/user/1/editProfile">My Profile</a>
-        </li>
+        </li> -->
       </ul>
-      <app-auth-button></app-auth-button>
+      <ng-container *ngIf="(isAuthenticated$ | async) === false; else signout">
+        <button type="button" class="btn btn-secondary" (click)="signIn()"> Sign in </button>
+      </ng-container>
+      
+      <ng-template #signout>
+        <button type="button" class="btn btn-secondary" (click)="signOut()">Sign out</button>
+      </ng-template>
+      <!-- <app-auth-button></app-auth-button> -->
       <!-- <li class="nav-item dropdown d-flex">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           <i class="bi bi-person-circle"></i>
