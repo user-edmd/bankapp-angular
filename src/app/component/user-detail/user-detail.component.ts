@@ -62,36 +62,36 @@ export class UserDetailComponent implements OnInit, OnChanges {
     
   }
 
-  getTransactions2(accountId: number, page: number) {
-    this.accId = accountId;
-    const routeParams = this.route.snapshot.paramMap;
-    const accountIdFromRouter = Number(routeParams.get('id'));
-    this.transactionService.getTransactions(accountId, this.size, page).subscribe(({content, size, number, totalPages}) => {
-      this.page = number
-      this.size = size
-      this.total = totalPages
-      this.transactions = content;
-    });
-  }
+  // getTransactions2(accountId: number, page: number) {
+  //   this.accId = accountId;
+  //   const routeParams = this.route.snapshot.paramMap;
+  //   const accountIdFromRouter = Number(routeParams.get('id'));
+  //   this.transactionService.getTransactions(accountId, this.size, page).subscribe(({content, size, number, totalPages}) => {
+  //     this.page = number
+  //     this.size = size
+  //     this.total = totalPages
+  //     this.transactions = content;
+  //   });
+  // }
 
-  goToPage(pageSelected: number) {
-    if (this.page !== pageSelected)
-      this.getTransactions2(this.accId, pageSelected);
-  }
+  // goToPage(pageSelected: number) {
+  //   if (this.page !== pageSelected)
+  //     this.getTransactions2(this.accId, pageSelected);
+  // }
 
-  goToPrevOrNext(buttonSelected: string) {
-      if (buttonSelected === 'prev') {
-        if (this.page - 1 >= 0) {
-          this.page--
-          this.getTransactions2(this.accId, this.page);
-        }
-      } else if (buttonSelected === 'next') {
-        if (this.page + 1 < this.total) {
-          this.page++
-          this.getTransactions2(this.accId, this.page);
-        }
-      }
+  // goToPrevOrNext(buttonSelected: string) {
+  //     if (buttonSelected === 'prev') {
+  //       if (this.page - 1 >= 0) {
+  //         this.page--
+  //         this.getTransactions2(this.accId, this.page);
+  //       }
+  //     } else if (buttonSelected === 'next') {
+  //       if (this.page + 1 < this.total) {
+  //         this.page++
+  //         this.getTransactions2(this.accId, this.page);
+  //       }
+  //     }
       
-  }
+  // }
 
 }

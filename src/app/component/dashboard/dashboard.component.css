@@ -1,0 +1,3 @@
+.offcanvas-size-xl {
+    --bs-offcanvas-height: min(70vh) !important;
+}

@@ -42,10 +42,10 @@ export class AccountDetailComponent implements OnInit {
   getTransactions(page: number) {
     const routeParams = this.route.snapshot.paramMap;
     const accountIdFromRouter = Number(routeParams.get('id'));
-    this.transactionService.getTransactions(accountIdFromRouter, this.size, page).subscribe(({content, size, number, totalPages}) => {
-      this.page = number
-      this.size = size
-      this.total = totalPages
+    this.transactionService.getTransactions(accountIdFromRouter, this.size, page).subscribe(({content, page}) => {
+      console.log(page);
+      this.total = page.totalPages;
+      this.page = page.number;
       this.transactions = content;
     });
   }

@@ -19,7 +19,7 @@ export class DashboardComponent {
   transactions: Transaction[] = []
 
   page: number = 0;
-  size: number = 5;
+  size: number = 8;
   total: number = 0;
   accId: number = 0;
   
@@ -63,10 +63,10 @@ export class DashboardComponent {
     this.accId = accountId;
     const routeParams = this.route.snapshot.paramMap;
     const accountIdFromRouter = Number(routeParams.get('id'));
-    this.transactionService.getTransactions(accountId, this.size, page).subscribe(({content, size, number, totalPages}) => {
-      this.page = number
-      this.size = size
-      this.total = totalPages
+    this.transactionService.getTransactions(accountId, this.size, page).subscribe(({content, page}) => {
+      console.log(page);
+      this.total = page.totalPages;
+      this.page = page.number;
       this.transactions = content;
     });
   }
