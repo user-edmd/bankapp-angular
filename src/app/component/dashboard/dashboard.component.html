@@ -17,8 +17,9 @@
       </div>
     </div>
   </div>
-  <div *ngIf="accounts">
-    <div class="card m-3" *ngFor="let account of accounts">
+  <div>
+    @for (account of accounts; track account) {
+    <div class="card m-3">
       <h5 class="card-header">{{account.accountType}}</h5>
       <div class="card-body">
         <h5 class="card-title">{{account.accountBalance | currency}}</h5>
@@ -29,6 +30,7 @@
         </a>
       </div>
     </div>
+    }
   </div>
   <div *ngIf="transactions">
     <div class="offcanvas offcanvas-bottom offcanvas-size-xl" tabindex="-1" id="offcanvasExample"
