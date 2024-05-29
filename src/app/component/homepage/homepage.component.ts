@@ -2,9 +2,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { OktaAuthStateService } from '@okta/okta-angular';
-// import { AuthService, IdToken } from '@auth0/auth0-angular';
 import { User } from 'src/app/common/user';
-import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-homepage',

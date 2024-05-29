@@ -1,7 +1,5 @@
-import { HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService, IdToken } from '@auth0/auth0-angular';
+import { Router } from '@angular/router';
 import { User } from 'src/app/common/user';
 import { UserService } from 'src/app/services/user.service';
 
@@ -15,16 +13,12 @@ export class CreateUserComponent {
 
   constructor(
     private router: Router,
-    private authService: AuthService,
     private userService: UserService) {
     this.user = new User();
   }
 
   ngOnInit(): void {
-    this.authService.idTokenClaims$.subscribe((token: IdToken | null | undefined) => {
-      if (token != null)
-        this.user.username = token.email;
-    })
+
   }
 
 
