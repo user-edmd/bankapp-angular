@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { UserListComponent } from './component/user-list/user-list.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { UserService } from './services/user.service';
 import { AppRoutingModule } from './app-routing.module';
 import { UserDetailComponent } from './component/user-detail/user-detail.component';
@@ -28,32 +28,26 @@ const oktaAuth = new OktaAuth({
   redirectUri: window.location.origin + '/login/callback'
 });
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    UserListComponent,
-    UserDetailComponent,
-    AccountDetailComponent,
-    TransactionDetailComponent,
-    CreateUserComponent,
-    CreateAccountComponent,
-    CreateTransactionComponent,
-    TransferAmountComponent,
-    EditUserComponent,
-    HomepageComponent,
-    UnauthorizedComponent,
-    DashboardComponent
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    FormsModule,
-    OktaAuthModule.forRoot({ oktaAuth })
-  ],
-  providers: [
-    UserService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
-  ],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        UserListComponent,
+        UserDetailComponent,
+        AccountDetailComponent,
+        TransactionDetailComponent,
+        CreateUserComponent,
+        CreateAccountComponent,
+        CreateTransactionComponent,
+        TransferAmountComponent,
+        EditUserComponent,
+        HomepageComponent,
+        UnauthorizedComponent,
+        DashboardComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        OktaAuthModule.forRoot({ oktaAuth })], providers: [
+        UserService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule { }

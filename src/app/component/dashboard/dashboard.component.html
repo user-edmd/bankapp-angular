@@ -4,7 +4,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@1000&display=swap" rel="stylesheet">
   </head>
   <div>
-    <div class="px-4 py-5 my-5 text-center">
+    <!-- <div class="px-4 py-5 my-5 text-center">
       <h1 class="display-5 fw-bold text-body-emphasis">Welcome, {{user?.firstName}}!</h1>
       <div class="col-lg-6 mx-auto">
         <p class="lead mb-4">
@@ -15,28 +15,41 @@
           <button type="button" class="btn btn-outline-secondary btn-lg px-4"routerLink="/editProfile"><i class="bi bi-person"></i> Edit Profile</button>
         </div>
       </div>
+    </div> -->
+    <div class="card text-center">
+      <div class="card-header">
+        Featured
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Special title treatment</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+      <div class="card-footer text-body-secondary">
+        2 days ago
+      </div>
     </div>
   </div>
+  @for (account of accounts; track account.id) {
   <div>
-    @for (account of accounts; track account) {
     <div class="card m-3">
       <h5 class="card-header">{{account.accountType}}</h5>
       <div class="card-body">
         <h5 class="card-title">{{account.accountBalance | currency}}</h5>
         <p class="card-text">Account Number: {{account.accountNumber}}</p>
-        <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
-          aria-controls="offcanvasExample" (click)="getTransactions2(account.id, 0)">
+        <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasTransactions" role="button"
+          aria-controls="offcanvasTransactions" (click)="getTransactions2(account.id, 0)">
           <i class="bi bi-list-columns"></i> View Transactions
         </a>
       </div>
     </div>
-    }
   </div>
+  }
   <div *ngIf="transactions">
-    <div class="offcanvas offcanvas-bottom offcanvas-size-xl" tabindex="-1" id="offcanvasExample"
-      aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas offcanvas-bottom offcanvas-size-xl" tabindex="-1" id="offcanvasTransactions"
+      aria-labelledby="offcanvasTransactionsLabel">
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Transactions</h5>
+        <h5 class="offcanvas-title" id="offcanvasTransactionsLabel">Transactions</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
