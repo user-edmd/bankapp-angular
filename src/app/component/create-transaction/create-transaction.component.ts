@@ -34,7 +34,7 @@ export class CreateTransactionComponent {
     this.accountService.getAccount(this.accountIdFromRouter).subscribe(account => this.account = account);
     this.transactionService.addTransaction(this.transaction, this.transaction.accountId).subscribe(
       () => {
-        this.router.navigateByUrl(`/dashboard`);
+        this.router.navigate(['/dashboard']);
       }
     );
     

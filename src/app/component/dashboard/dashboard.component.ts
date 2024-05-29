@@ -61,10 +61,7 @@ export class DashboardComponent {
 
   getTransactions2(accountId: number, page: number) {
     this.accId = accountId;
-    const routeParams = this.route.snapshot.paramMap;
-    const accountIdFromRouter = Number(routeParams.get('id'));
     this.transactionService.getTransactions(accountId, this.size, page).subscribe(({content, page}) => {
-      console.log(page);
       this.total = page.totalPages;
       this.page = page.number;
       this.transactions = content;

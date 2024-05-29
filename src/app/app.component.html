@@ -13,9 +13,12 @@
         <li class="nav-item">
           <a class="nav-link text-underline-hover" aria-current="page" href="#">Savings</a>
         </li>
-        <!-- <li *ngIf="auth.isAuthenticated$ | async;" class="nav-item">
-          <a class="nav-link text-underline-hover" aria-current="page" href="/user/1/editProfile">My Profile</a>
-        </li> -->
+        <li *ngIf="isAuthenticated$ | async;" class="nav-item">
+          <a class="nav-link text-underline-hover" aria-current="page" href="/editProfile">My Profile</a>
+        </li>
+        <li *ngIf="isAuthenticated$ | async;" class="nav-item">
+          <a class="nav-link text-underline-hover" aria-current="page" href="/addAccount">Add Account</a>
+        </li>
       </ul>
       <ng-container *ngIf="(isAuthenticated$ | async) === false; else signout">
         <button type="button" class="btn btn-secondary" (click)="signIn()"> Sign in </button>
