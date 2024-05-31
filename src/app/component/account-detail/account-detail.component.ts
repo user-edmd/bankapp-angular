@@ -19,8 +19,6 @@ export class AccountDetailComponent implements OnInit {
   size: number = 10;
   total: number = 0;
 
-  colors = ["Red", "Blue", "White"];  
-
   constructor(
     private route: ActivatedRoute,
     private accountService: AccountService,

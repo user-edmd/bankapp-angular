@@ -38,7 +38,7 @@ export class TransferAmountComponent {
   onSubmit() {
     this.transactionService.transferMoney(this.transferForm).subscribe(
       () => {
-        this.router.navigateByUrl(`/dashboard`);
+        this.router.navigate(['/dashboard']);
       }
     );
     

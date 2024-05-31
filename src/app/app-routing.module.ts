@@ -11,8 +11,9 @@ import { TransferAmountComponent } from './component/transfer-amount/transfer-am
 import { EditUserComponent } from './component/edit-user/edit-user.component';
 import { HomepageComponent } from './component/homepage/homepage.component';
 import { UnauthorizedComponent } from './component/unauthorized/unauthorized.component';
-import { OktaCallbackComponent } from '@okta/okta-angular';
+import { OktaAuthGuard, OktaCallbackComponent } from '@okta/okta-angular';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
+import { AuthGuard } from './auth-guard.service';
 
 
 const routes: Routes = [
@@ -23,7 +24,7 @@ const routes: Routes = [
     path: 'users', 
     component: UserListComponent, 
   },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [OktaAuthGuard] },
   { path: 'account/:id', component: AccountDetailComponent },
   { path: 'transaction/:id', component: TransactionDetailComponent },
   { path: 'register', component: CreateUserComponent },
