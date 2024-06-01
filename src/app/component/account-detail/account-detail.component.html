@@ -1,37 +1,57 @@
-<div class="p-1"></div>
-<div class="card">
+<div *ngIf="account; else loading">
+<p>No transactions</p>
+</div>
+<ng-template #loading><app-spinner></app-spinner></ng-template>
+
+@if (this.account?.id==1) {
+  <p>Showing Transactions</p>
+} @else if (this.account?.id==2) {
+  <p>No Transactions</p>
+} @else {
+  <p><app-spinner></app-spinner></p>
+}
+<div class="card mt-2">
   <h5 class="card-header">
   {{this.account?.accountType}}: {{this.account?.accountNumber}} Account Balance: {{this.account?.accountBalance | currency}}
   </h5>
   <div class="card-body">
     <h5 class="card-title"></h5>
-    <div *ngIf="transactions">
-      <table class="table">
-        <thead>
-          <th>Date</th>
-          <th>Transaction Type</th>
-          <th>Amount</th>
-        </thead>
-        <tbody class="table-group-divider">
-          <tr *ngFor="let transaction of transactions">
-            <td>{{transaction.date | date:'mediumDate'}}</td>
-            <td>{{transaction.transactionType}}</td>
-            <td>{{transaction.amount | currency}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <nav aria-label="Page navigation example">
-      <ul class="pagination">
-        <li class="page-item" [ngClass]="{'disabled': page === 0}"><a class="page-link" role="button"
-            (click)="goToPrevOrNext('prev')">Previous</a></li>
-        <li class="page-item" [ngClass]="{'active': page === i}"
-          *ngFor="let item of [].constructor( total ); let i = index"><a class="page-link" role="button"
-            (click)="goToPage(i)">{{i+1}}</a></li>
-        <li class="page-item" [ngClass]="{'disabled': page === total - 1}"><a class="page-link" role="button"
-            (click)="goToPrevOrNext('next')">Next</a></li>
-      </ul>
-    </nav>
+    @if (this.transactions === undefined || this.transactions.length > 0) {
+      <div>
+        <table class="table">
+          <thead>
+            <th>Date</th>
+            <th>Transaction Type</th>
+            <th>Amount</th>
+          </thead>
+          <tbody class="table-group-divider">
+            <tr *ngFor="let transaction of transactions">
+              <td>{{transaction.date | date:'mediumDate'}}</td>
+              <td>{{transaction.transactionType}}</td>
+              <td>{{transaction.amount | currency}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item" [ngClass]="{'disabled': page === 0}"><a class="page-link" role="button"
+              (click)="goToPrevOrNext('prev')">Previous</a></li>
+          <li class="page-item" [ngClass]="{'active': page === i}"
+            *ngFor="let item of [].constructor( total ); let i = index"><a class="page-link" role="button"
+              (click)="goToPage(i)">{{i+1}}</a></li>
+          <li class="page-item" [ngClass]="{'disabled': page === total - 1}"><a class="page-link" role="button"
+              (click)="goToPrevOrNext('next')">Next</a></li>
+        </ul>
+      </nav>
+      
+    }
+    @else if (this.transactions.length == 0) {
+      <p>No Transactions available.</p>
+    }
+    @else {
+      <app-spinner></app-spinner>
+    }
     <a class="btn btn-secondary" href="#" role="button">Return Home</a>
   </div>
 </div>

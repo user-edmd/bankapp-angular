@@ -12,17 +12,18 @@ import { TransactionService } from 'src/app/services/transaction.service';
 })
 export class AccountDetailComponent implements OnInit {
   account: Account | undefined;
-  transactions: Transaction[] = [];
+  transactions: Transaction[] | undefined;
   pages: string[] = [];
 
   page: number = 0;
   size: number = 10;
   total: number = 0;
+  transactions$: any;
 
   constructor(
     private route: ActivatedRoute,
     private accountService: AccountService,
-    private transactionService: TransactionService,
+    private transactionService: TransactionService
   ) {}
 
   ngOnInit(): void {

@@ -21,6 +21,7 @@ import { OktaAuthModule, OKTA_CONFIG } from '@okta/okta-angular';
 import { OktaAuth } from '@okta/okta-auth-js';
 import { AuthInterceptor } from './auth-interceptor.service';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
+import { SpinnerComponent } from "./component/spinner/spinner.component";
 
 const oktaAuth = new OktaAuth({
   issuer: 'https://dev-30779887.okta.com/oauth2/default',
@@ -41,13 +42,14 @@ const oktaAuth = new OktaAuth({
         EditUserComponent,
         HomepageComponent,
         UnauthorizedComponent,
-        DashboardComponent
+        DashboardComponent,
     ],
-    bootstrap: [AppComponent], imports: [BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        OktaAuthModule.forRoot({ oktaAuth })], providers: [
+    bootstrap: [AppComponent],
+    providers: [
         UserService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
         provideHttpClient(withInterceptorsFromDi())
-    ] })
+    ], imports: [BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        OktaAuthModule.forRoot({ oktaAuth }), SpinnerComponent] })
 export class AppModule { }
