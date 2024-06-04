@@ -9,14 +9,14 @@ export const AuthGuard: CanActivateFn = (
   const authService: AuthenticationService = inject(AuthenticationService);
 
   if (authService.isUserAdmin()) {
+    router.navigate(['/users'])
     return true;
   }
-  // else if (authService.isUserRegistered()) {
-  //   router.navigate(['/register'])
-  //   return true;
-  // }
+  else if (authService.isUserRegistered()) {
+    return true;
+  }
   else {
-    router.navigate(['/error'])
+    router.navigate(['/unauthorized'])
     return false;
   }
 }

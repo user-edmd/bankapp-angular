@@ -15,6 +15,10 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
+  isUserRegistered(): Observable<boolean> {
+    return this.http.get<boolean>(`${this.baseUrl}/isUserRegistered`);
+  }
+
   getUsers(): Observable<User[]>{
     return this.http.get<MultipleUsers>(`${this.baseUrl}/all`).pipe(
       map(response => response.data)
@@ -22,7 +26,7 @@ export class UserService {
   }
 
   getUser(): Observable<User>{
-    return this.http.get<SingleUser>(`${this.baseUrl}`).pipe(
+    return this.http.get<SingleUser>(`${this.baseUrl}/getUser`).pipe(
       map(response => response.data)
     )
   }

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import OktaAuth from '@okta/okta-auth-js';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +9,10 @@ export class AuthenticationService {
 
   setUserRole(token: any): void {
     token.idToken.claims.Groups.includes("Admin") ? localStorage.setItem("ROLE", "ADMIN") : localStorage.setItem("ROLE", "USER");
-  }
+    localStorage.setItem("EMAIL", token.idToken.claims.email);
+    localStorage.setItem("NAME", token.idToken.claims.name);
+
+}
 
   getUserRole(): string {
     return localStorage.getItem("ROLE") ?? "";

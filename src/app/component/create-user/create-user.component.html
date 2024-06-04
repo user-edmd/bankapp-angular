@@ -1,4 +1,9 @@
-<h2>Registration Form</h2>
+<div class="card mt-2">
+    <h5 class="card-header">
+        User Profile
+      </h5>
+      <div class="card-body">
+        <h5 class="card-title"></h5>
 <form #userForm="ngForm" (ngSubmit)="onSubmit()" ngNativeValidate>
     <div class="mb-3">
         <label for="inputEmail" class="form-label">Email address</label>
@@ -28,5 +33,26 @@
         <label for="inputDob" class="form-label">Date of Birth</label>
         <input type="date" class="form-control" id="inputDob" [(ngModel)]="user.dob" name="dob" required>
     </div>
-    <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">Submit</button>
+    <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#addUserButton"
+        [disabled]="userForm.invalid">Submit</button>
+      <a class="btn btn-secondary" href="#" role="button">Return Home</a>
 </form>
+</div>
+</div>
+<div class="modal fade" id="addUserButton" tabindex="-1" aria-labelledby="addUserButtonLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="addUserButtonLabel">Create Profile</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            Are you sure you want to submit your profile?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="onSubmit()">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>

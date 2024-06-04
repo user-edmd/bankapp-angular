@@ -24,7 +24,7 @@ const routes: Routes = [
     path: 'users', 
     component: UserListComponent, 
   },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [OktaAuthGuard] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'account/:id', component: AccountDetailComponent },
   { path: 'transaction/:id', component: TransactionDetailComponent },
   { path: 'register', component: CreateUserComponent },

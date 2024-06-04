@@ -17,6 +17,7 @@ export class DashboardComponent {
   user: User | undefined;
   accounts?: Account[] | undefined
   transactions: Transaction[] = []
+  fullName: string;
 
   page: number = 0;
   size: number = 8;
@@ -36,6 +37,7 @@ export class DashboardComponent {
   ngOnInit(): void {
     this.getUser();
     this.getAccounts();
+    this.fullName = localStorage.getItem("NAME") ?? '';
   }
 
   getUser(): void {

@@ -5,34 +5,40 @@
 </head>
 <div>
   <div class="mt-2">
-  <div class="card text-center">
-    <div class="card-header">
-      Featured
-    </div>
-    <div class="card-body">
-      <h5 class="card-title">Welcome {{this.user?.firstName}}!</h5>
-      <p class="card-text">We're delighted to have you here—your financial goals are our mission, and we're committed to providing you with seamless banking experiences and personalized support every step of the way.</p>
-    </div>
-    <!-- <div class="card-footer text-body-secondary">
+    <div class="card text-center">
+      <div class="card-header">
+        Featured
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Welcome {{fullName}}!</h5>
+        <p class="card-text">We're delighted to have you here—your financial goals are our mission, and we're committed
+          to providing you with seamless banking experiences and personalized support every step of the way.</p>
+        @if (this.user == undefined) {
+        <p class="card-text">To get the most out of this feature, create your profile first! It will personalize your experience.</p>
+        <a href="/register" class="btn btn-primary">Setup Profile</a>
+        }
+      </div>
+
+      <!-- <div class="card-footer text-body-secondary">
       2 days ago
     </div> -->
+    </div>
   </div>
-</div>
 </div>
 <div class="row">
   @for (account of accounts; track account) {
   <div class="col-sm-6 mb-3 mb-sm-0 gy-2">
-      <div class="card">
-        <h5 class="card-header">{{account.accountType}}</h5>
-        <div class="card-body">
-          <h5 class="card-title">{{account.accountBalance | currency}}</h5>
-          <p class="card-text">Account Number: {{account.accountNumber}}</p>
-          <a class="btn btn-primary" href="/account/{{account.id}}"><i class="bi bi-list-columns"></i> View
-            Transactions</a>
-        </div>
+    <div class="card">
+      <h5 class="card-header">{{account.accountType}}</h5>
+      <div class="card-body">
+        <h5 class="card-title">{{account.accountBalance | currency}}</h5>
+        <p class="card-text">Account Number: {{account.accountNumber}}</p>
+        <a class="btn btn-primary" href="/account/{{account.id}}"><i class="bi bi-list-columns"></i> View
+          Transactions</a>
       </div>
+    </div>
   </div>
-}
+  }
 </div>
 
 <!-- <div class="row">
