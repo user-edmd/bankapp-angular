@@ -14,6 +14,7 @@ import { UnauthorizedComponent } from './component/unauthorized/unauthorized.com
 import { OktaAuthGuard, OktaCallbackComponent } from '@okta/okta-angular';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { AuthGuard } from './auth-guard.service';
+import { ViewUserComponent } from './admin-component/view-user/view-user.component';
 
 
 const routes: Routes = [
@@ -34,7 +35,8 @@ const routes: Routes = [
   { path: 'editProfile', component: EditUserComponent },
   { path: 'unauthorized', component: UnauthorizedComponent },
   { path: '500', component: UnauthorizedComponent },
-  { path: 'login/callback', component: OktaCallbackComponent }
+  { path: 'login/callback', component: OktaCallbackComponent },
+  { path: 'viewUser/:id', component: ViewUserComponent }
 ];
 
 @NgModule({

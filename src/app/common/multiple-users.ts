@@ -1,7 +1,11 @@
 import { User } from "./user"
 
 export class MultipleUsers {
-    data: User[]
-    message: String
-    status: number
+    content: User[]
+    page: {
+        size: number,
+        number: number,
+        totalElements: number,
+        totalPages: number
+    }
 }

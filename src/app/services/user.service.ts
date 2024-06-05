@@ -19,9 +19,13 @@ export class UserService {
     return this.http.get<boolean>(`${this.baseUrl}/isUserRegistered`);
   }
 
+  getUserById(id: number): Observable<User> {
+    return this.http.get<User>(`${this.baseUrl}/getUserById/${id}`);
+  }
+
   getUsers(): Observable<User[]>{
     return this.http.get<MultipleUsers>(`${this.baseUrl}/all`).pipe(
-      map(response => response.data)
+      map(response => response.content)
     )
   }
 

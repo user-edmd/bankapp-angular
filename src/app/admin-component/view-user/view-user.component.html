@@ -1,0 +1,38 @@
+<div class="card mt-2">
+  <div class="card-header">
+    <h5>
+      {{this.user?.firstName}} {{this.user?.lastName}}
+      <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+        <button type="button" class="btn btn-primary"><i class="bi bi-box-arrow-in-up-right"></i></button>
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteUserButton"><i
+            class="bi bi-x-square-fill"></i></button>
+      </div>
+    </h5>
+
+
+  </div>
+
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Account #</th>
+            <th scope="col">Account Type</th>
+            <th scope="col">Balance</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (account of accounts; track account) {
+            <tr>
+              <th scope="row">{{account.id}}</th>
+              <td>{{account.accountNumber}}</td>
+              <td>{{account.accountType}}</td>
+              <td>{{account.accountBalance}}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+  </div>
+</div>
