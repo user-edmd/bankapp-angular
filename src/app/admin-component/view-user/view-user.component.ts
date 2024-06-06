@@ -6,8 +6,6 @@ import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-view-user',
-  standalone: true,
-  imports: [],
   templateUrl: './view-user.component.html',
   styleUrl: './view-user.component.css'
 })

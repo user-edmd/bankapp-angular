@@ -1,18 +1,36 @@
-<div>
-    <h4 *ngIf="user">Hello {{user.name}}</h4>
-    <table class="table">
-        <thead>
-            <th>Id</th>
-            <th>Username</th>
-        </thead>
-        <tbody *ngFor="let tempUser of users">
-            <tr>
-                <td><a routerLink="/viewUser/{{tempUser.id}}">{{ tempUser.id}}</a></td>
-                <td>{{ tempUser.username}}</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-<div>
-    <a class="btn btn-primary" href="register" role="button">Add User</a>
-</div>
+<mat-card>
+    
+    <mat-card-header><h5>User Directory</h5></mat-card-header>
+    <mat-card-content>
+        <div>
+            <table class="table">
+                <thead>
+                    <th>User ID</th>
+                    <th>Username</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Accounts</th>
+                </thead>
+                <tbody>
+                    @for (user of users; track user) {
+                    <tr>
+                        <td><a mat-button href="/users/{{user.id}}">{{user.id}}</a></td>
+                        <td>{{user.username}}</td>
+                        <td>{{user.firstName}}</td>
+                        <td>{{user.lastName}}</td>
+                        <td>{{user.accountList.length}}</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <a href="/register"><button mat-raised-button color="primary" href="#"> Add User</button></a>
+        </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-paginator [length]="5"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]"
+              aria-label="Select page">
+</mat-paginator>

@@ -20,7 +20,7 @@ import { ViewUserComponent } from './admin-component/view-user/view-user.compone
 const routes: Routes = [
   // { path: '', redirectTo: '/users', pathMatch: 'full' },
   { path: '', component: HomepageComponent },
-  { path: 'users/:id', component: UserDetailComponent },
+  // { path: 'users/:id', component: UserDetailComponent },
   { 
     path: 'users', 
     component: UserListComponent, 
@@ -36,7 +36,7 @@ const routes: Routes = [
   { path: 'unauthorized', component: UnauthorizedComponent },
   { path: '500', component: UnauthorizedComponent },
   { path: 'login/callback', component: OktaCallbackComponent },
-  { path: 'viewUser/:id', component: ViewUserComponent }
+  { path: 'users/:id', component: ViewUserComponent }
 ];
 
 @NgModule({

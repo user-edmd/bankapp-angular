@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg" style="background-color: #005EB8;">
   <div class="container">
-    <a class="navbar-brand" href="/" style="color: white;">EB BANKING</a>
+    <a class="navbar-brand" href="/" style="color: white;">EB BANKING <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z"/></svg></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -32,11 +32,11 @@
         }
       </ul>
       <ng-container *ngIf="(isAuthenticated$ | async) === false; else signout">
-        <button type="button" class="btn btn-secondary" (click)="signIn()"> Sign in </button>
+        <button mat-raised-button color="primary" (click)="signIn()"> Sign in </button>
       </ng-container>
 
       <ng-template #signout>
-        <button type="button" class="btn btn-secondary" (click)="signOut()">Sign out</button>
+        <button mat-raised-button color="primary" (click)="signOut()">Sign out</button>
       </ng-template>
       <!-- <app-auth-button></app-auth-button> -->
       <!-- <li class="nav-item dropdown d-flex">

@@ -22,6 +22,11 @@ import { OktaAuth } from '@okta/okta-auth-js';
 import { AuthInterceptor } from './auth-interceptor.service';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { SpinnerComponent } from "./component/spinner/spinner.component";
+import { MatButtonModule } from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 const oktaAuth = new OktaAuth({
   issuer: 'https://dev-30779887.okta.com/oauth2/default',
@@ -47,9 +52,14 @@ const oktaAuth = new OktaAuth({
     bootstrap: [AppComponent],
     providers: [
         UserService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-        provideHttpClient(withInterceptorsFromDi())
+        provideHttpClient(withInterceptorsFromDi()),
+        provideAnimationsAsync()
     ], imports: [BrowserModule,
         AppRoutingModule,
         FormsModule,
+        MatButtonModule,
+        MatCardModule,
+        MatDividerModule,
+        MatPaginatorModule,
         OktaAuthModule.forRoot({ oktaAuth }), SpinnerComponent] })
 export class AppModule { }
