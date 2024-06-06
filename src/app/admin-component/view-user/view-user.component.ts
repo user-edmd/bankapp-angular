@@ -16,8 +16,7 @@ export class ViewUserComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private route: ActivatedRoute,
-    private router: Router
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {

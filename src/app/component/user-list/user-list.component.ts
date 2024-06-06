@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
 import { User } from 'src/app/common/user';
 import { UserService } from 'src/app/services/user.service';
 
@@ -12,9 +13,30 @@ import { UserService } from 'src/app/services/user.service';
 export class UserListComponent implements OnInit {
   user: any;
   users: User[] = [];
+  pageIndex: number;
+  size: number;
+  totalElements: number;
+  currentPage = 0;
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'accounts'];
+
+  handlePageEvent(pageEvent: PageEvent) {
+    this.userService.getUsers(pageEvent.pageSize, pageEvent.pageIndex).subscribe(({content, page}) => {
+      pageEvent.pageIndex = page.number;
+      pageEvent.pageSize = page.size;
+      pageEvent.length = page.totalElements;
+      this.totalElements = page.totalElements;
+      this.users = content;
+    });
+  }
+
   constructor(private userService: UserService, private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.userService.getUsers().subscribe(users => this.users = users)
+    this.userService.getUsers(10, this.pageIndex).subscribe(({content, page}) => {
+      this.pageIndex = page.number;
+      this.size = page.size;
+      this.totalElements = page.totalElements
+      this.users = content;
+    });
   }
 }

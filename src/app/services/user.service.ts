@@ -23,10 +23,8 @@ export class UserService {
     return this.http.get<User>(`${this.baseUrl}/getUserById/${id}`);
   }
 
-  getUsers(): Observable<User[]>{
-    return this.http.get<MultipleUsers>(`${this.baseUrl}/all`).pipe(
-      map(response => response.content)
-    )
+  getUsers(size: number, page: number): Observable<MultipleUsers>{
+    return this.http.get<MultipleUsers>(`${this.baseUrl}/all?size=${size}&page=${page}`);
   }
 
   getUser(): Observable<User>{

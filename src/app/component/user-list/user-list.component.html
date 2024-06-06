@@ -1,6 +1,8 @@
 <mat-card>
-    
-    <mat-card-header><h5>User Directory</h5></mat-card-header>
+
+    <mat-card-header>
+        <h5>User Directory</h5>
+    </mat-card-header>
     <mat-card-content>
         <div>
             <table class="table">
@@ -12,7 +14,7 @@
                     <th>Accounts</th>
                 </thead>
                 <tbody>
-                    @for (user of users; track user) {
+                    @for (user of users; track user.id) {
                     <tr>
                         <td><a mat-button href="/users/{{user.id}}">{{user.id}}</a></td>
                         <td>{{user.username}}</td>
@@ -23,14 +25,12 @@
                     }
                 </tbody>
             </table>
+            <mat-paginator [length]="this.totalElements" [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true"
+                (page)="handlePageEvent($event)" aria-label="Select page">
+            </mat-paginator>
         </div>
         <div>
             <a href="/register"><button mat-raised-button color="primary" href="#"> Add User</button></a>
         </div>
     </mat-card-content>
-  </mat-card>
-  <mat-paginator [length]="5"
-              [pageSize]="10"
-              [pageSizeOptions]="[5, 10, 25, 100]"
-              aria-label="Select page">
-</mat-paginator>
+</mat-card>

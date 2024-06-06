@@ -26,7 +26,9 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatTableModule} from '@angular/material/table';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { ViewUserComponent } from './admin-component/view-user/view-user.component';
 
 const oktaAuth = new OktaAuth({
   issuer: 'https://dev-30779887.okta.com/oauth2/default',
@@ -48,6 +50,7 @@ const oktaAuth = new OktaAuth({
         HomepageComponent,
         UnauthorizedComponent,
         DashboardComponent,
+        ViewUserComponent
     ],
     bootstrap: [AppComponent],
     providers: [
@@ -61,5 +64,6 @@ const oktaAuth = new OktaAuth({
         MatCardModule,
         MatDividerModule,
         MatPaginatorModule,
+        MatTableModule,
         OktaAuthModule.forRoot({ oktaAuth }), SpinnerComponent] })
 export class AppModule { }
