@@ -14,7 +14,7 @@
         <tbody>
           @for (account of accounts; track account.id) {
           <tr>
-            <td><a mat-button href="/accounts/{{account.id}}">{{account.id}}</a></td>
+            <td><a mat-stroked-button href="/accounts/{{account.id}}">{{account.id}}</a></td>
             <td>{{account.accountNumber}}</td>
             <td>{{account.accountType}}</td>
             <td>{{account.accountBalance | currency}}</td>

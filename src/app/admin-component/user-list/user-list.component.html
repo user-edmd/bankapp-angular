@@ -15,7 +15,7 @@
                 <tbody>
                     @for (user of users; track user.id) {
                     <tr>
-                        <td><a mat-button href="/users/{{user.id}}">{{user.id}}</a></td>
+                        <td><a mat-stroked-button href="/users/{{user.id}}">{{user.id}}</a></td>
                         <td>{{user.username}}</td>
                         <td>{{user.firstName}}</td>
                         <td>{{user.lastName}}</td>
