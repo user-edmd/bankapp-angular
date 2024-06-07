@@ -4,25 +4,34 @@
     </mat-card-header>
     <mat-card-content>
         <div>
-            <table class="table">
-                <thead>
-                    <th>User ID</th>
-                    <th>Username</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Accounts</th>
-                </thead>
-                <tbody>
-                    @for (user of users; track user.id) {
-                    <tr>
-                        <td><a mat-stroked-button href="/users/{{user.id}}">{{user.id}}</a></td>
-                        <td>{{user.username}}</td>
-                        <td>{{user.firstName}}</td>
-                        <td>{{user.lastName}}</td>
-                        <td>{{user.accountList.length}}</td>
-                    </tr>
-                    }
-                </tbody>
+            <table mat-table [dataSource]="this.users" class="mat-elevation-z8">
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef sortActionDescription="Sort by number"> User ID </th>
+                    <td mat-cell *matCellDef="let user"><a mat-stroked-button href="/users/{{user.id}}">{{user.id}}</a></td>
+                </ng-container>
+
+                <ng-container matColumnDef="username">
+                    <th mat-header-cell *matHeaderCellDef> Username </th>
+                    <td mat-cell *matCellDef="let user"> {{user.username}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="firstName">
+                    <th mat-header-cell *matHeaderCellDef> First Name </th>
+                    <td mat-cell *matCellDef="let user"> {{user.firstName}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="lastName">
+                    <th mat-header-cell *matHeaderCellDef> Last Name </th>
+                    <td mat-cell *matCellDef="let user"> {{user.lastName}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="accounts">
+                    <th mat-header-cell *matHeaderCellDef> Accounts </th>
+                    <td mat-cell *matCellDef="let user"> {{user.accountList.length}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
             <mat-paginator [length]="this.totalElements" [pageSize]="this.size" [pageSizeOptions]="[5, 10, 20]"
                 [showFirstLastButtons]="true" (page)="handlePageEvent($event)" aria-label="Select page">

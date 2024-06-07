@@ -18,6 +18,8 @@ import { ViewUserComponent } from './admin-component/view-user/view-user.compone
 import { ViewAccountComponent } from './admin-component/view-account/view-account.component';
 import { AccountListComponent } from './admin-component/account-list/account-list.component';
 import { TransactionsListComponent } from './admin-component/transactions-list/transactions-list.component';
+import { TestComponentRenderer } from '@angular/core/testing';
+import { TestsortingComponent } from './admin-component/testsorting/testsorting.component';
 
 
 const routes: Routes = [
@@ -38,7 +40,8 @@ const routes: Routes = [
   { path: '500', component: UnauthorizedComponent },
   { path: 'login/callback', component: OktaCallbackComponent },
   { path: 'users/:id', component: ViewUserComponent },
-  { path: 'accounts/:id', component: ViewAccountComponent }
+  { path: 'accounts/:id', component: ViewAccountComponent },
+  { path: 'test', component: TestsortingComponent }
 ];
 
 @NgModule({

@@ -32,6 +32,8 @@ import { ViewUserComponent } from './admin-component/view-user/view-user.compone
 import { ViewAccountComponent } from './admin-component/view-account/view-account.component';
 import { AccountListComponent } from './admin-component/account-list/account-list.component';
 import { TransactionsListComponent } from './admin-component/transactions-list/transactions-list.component';
+import { MatSortModule } from '@angular/material/sort';
+import { TestsortingComponent } from './admin-component/testsorting/testsorting.component';
 
 const oktaAuth = new OktaAuth({
   issuer: 'https://dev-30779887.okta.com/oauth2/default',
@@ -57,6 +59,7 @@ const oktaAuth = new OktaAuth({
         DashboardComponent,
         ViewUserComponent,
         ViewAccountComponent,
+        TestsortingComponent
     ],
     bootstrap: [AppComponent],
     providers: [
@@ -71,5 +74,6 @@ const oktaAuth = new OktaAuth({
         MatDividerModule,
         MatPaginatorModule,
         MatTableModule,
+        MatSortModule,
         OktaAuthModule.forRoot({ oktaAuth }), SpinnerComponent] })
 export class AppModule { }

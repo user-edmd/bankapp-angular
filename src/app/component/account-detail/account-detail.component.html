@@ -1,4 +1,4 @@
-<div *ngIf="account; else loading">
+<!-- <div *ngIf="account; else loading">
 <p>No transactions</p>
 </div>
 <ng-template #loading><app-spinner></app-spinner></ng-template>
@@ -9,7 +9,7 @@
   <p>No Transactions</p>
 } @else {
   <p><app-spinner></app-spinner></p>
-}
+} -->
 <div class="card mt-2">
   <h5 class="card-header">
   {{this.account?.accountType}}: {{this.account?.accountNumber}} Account Balance: {{this.account?.accountBalance | currency}}
