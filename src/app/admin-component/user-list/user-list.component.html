@@ -1,5 +1,4 @@
 <mat-card>
-
     <mat-card-header>
         <h5>User Directory</h5>
     </mat-card-header>
@@ -25,8 +24,8 @@
                     }
                 </tbody>
             </table>
-            <mat-paginator [length]="this.totalElements" [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true"
-                (page)="handlePageEvent($event)" aria-label="Select page">
+            <mat-paginator [length]="this.totalElements" [pageSize]="this.size" [pageSizeOptions]="[5, 10, 20]"
+                [showFirstLastButtons]="true" (page)="handlePageEvent($event)" aria-label="Select page">
             </mat-paginator>
         </div>
         <div>

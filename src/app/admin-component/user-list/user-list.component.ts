@@ -17,7 +17,6 @@ export class UserListComponent implements OnInit {
   size: number;
   totalElements: number;
   currentPage = 0;
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'accounts'];
 
   handlePageEvent(pageEvent: PageEvent) {
     this.userService.getUsers(pageEvent.pageSize, pageEvent.pageIndex).subscribe(({content, page}) => {
@@ -32,7 +31,8 @@ export class UserListComponent implements OnInit {
   constructor(private userService: UserService, private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.userService.getUsers(10, this.pageIndex).subscribe(({content, page}) => {
+    this.size = 10;
+    this.userService.getUsers(this.size, this.pageIndex).subscribe(({content, page}) => {
       this.pageIndex = page.number;
       this.size = page.size;
       this.totalElements = page.totalElements

@@ -30,6 +30,8 @@ import {MatTableModule} from '@angular/material/table';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { ViewUserComponent } from './admin-component/view-user/view-user.component';
 import { ViewAccountComponent } from './admin-component/view-account/view-account.component';
+import { AccountListComponent } from './admin-component/account-list/account-list.component';
+import { TransactionsListComponent } from './admin-component/transactions-list/transactions-list.component';
 
 const oktaAuth = new OktaAuth({
   issuer: 'https://dev-30779887.okta.com/oauth2/default',
@@ -40,6 +42,8 @@ const oktaAuth = new OktaAuth({
 @NgModule({ declarations: [
         AppComponent,
         UserListComponent,
+        AccountListComponent,
+        TransactionsListComponent,
         UserDetailComponent,
         AccountDetailComponent,
         TransactionDetailComponent,
@@ -52,7 +56,7 @@ const oktaAuth = new OktaAuth({
         UnauthorizedComponent,
         DashboardComponent,
         ViewUserComponent,
-        ViewAccountComponent
+        ViewAccountComponent,
     ],
     bootstrap: [AppComponent],
     providers: [

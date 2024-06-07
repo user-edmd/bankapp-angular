@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Account } from '../common/account';
 import { Observable, map } from 'rxjs';
 import { MultipleAccounts } from '../common/multiple-accounts';
+import { AccountResponse } from '../common/account-response';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,8 @@ export class AccountService {
 
   constructor(private http: HttpClient) { }
 
-  getAccounts(): Observable<Account[]>{
-    return this.http.get<Account[]>(`${this.baseUrl}/accounts/all`);
+  getAccounts(size: number, page: number): Observable<AccountResponse>{
+    return this.http.get<AccountResponse>(`${this.baseUrl}/accounts/all?size=${size}&page=${page}`);
   }
 
   getAccountsFromUser(userId: number): Observable<Account[]>{

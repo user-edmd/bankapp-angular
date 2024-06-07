@@ -1,0 +1,33 @@
+<mat-card>
+    <mat-card-header>
+        <h5>Account Directory</h5>
+    </mat-card-header>
+    <mat-card-content>
+        <div>
+            <table class="table">
+                <thead>
+                    <th>Account ID</th>
+                    <th>Account Number</th>
+                    <th>Account Type</th>
+                    <th>Balance</th>
+                </thead>
+                <tbody>
+                    @for (account of accounts; track account.id) {
+                    <tr>
+                        <td><a mat-button href="/accounts/{{account.id}}">{{account.id}}</a></td>
+                        <td>{{account.accountNumber}}</td>
+                        <td>{{account.accountType}}</td>
+                        <td>{{account.accountBalance | currency}}</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+            <mat-paginator [length]="this.totalElements" [pageSize]="10" [pageSizeOptions]="[5, 10, 20]"
+                [showFirstLastButtons]="true" (page)="handlePageEvent($event)" aria-label="Select page">
+            </mat-paginator>
+        </div>
+        <div>
+            <a href="/register"><button mat-raised-button color="primary" href="#"> Add Account</button></a>
+        </div>
+    </mat-card-content>
+</mat-card>

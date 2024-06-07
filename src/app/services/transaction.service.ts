@@ -14,19 +14,23 @@ export class TransactionService {
 
   constructor(private http: HttpClient) { }
 
+  getAllTransactions(size: number, page: number): Observable<TransactionResponse> {
+    return this.http.get<TransactionResponse>(`${this.baseUrl}/transactions/all?size=${size}&page=${page}`)
+  }
+
   getTransactions(accountId: number, size: number, page: number): Observable<TransactionResponse> {
     return this.http.get<TransactionResponse>(`${this.baseUrl}/account/${accountId}/transactions?size=${size}&page=${page}&sort=date,desc`)
-    } 
+  }
 
-  getTransaction(transactionId: number): Observable<Transaction>{
+  getTransaction(transactionId: number): Observable<Transaction> {
     return this.http.get<Transaction>(`${this.baseUrl}/transaction/${transactionId}`);
   }
 
-  addTransaction(transaction: Transaction, accountId: number): Observable<Transaction>{
+  addTransaction(transaction: Transaction, accountId: number): Observable<Transaction> {
     return this.http.post<Transaction>(`${this.baseUrl}/account/${accountId}/transactions`, transaction);
   }
 
-  transferMoney(transferForm: TransferForm): Observable<TransferForm>{
+  transferMoney(transferForm: TransferForm): Observable<TransferForm> {
     return this.http.post<TransferForm>(`${this.baseUrl}/transactions/transferMoney`, transferForm);
   }
 }

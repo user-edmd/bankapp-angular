@@ -16,16 +16,16 @@ import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { AuthGuard } from './auth-guard.service';
 import { ViewUserComponent } from './admin-component/view-user/view-user.component';
 import { ViewAccountComponent } from './admin-component/view-account/view-account.component';
+import { AccountListComponent } from './admin-component/account-list/account-list.component';
+import { TransactionsListComponent } from './admin-component/transactions-list/transactions-list.component';
 
 
 const routes: Routes = [
   // { path: '', redirectTo: '/users', pathMatch: 'full' },
   { path: '', component: HomepageComponent },
-  // { path: 'users/:id', component: UserDetailComponent },
-  { 
-    path: 'users', 
-    component: UserListComponent, 
-  },
+  { path: 'users', component: UserListComponent },
+  { path: 'accounts', component: AccountListComponent },
+  { path: 'transactions', component: TransactionsListComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'account/:id', component: AccountDetailComponent },
   { path: 'transaction/:id', component: TransactionDetailComponent },

@@ -12,6 +12,7 @@ import { Observable, filter, map } from 'rxjs';
 export class AppComponent implements OnInit {
   title = 'angular-spring-restful';
   public isAuthenticated$!: Observable<boolean>;
+  role = localStorage.getItem("ROLE");
 
   constructor(private _router: Router, private _oktaStateService: OktaAuthStateService, @Inject(OKTA_AUTH) private _oktaAuth: OktaAuth) { }
 
