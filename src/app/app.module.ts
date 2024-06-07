@@ -29,6 +29,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { ViewUserComponent } from './admin-component/view-user/view-user.component';
+import { ViewAccountComponent } from './admin-component/view-account/view-account.component';
 
 const oktaAuth = new OktaAuth({
   issuer: 'https://dev-30779887.okta.com/oauth2/default',
@@ -50,7 +51,8 @@ const oktaAuth = new OktaAuth({
         HomepageComponent,
         UnauthorizedComponent,
         DashboardComponent,
-        ViewUserComponent
+        ViewUserComponent,
+        ViewAccountComponent
     ],
     bootstrap: [AppComponent],
     providers: [

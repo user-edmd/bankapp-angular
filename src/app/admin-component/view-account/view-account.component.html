@@ -1,0 +1,33 @@
+<div class="card mt-2">
+    <div class="card-header">
+      <h5>
+        Account Number: {{this.account?.accountNumber}}, Account Balance: {{this.account?.accountBalance | currency}}
+
+      </h5>
+  
+  
+    </div>
+  
+    <div class="card-body">
+      <h5 class="card-title"></h5>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Transaction Type</th>
+              <th scope="col">Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (transaction of transactions; track transaction) {
+              <tr>
+                <th scope="row">{{transaction.date}}</th>
+                <td>{{transaction.transactionType}}</td>
+                <td>{{transaction.amount | currency}}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+    </div>
+  </div>
+  <a href="/users/{{this.account?.userId}}"><button mat-raised-button color="primary mt-2"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/></svg> Return to User</button></a>

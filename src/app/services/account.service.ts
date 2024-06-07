@@ -32,6 +32,10 @@ export class AccountService {
     return this.http.get<Account>(`${this.baseUrl}/account/${accountId}`);
   }
 
+  getAccountAdmin(accountId: number): Observable<Account>{
+    return this.http.get<Account>(`${this.baseUrl}/account/getAccountById/${accountId}`);
+  }
+
   createAccount(account: Account): Observable<Account>{
     return this.http.post<Account>(`${this.baseUrl}/account`, account);
   }

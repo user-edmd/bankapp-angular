@@ -26,7 +26,7 @@
         <tbody>
           @for (account of accounts; track account) {
             <tr>
-              <th scope="row">{{account.id}}</th>
+              <th scope="row"><a href="/accounts/{{account.id}}">{{account.id}}</a></th>
               <td>{{account.accountNumber}}</td>
               <td>{{account.accountType}}</td>
               <td>{{account.accountBalance | currency}}</td>
