@@ -20,6 +20,8 @@ import { TransactionsListComponent } from './admin-component/transactions-list/t
 import { TestsortingComponent } from './admin-component/testsorting/testsorting.component';
 import { roleGuard } from './role.guard';
 import { authGuard } from './auth.guard';
+import { AddUserComponent } from './admin-component/add-user/add-user.component';
+import { AddAccountComponent } from './admin-component/add-account/add-account.component';
 
 
 const routes: Routes = [
@@ -31,8 +33,9 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [OktaAuthGuard, authGuard] },
   { path: 'account/:id', component: AccountDetailComponent },
   { path: 'transaction/:id', component: TransactionDetailComponent },
-  { path: 'register', component: CreateUserComponent },
+  { path: 'addUser', component: AddUserComponent },
   { path: 'addAccount', component: CreateAccountComponent },
+  { path: 'addAccountToUser/:id', component: AddAccountComponent },
   { path: 'account/:id/addTransaction', component: CreateTransactionComponent },
   { path: 'user/:id/transfer', component: TransferAmountComponent },
   { path: 'editProfile', component: EditUserComponent },
