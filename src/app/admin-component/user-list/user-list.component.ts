@@ -18,7 +18,7 @@ export class UserListComponent implements OnInit {
   totalElements: number;
   currentPage = 0;
   dataSource: any;
-  displayedColumns = ['id', 'username', 'firstName', 'lastName', 'accounts']
+  displayedColumns = ['id', 'firstName', 'lastName', 'accounts']
 
   handlePageEvent(pageEvent: PageEvent) {
     this.userService.getUsers(pageEvent.pageSize, pageEvent.pageIndex).subscribe(({content, page}) => {
@@ -27,6 +27,7 @@ export class UserListComponent implements OnInit {
       pageEvent.length = page.totalElements;
       this.totalElements = page.totalElements;
       this.users = content;
+      this.dataSource = this.users;
     });
   }
 

@@ -27,6 +27,12 @@ import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatListModule} from '@angular/material/list';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { ViewUserComponent } from './admin-component/view-user/view-user.component';
 import { ViewAccountComponent } from './admin-component/view-account/view-account.component';
@@ -75,5 +81,11 @@ const oktaAuth = new OktaAuth({
         MatPaginatorModule,
         MatTableModule,
         MatSortModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatSidenavModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatListModule,
         OktaAuthModule.forRoot({ oktaAuth }), SpinnerComponent] })
 export class AppModule { }

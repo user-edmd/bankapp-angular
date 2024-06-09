@@ -11,7 +11,8 @@ export class AuthenticationService {
     token.idToken.claims.Groups.includes("Admin") ? localStorage.setItem("ROLE", "ADMIN") : localStorage.setItem("ROLE", "USER");
     localStorage.setItem("EMAIL", token.idToken.claims.email);
     localStorage.setItem("NAME", token.idToken.claims.name);
-
+    localStorage.getItem("okta-token-storage");
+    console.log(localStorage.getItem("okta-token-storage"))
 }
 
   getUserRole(): string {
@@ -26,3 +27,5 @@ export class AuthenticationService {
     return true;
   }
 }
+
+
