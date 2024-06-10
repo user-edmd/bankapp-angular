@@ -1,0 +1,39 @@
+.gradient1 {
+
+    background: rgb(0,94,184);
+    background: linear-gradient(90deg, rgba(0,94,184,1) 0%, rgba(129,99,181,1) 50%, rgba(199,117,165,1) 100%); 
+}
+
+.gradient2 {
+    background: rgb(181,109,171);
+    background: linear-gradient(90deg, rgba(181,109,171,1) 0%, rgba(129,99,181,1) 50%, rgba(89,96,184,1) 100%);
+}
+
+.page-header {
+    font-size: .9rem;
+    color: #fff;
+}
+
+.page-header {
+    font-size: .9rem;
+    color: #fff;
+}
+
+.section-light {
+    font-size: .9rem;
+    color: #000;
+}
+
+.section-dark {
+    font-size: .9rem;
+    color: #fff;
+}
+
+/* #finance-img {
+    max-width:90%;
+} */
+
+.wave {
+    height: 150px;
+    width: 100%;
+}

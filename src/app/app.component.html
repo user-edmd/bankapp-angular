@@ -1,18 +1,12 @@
-<nav class="navbar navbar-expand-lg" style="background-color: #005EB8;">
+<nav class="navbar navbar-expand-lg">
   <div class="container">
-    <a class="navbar-brand" href="/" style="color: white;">EB BANKING <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z"/></svg></a>
+    <a class="navbar-brand" href="/" style="color: rgb(0, 0, 0);">EB BANKING <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M200-280v-280h80v280h-80Zm240 0v-280h80v280h-80ZM80-120v-80h800v80H80Zm600-160v-280h80v280h-80ZM80-640v-80l400-200 400 200v80H80Zm178-80h444-444Zm0 0h444L480-830 258-720Z"/></svg></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <!-- <li class="nav-item">
-          <a class="nav-link text-underline-hover" aria-current="page" href="#">Checking</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-underline-hover" aria-current="page" href="#">Savings</a>
-        </li> -->
         @if (!(isAuthenticated$ | async)) {
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-underline-hover" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -47,32 +41,13 @@
       <ng-container *ngIf="(isAuthenticated$ | async) === false; else signout">
         <button mat-raised-button color="primary" (click)="signIn()"> Sign in </button>
       </ng-container>
-
       <ng-template #signout>
         <button mat-raised-button color="primary" (click)="signOut()">Sign out</button>
       </ng-template>
-      <!-- <app-auth-button></app-auth-button> -->
-      <!-- <li class="nav-item dropdown d-flex">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="bi bi-person-circle"></i>
-        </a>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Action</a></li>
-          <li><a class="dropdown-item" href="#">Another action</a></li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
-          <li>
-            <a class="dropdown-item" href="#" (click)="logout()">Logout</a>
-          </li>
-        </ul>
-      </li> -->
     </div>
   </div>
 </nav>
-<div class="container">
   <router-outlet></router-outlet>
-</div>
 <div class="container">
   <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
     <p class="col-md-4 mb-0 text-body-secondary">&copy; 2024 EB BANKING, Inc</p>
