@@ -4,3 +4,18 @@ table {
 mat-paginator {
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
+
+.mat-success {
+    background-color: #5960b8;
+    color: #fff;
+}
+
+.mat-warn {
+    background-color: #ba3c3c;
+    color: #fff;
+}
+
+.mat-primary {
+    background-color: #5f8356;
+    color: #fff;
+}

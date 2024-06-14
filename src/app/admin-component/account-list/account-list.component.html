@@ -10,6 +10,7 @@
                     <th>Account Number</th>
                     <th>Account Type</th>
                     <th>Balance</th>
+                    <th>Actions</th>
                 </thead>
                 <tbody>
                     @for (account of accounts; track account.id) {
@@ -18,6 +19,14 @@
                         <td>{{account.accountNumber}}</td>
                         <td>{{account.accountType}}</td>
                         <td>{{account.accountBalance | currency}}</td>
+                        <td>
+                            <button class="me-2" mat-mini-fab aria-label="Example icon button with a menu icon">
+                                <mat-icon>receipt</mat-icon>
+                              </button>
+                              <button mat-mini-fab aria-label="Example icon button with a menu icon">
+                                <mat-icon>disabled_by_default</mat-icon>
+                              </button>
+                        </td>
                     </tr>
                     }
                 </tbody>

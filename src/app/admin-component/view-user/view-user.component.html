@@ -22,15 +22,9 @@
           }
         </tbody>
       </table>
-      <!-- <mat-paginator [length]="this.totalElements" [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true"
-              (page)="handlePageEvent($event)" aria-label="Select page">
-          </mat-paginator> -->
     </div>
     <div>
-      <a href="#"><button mat-raised-button color="primary mt-2" href="#"><svg xmlns="http://www.w3.org/2000/svg"
-            height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368">
-            <path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z" />
-          </svg> Return Home</button></a>
+      <a href="#"><button class="me-2" mat-raised-button color="primary mt-2" href="#"><mat-icon>arrow_back</mat-icon> Return Home</button></a>
       <a href="/addAccountToUser/{{this.user?.id}}"><button mat-raised-button color="primary mt-2"><mat-icon>add</mat-icon>Add Account</button></a>
     </div>
   </mat-card-content>

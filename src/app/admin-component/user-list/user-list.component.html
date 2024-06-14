@@ -28,11 +28,11 @@
         <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef> Actions </th>
             <td mat-cell *matCellDef="let user">
-                <a href="/editUser/{{user.id}}"><button class="me-2" mat-mini-fab matTooltip="Edit">
+                <a href="/editUser/{{user.id}}"><button class="me-2" mat-mini-fab matTooltip="Edit" color="success"> 
                     <mat-icon>edit</mat-icon>
                 </button></a>
                 
-                <button mat-mini-fab aria-label="Delete" matTooltip="Disable">
+                <button mat-mini-fab aria-label="Delete" matTooltip="Disable" color="warn">
                     <mat-icon>disabled_by_default</mat-icon>
                 </button>
             </td>
@@ -48,5 +48,5 @@
     </mat-paginator>
 </div>
 <div class="mt-3">
-    <a href="/addUser"><button mat-raised-button color="primary" href="#"> Add User</button></a>
+    <a href="/addUser"><button mat-raised-button color="primary" href="#"><mat-icon>person_add</mat-icon> Add User</button></a>
 </div>

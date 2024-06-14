@@ -40,6 +40,7 @@ import { AccountListComponent } from './admin-component/account-list/account-lis
 import { TransactionsListComponent } from './admin-component/transactions-list/transactions-list.component';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import {MatInputModule} from '@angular/material/input';
 import { TestsortingComponent } from './admin-component/testsorting/testsorting.component';
 import { AddUserComponent } from './admin-component/add-user/add-user.component';
 import { AddAccountComponent } from './admin-component/add-account/add-account.component';
@@ -95,5 +96,6 @@ const oktaAuth = new OktaAuth({
         MatSelectModule,
         MatListModule,
         MatTooltipModule,
+        MatInputModule,
         OktaAuthModule.forRoot({ oktaAuth }), SpinnerComponent] })
 export class AppModule { }
