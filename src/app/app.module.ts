@@ -39,9 +39,11 @@ import { ViewAccountComponent } from './admin-component/view-account/view-accoun
 import { AccountListComponent } from './admin-component/account-list/account-list.component';
 import { TransactionsListComponent } from './admin-component/transactions-list/transactions-list.component';
 import { MatSortModule } from '@angular/material/sort';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { TestsortingComponent } from './admin-component/testsorting/testsorting.component';
 import { AddUserComponent } from './admin-component/add-user/add-user.component';
 import { AddAccountComponent } from './admin-component/add-account/add-account.component';
+import { EditProfileComponent } from './admin-component/edit-profile/edit-profile.component';
 
 const oktaAuth = new OktaAuth({
   issuer: 'https://dev-30779887.okta.com/oauth2/default',
@@ -69,6 +71,7 @@ const oktaAuth = new OktaAuth({
         ViewAccountComponent,
         AddUserComponent,
         AddAccountComponent,
+        EditProfileComponent,
         TestsortingComponent
     ],
     bootstrap: [AppComponent],
@@ -91,5 +94,6 @@ const oktaAuth = new OktaAuth({
         MatFormFieldModule,
         MatSelectModule,
         MatListModule,
+        MatTooltipModule,
         OktaAuthModule.forRoot({ oktaAuth }), SpinnerComponent] })
 export class AppModule { }

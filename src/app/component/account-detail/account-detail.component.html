@@ -12,7 +12,8 @@
 } -->
 <div class="card mt-2">
   <h5 class="card-header">
-  {{this.account?.accountType}}: {{this.account?.accountNumber}} Account Balance: {{this.account?.accountBalance | currency}}
+  {{this.account?.accountType}}: {{this.account?.accountNumber}} 
+  Account Balance: {{this.account?.accountBalance | currency}}
   </h5>
   <div class="card-body">
     <h5 class="card-title"></h5>
@@ -26,7 +27,7 @@
           </thead>
           <tbody class="table-group-divider">
             <tr *ngFor="let transaction of transactions">
-              <td>{{transaction.date | date:'mediumDate'}}</td>
+              <td>{{transaction.date | date:'medium'}}</td>
               <td>{{transaction.transactionType}}</td>
               <td>{{transaction.amount | currency}}</td>
             </tr>

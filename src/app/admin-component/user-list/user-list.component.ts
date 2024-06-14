@@ -18,7 +18,8 @@ export class UserListComponent implements OnInit {
   totalElements: number;
   currentPage = 0;
   dataSource: any;
-  displayedColumns = ['id', 'firstName', 'lastName', 'accounts']
+  displayedColumns = ['id', 'firstName', 'lastName', 'accounts', 'actions']
+  isActive = true;
 
   handlePageEvent(pageEvent: PageEvent) {
     this.userService.getUsers(pageEvent.pageSize, pageEvent.pageIndex).subscribe(({content, page}) => {

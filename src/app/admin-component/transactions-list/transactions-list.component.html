@@ -15,7 +15,7 @@
                     @for (transaction of transactions; track transaction.id) {
                     <tr>
                         <td>{{transaction.id}}</td>
-                        <td>{{transaction.date}}</td>
+                        <td>{{transaction.date | date:'medium'}}</td>
                         <td>{{transaction.transactionType}}</td>
                         <td>{{transaction.amount | currency}}</td>
                     </tr>

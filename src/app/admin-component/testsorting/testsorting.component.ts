@@ -35,6 +35,7 @@ export class TestsortingComponent implements AfterViewInit {
   size: number;
   pageIndex: number;
   totalElements: number;
+  isActive = false;
 
   constructor(private _liveAnnouncer: LiveAnnouncer, private userService: UserService) {
     this.size = 10;

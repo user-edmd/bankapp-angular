@@ -22,6 +22,7 @@ import { roleGuard } from './role.guard';
 import { authGuard } from './auth.guard';
 import { AddUserComponent } from './admin-component/add-user/add-user.component';
 import { AddAccountComponent } from './admin-component/add-account/add-account.component';
+import { EditProfileComponent } from './admin-component/edit-profile/edit-profile.component';
 
 
 const routes: Routes = [
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: 'addUser', component: AddUserComponent },
   { path: 'addAccount', component: CreateAccountComponent },
   { path: 'addAccountToUser/:id', component: AddAccountComponent },
+  { path: 'editUser/:id', component: EditProfileComponent },
   { path: 'account/:id/addTransaction', component: CreateTransactionComponent },
   { path: 'user/:id/transfer', component: TransferAmountComponent },
   { path: 'editProfile', component: EditUserComponent },
