@@ -21,6 +21,8 @@ export class ViewAccountComponent implements OnInit{
   size: number;
   totalElements: number;
   currentPage = 0;
+  dataSource: any;
+  displayedColumns = ['id', 'date', 'transactionType', 'amount']
 
   handlePageEvent(pageEvent: PageEvent) {
     this.transactionService.getTransactions(this.account!.id, pageEvent.pageSize, pageEvent.pageIndex).subscribe(({content, page}) => {
@@ -29,6 +31,7 @@ export class ViewAccountComponent implements OnInit{
       pageEvent.length = page.totalElements;
       this.totalElements = page.totalElements;
       this.transactions = content;
+      this.dataSource = content;
     });
   }
 
@@ -49,6 +52,7 @@ export class ViewAccountComponent implements OnInit{
       this.size = page.size;
       this.totalElements = page.totalElements
       this.transactions = content;
+      this.dataSource = content;
     });
   }
 }
