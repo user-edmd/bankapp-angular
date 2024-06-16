@@ -19,7 +19,7 @@ export class TransactionService {
   }
 
   getTransactions(accountId: number, size: number, page: number): Observable<TransactionResponse> {
-    return this.http.get<TransactionResponse>(`${this.baseUrl}/account/${accountId}/transactions?size=${size}&page=${page}&sort=date,desc`)
+    return this.http.get<TransactionResponse>(`${this.baseUrl}/account/${accountId}/transactions?size=${size}&page=${page}`)
   }
 
   getTransaction(transactionId: number): Observable<Transaction> {

@@ -10,14 +10,20 @@
           <th>Account Number</th>
           <th>Account Type</th>
           <th>Balance</th>
+          <th>Actions</th>
         </thead>
         <tbody>
           @for (account of accounts; track account.id) {
           <tr>
-            <td><a href="/accounts/{{account.id}}">{{account.id}}</a></td>
+            <td>{{account.id}}</td>
             <td>{{account.accountNumber}}</td>
             <td>{{account.accountType}}</td>
             <td>{{account.accountBalance | currency}}</td>
+            <td>
+              <a href="/accounts/{{account.id}}"><button class="me-2" mat-mini-fab matTooltip="View Transactions"> 
+                <mat-icon>visibility</mat-icon>
+            </button></a>
+            </td>
           </tr>
           }
         </tbody>
