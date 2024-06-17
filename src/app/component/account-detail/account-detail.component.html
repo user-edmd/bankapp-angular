@@ -11,12 +11,11 @@
   <p><app-spinner></app-spinner></p>
 } -->
 <div class="card mt-2">
-  <h5 class="card-header">
+  <h6 class="card-header">
   {{this.account?.accountType}}: {{this.account?.accountNumber}} 
-  Account Balance: {{this.account?.accountBalance | currency}}
-  </h5>
+  </h6>
   <div class="card-body">
-    <h5 class="card-title"></h5>
+    <h5 class="card-title">Balance: {{this.account?.accountBalance | currency}}</h5>
     @if (this.transactions === undefined || this.transactions.length > 0) {
       <div>
         <table class="table">
@@ -53,18 +52,7 @@
     @else {
       <app-spinner></app-spinner>
     }
-    <a class="btn btn-secondary" href="#" role="button">Return Home</a>
+    <a class="btn btn-secondary me-2" href="#" role="button">Return Home</a>
+    <a class="btn btn-primary" href="/account/{{account?.id}}/addTransaction" role="button">Add Transaction</a>
   </div>
 </div>
-
-
-<!-- <div class="dropdown mt-3" *ngIf="account">
-  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-    Dropdown button
-  </button>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" routerLink="/account/{{account.id}}/addTransaction">Add Transaction</a></li>
-    <li><a class="dropdown-item" href="#">Another action</a></li>
-    <li><a class="dropdown-item" href="#">Something else here</a></li>
-  </ul>
-</div> -->

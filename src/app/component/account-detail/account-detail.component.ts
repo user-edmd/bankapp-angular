@@ -11,7 +11,7 @@ import { TransactionService } from 'src/app/services/transaction.service';
   styleUrls: ['./account-detail.component.css']
 })
 export class AccountDetailComponent implements OnInit {
-  account: Account | undefined;
+  account?: Account | undefined;
   transactions: Transaction[] | undefined;
   pages: string[] = [];
 
