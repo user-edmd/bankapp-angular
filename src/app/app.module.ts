@@ -41,10 +41,15 @@ import { TransactionsListComponent } from './admin-component/transactions-list/t
 import { MatSortModule } from '@angular/material/sort';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatInputModule} from '@angular/material/input';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { TestsortingComponent } from './admin-component/testsorting/testsorting.component';
 import { AddUserComponent } from './admin-component/add-user/add-user.component';
 import { AddAccountComponent } from './admin-component/add-account/add-account.component';
 import { EditProfileComponent } from './admin-component/edit-profile/edit-profile.component';
+import { LoaderService } from './services/loader.service';
+import { LoaderInterceptor } from './interceptor/loader.interceptor';
+import { LoaderComponent } from './loader/loader.component';
 
 const oktaAuth = new OktaAuth({
   issuer: 'https://dev-30779887.okta.com/oauth2/default',
@@ -73,11 +78,13 @@ const oktaAuth = new OktaAuth({
         AddUserComponent,
         AddAccountComponent,
         EditProfileComponent,
-        TestsortingComponent
+        TestsortingComponent,
+        LoaderComponent
     ],
     bootstrap: [AppComponent],
     providers: [
         UserService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+        LoaderService, { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
         provideHttpClient(withInterceptorsFromDi()),
         provideAnimationsAsync()
     ], imports: [BrowserModule,
@@ -97,5 +104,7 @@ const oktaAuth = new OktaAuth({
         MatListModule,
         MatTooltipModule,
         MatInputModule,
+        MatProgressBarModule,
+        MatProgressSpinnerModule,
         OktaAuthModule.forRoot({ oktaAuth }), SpinnerComponent] })
 export class AppModule { }

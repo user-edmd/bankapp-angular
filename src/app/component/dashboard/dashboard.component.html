@@ -14,14 +14,11 @@
         <p class="card-text">We're delighted to have you here—your financial goals are our mission, and we're committed
           to providing you with seamless banking experiences and personalized support every step of the way.</p>
         @if (this.user == undefined) {
-        <p class="card-text">To get the most out of this feature, create your profile first! It will personalize your experience.</p>
+        <p class="card-text">To get the most out of this feature, create your profile first! It will personalize your
+          experience.</p>
         <a href="/register" class="btn btn-primary">Setup Profile</a>
         }
       </div>
-
-      <!-- <div class="card-footer text-body-secondary">
-      2 days ago
-    </div> -->
     </div>
   </div>
 </div>
@@ -40,67 +37,3 @@
   </div>
   }
 </div>
-
-<!-- <div class="row">
-  @for (account of accounts; track account) {
-  <div class="col-sm-6 mb-3 mb-sm-0 gy-2">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-  </div>
-}
-</div> -->
-
-<!-- <div *ngIf="transactions">
-  <div class="offcanvas offcanvas-bottom offcanvas-size-xl" tabindex="-1" id="offcanvasTransactions"
-    aria-labelledby="offcanvasTransactionsLabel">
-    <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasTransactionsLabel">Transactions</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-      <div>
-        <div>
-          <table class="table">
-            <thead>
-              <th>Date</th>
-              <th>Transaction Type</th>
-              <th>Amount</th>
-            </thead>
-            <tbody>
-              <tr *ngFor="let transaction of transactions">
-                <td>{{transaction.date | date:'mediumDate'}}</td>
-                <td>{{transaction.transactionType}}</td>
-                <td>{{transaction.amount | currency}}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <nav aria-label="Page navigation example">
-        <ul class="pagination">
-          <li class="page-item" [ngClass]="{'disabled': page === 0}"><a class="page-link" role="button"
-              (click)="goToPrevOrNext('prev')">Previous</a></li>
-          <li class="page-item" [ngClass]="{'active': page === i}"
-            *ngFor="let item of [].constructor( total ); let i = index"><a class="page-link" role="button"
-              (click)="goToPage(i)">{{i+1}}</a></li>
-          <li class="page-item" [ngClass]="{'disabled': page === total - 1}"><a class="page-link" role="button"
-              (click)="goToPrevOrNext('next')">Next</a></li>
-        </ul>
-      </nav>
-      <div class="dropdown mt-3">
-        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-          Options
-        </button>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" role="button" (click)="openTransactionsPage()">Add Transaction</a></li>
-          <li><a class="dropdown-item" *ngIf="user" routerLink="/user/{{user.id}}/transfer">Transfer</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div> -->
