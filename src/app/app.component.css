@@ -13,3 +13,15 @@
 .navbar-color-blue {
     background-color: #005EB8;
 }
+
+.nav-link {
+    color: #fff;
+}
+
+.navbar-brand-dark {
+    color: #000;
+}
+
+.navbar-brand-light {
+    color: #fff;
+}

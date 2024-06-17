@@ -15,17 +15,14 @@
                 <tbody>
                     @for (account of accounts; track account.id) {
                     <tr>
-                        <td><a mat-stroked-button href="/accounts/{{account.id}}">{{account.id}}</a></td>
+                        <td>{{account.id}}</td>
                         <td>{{account.accountNumber}}</td>
                         <td>{{account.accountType}}</td>
                         <td>{{account.accountBalance | currency}}</td>
                         <td>
-                            <button class="me-2" mat-mini-fab aria-label="Example icon button with a menu icon">
+                              <a href="/accounts/{{account.id}}"><button class="me-2" mat-mini-fab matTooltip="View Transactions"> 
                                 <mat-icon>receipt</mat-icon>
-                              </button>
-                              <button mat-mini-fab aria-label="Example icon button with a menu icon">
-                                <mat-icon>disabled_by_default</mat-icon>
-                              </button>
+                            </button></a>
                         </td>
                     </tr>
                     }
