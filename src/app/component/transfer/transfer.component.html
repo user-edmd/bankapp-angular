@@ -1,0 +1,67 @@
+<div class="card mt-2">
+    <h5 class="card-header">
+        Transfer to Account
+    </h5>
+    <div class="card-body">
+        <h5 class="card-title"></h5>
+        <form #transferAccountForm="ngForm" (ngSubmit)="onSubmit()" ngNativeValidate>
+            <select class="form-select mt-3 mb-3" [(ngModel)]="transferForm.accountIdFrom" name="accountIdFrom">
+                <option name="accountFrom" [value]="accountFrom.id">
+                    {{accountFrom.accountType}}: {{accountFrom.accountNumber}} (Balance: {{accountFrom.accountBalance |
+                    currency}})
+                </option>
+            </select>
+            <select class="form-select mt-3 mb-3" [(ngModel)]="transferForm.accountIdTo" name="accountIdTo" required>
+                @for (account of accounts; track account) {
+                <option *ngIf="account.id!=transferForm.accountIdFrom" name="accountTo" [value]="account.id">
+                    {{account.accountType}}: {{account.accountNumber}} (Balance: {{account.accountBalance | currency}})
+                </option>
+                }
+            </select>
+            <div class="form-floating mb-3">
+                <input type="number" min=1 class="form-control" id="inputAmount" step='0.01' (keyup)="onKeydown($event)"
+                    [(ngModel)]="transferForm.amountToTransfer" name="Amount" required placeholder="0.00">
+                <label for="floatingInput">Amount</label>
+            </div>
+            @if (accountFrom.accountBalance < transferForm.amountToTransfer) { <div class="text-danger icon-text">
+                <mat-icon>warning</mat-icon> Insufficient balance, amount must be less than or equal to
+                {{accountFrom.accountBalance | currency}}
+    </div>
+    }
+    <div class="mb-3" id="inputAmountTest"><b>
+            {{amountToCurrency}}
+        </b></div>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTransactionButton"
+        [disabled]="transferAccountForm.invalid || accountFrom.accountBalance < transferForm.amountToTransfer">Submit</button>
+    </form>
+</div>
+</div>
+<!-- <h4>Basic mat-select</h4>
+<mat-form-field>
+  <mat-label>Account to Transfer</mat-label>
+  <mat-select panelWidth="20rem">
+    @for (account of accounts; track account) {
+      <mat-option [value]="account.id">{{account.accountType}}: {{account.accountNumber}} (Balance: {{account.accountBalance | currency}})</mat-option>
+    }
+  </mat-select>
+</mat-form-field> -->
+
+<div class="modal fade" id="addTransactionButton" tabindex="-1" aria-labelledby="addTransactionButtonLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="addTransactionButtonLabel">Transfer</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you would like to transfer {{transferForm.amountToTransfer | currency}}?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                    (click)="onSubmit()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>

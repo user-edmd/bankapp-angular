@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Account } from 'src/app/common/account';
 import { TransferForm } from 'src/app/common/transfer-form';
@@ -6,17 +6,18 @@ import { AccountService } from 'src/app/services/account.service';
 import { TransactionService } from 'src/app/services/transaction.service';
 
 @Component({
-  selector: 'app-transfer-amount',
-  templateUrl: './transfer-amount.component.html',
-  styleUrls: ['./transfer-amount.component.css']
+  selector: 'app-transfer',
+  templateUrl: './transfer.component.html',
+  styleUrl: './transfer.component.css'
 })
-export class TransferAmountComponent {
+export class TransferComponent implements OnInit {
   accounts: Account[] = []
   transferForm: TransferForm
   routeParams = this.route.snapshot.paramMap;
-  userIdFromRouter = Number(this.routeParams.get('id'));
+  accountIdFromRouter = Number(this.routeParams.get('id'));
   amountToCurrency: string
   accountFrom: Account
+  accountTo: Account | undefined
 
   constructor(
     private router: Router,
@@ -27,13 +28,20 @@ export class TransferAmountComponent {
     this.transferForm = new TransferForm();
   }
 
+
+
   ngOnInit(): void {
-    this.getAccounts();
+    this.accountService.getAccount(this.accountIdFromRouter).subscribe
+      (account => {
+        this.accountFrom = account;
+        this.accountService.getAccountsFromUser(this.accountFrom.userId)
+          .subscribe(accounts => { this.accounts = accounts })
+      });
   }
-  getAccounts(): void {
-    this.accountService.getAccountsFromUser(this.userIdFromRouter)
-      .subscribe(accounts => { this.accounts = accounts })
-  }
+  // getAccounts(): void {
+  //   this.accountService.getAccountsFromUser(this.accountFrom.userId)
+  //     .subscribe(accounts => { this.accounts = accounts })
+  // }
 
   onSubmit() {
     this.transactionService.transferMoney(this.transferForm).subscribe(
@@ -41,8 +49,9 @@ export class TransferAmountComponent {
         this.router.navigate(['/dashboard']);
       }
     );
-    
+
   }
+  
 
   onKeydown(event: any) {
     let amountValue = event.target.value;

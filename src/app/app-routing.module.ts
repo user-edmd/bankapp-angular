@@ -7,7 +7,6 @@ import { TransactionDetailComponent } from './component/transaction-detail/trans
 import { CreateUserComponent } from './component/create-user/create-user.component';
 import { CreateAccountComponent } from './component/create-account/create-account.component';
 import { CreateTransactionComponent } from './component/create-transaction/create-transaction.component';
-import { TransferAmountComponent } from './component/transfer-amount/transfer-amount.component';
 import { EditUserComponent } from './component/edit-user/edit-user.component';
 import { HomepageComponent } from './component/homepage/homepage.component';
 import { UnauthorizedComponent } from './component/unauthorized/unauthorized.component';
@@ -23,6 +22,7 @@ import { authGuard } from './auth.guard';
 import { AddUserComponent } from './admin-component/add-user/add-user.component';
 import { AddAccountComponent } from './admin-component/add-account/add-account.component';
 import { EditProfileComponent } from './admin-component/edit-profile/edit-profile.component';
+import { TransferComponent } from './component/transfer/transfer.component';
 
 
 const routes: Routes = [
@@ -39,7 +39,7 @@ const routes: Routes = [
   { path: 'addAccountToUser/:id', component: AddAccountComponent },
   { path: 'editUser/:id', component: EditProfileComponent },
   { path: 'account/:id/addTransaction', component: CreateTransactionComponent },
-  { path: 'user/:id/transfer', component: TransferAmountComponent },
+  { path: 'account/:id/transfer', component: TransferComponent },
   { path: 'editProfile', component: EditUserComponent },
   { path: 'unauthorized', component: UnauthorizedComponent },
   { path: '500', component: UnauthorizedComponent },

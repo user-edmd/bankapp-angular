@@ -13,7 +13,6 @@ import { CreateUserComponent } from './component/create-user/create-user.compone
 import { FormsModule } from '@angular/forms';
 import { CreateAccountComponent } from './component/create-account/create-account.component';
 import { CreateTransactionComponent } from './component/create-transaction/create-transaction.component';
-import { TransferAmountComponent } from './component/transfer-amount/transfer-amount.component';
 import { EditUserComponent } from './component/edit-user/edit-user.component';
 import { HomepageComponent } from './component/homepage/homepage.component';
 import { UnauthorizedComponent } from './component/unauthorized/unauthorized.component';
@@ -43,6 +42,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatInputModule} from '@angular/material/input';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatDialogModule} from '@angular/material/dialog';
 import { TestsortingComponent } from './admin-component/testsorting/testsorting.component';
 import { AddUserComponent } from './admin-component/add-user/add-user.component';
 import { AddAccountComponent } from './admin-component/add-account/add-account.component';
@@ -50,6 +50,7 @@ import { EditProfileComponent } from './admin-component/edit-profile/edit-profil
 import { LoaderService } from './services/loader.service';
 import { LoaderInterceptor } from './interceptor/loader.interceptor';
 import { LoaderComponent } from './loader/loader.component';
+import { TransferComponent } from './component/transfer/transfer.component';
 
 const oktaAuth = new OktaAuth({
   issuer: 'https://dev-30779887.okta.com/oauth2/default',
@@ -68,7 +69,7 @@ const oktaAuth = new OktaAuth({
         CreateUserComponent,
         CreateAccountComponent,
         CreateTransactionComponent,
-        TransferAmountComponent,
+        TransferComponent,
         EditUserComponent,
         HomepageComponent,
         UnauthorizedComponent,
@@ -106,5 +107,6 @@ const oktaAuth = new OktaAuth({
         MatInputModule,
         MatProgressBarModule,
         MatProgressSpinnerModule,
+        MatDialogModule,
         OktaAuthModule.forRoot({ oktaAuth }), SpinnerComponent] })
 export class AppModule { }
