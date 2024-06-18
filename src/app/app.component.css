@@ -20,8 +20,13 @@
 
 .navbar-brand-dark {
     color: #000;
+    display: flex;
+    align-items: center;
+
 }
 
 .navbar-brand-light {
     color: #fff;
+    display: flex;
+    align-items: center;
 }

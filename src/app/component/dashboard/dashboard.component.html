@@ -21,12 +21,41 @@
   @for (account of accounts; track account) {
   <div class="col-sm-6 mb-3 mb-sm-0 gy-2">
     <div class="card">
-      <h5 class="card-header">{{account.accountType}}</h5>
+      <h5 class="card-header">{{account.accountType}}
+        <button id="options-menu" mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
+        <mat-menu #menu="matMenu">
+          <a mat-menu-item href="/account/{{account.id}}">
+            <mat-icon>list</mat-icon>
+            <span>Transactions</span>
+          </a>
+          <a mat-menu-item href="/account/{{account.id}}/addTransaction">
+            <mat-icon>swap_vert</mat-icon>
+            <span>Deposit/Withdraw</span>
+          </a>
+          <a mat-menu-item href="/account/{{account.id}}/transfer">
+            <mat-icon>swap_horiz</mat-icon>
+            <span>Transfer</span>
+          </a>
+        </mat-menu>
+      </h5>
       <div class="card-body">
-        <h5 class="card-title">{{account.accountBalance | currency}}</h5>
+        <h5 class="card-title">Balance: {{account.accountBalance | currency}}</h5>
         <p class="card-text">Account Number: {{account.accountNumber}}</p>
-        <a class="btn btn-primary" href="/account/{{account.id}}"><i class="bi bi-list-columns"></i> View
-          Transactions</a>
+        <!-- <button mat-mini-fab [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
+        <mat-menu #menu="matMenu">
+          <a mat-menu-item href="/account/{{account.id}}">
+            <mat-icon>list</mat-icon>
+            <span>Transactions</span>
+          </a>
+          <a mat-menu-item href="/account/{{account.id}}/addTransaction">
+            <mat-icon>swap_vert</mat-icon>
+            <span>Deposit/Withdraw</span>
+          </a>
+          <a mat-menu-item href="/account/{{account.id}}/transfer">
+            <mat-icon>swap_horiz</mat-icon>
+            <span>Transfer</span>
+          </a>
+        </mat-menu> -->
       </div>
     </div>
   </div>
