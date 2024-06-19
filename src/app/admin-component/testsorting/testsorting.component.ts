@@ -1,5 +1,5 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild, signal } from '@angular/core';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { User } from 'src/app/common/user';
@@ -29,9 +29,10 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrl: './testsorting.component.css'
 })
 export class TestsortingComponent implements AfterViewInit {
+  readonly panelOpenState = signal(false);
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   users!: User[];
-  dataSource= new MatTableDataSource<User>(this.users);
+  dataSource= ELEMENT_DATA
   size: number;
   pageIndex: number;
   totalElements: number;
@@ -45,14 +46,13 @@ export class TestsortingComponent implements AfterViewInit {
       this.size = page.size;
       this.totalElements = page.totalElements
       this.users = content;
-      this.dataSource = new MatTableDataSource<User>(this.users);
-      this.dataSource.sort = this.sort;
+
     });
    }
 
   @ViewChild(MatSort) sort: MatSort;
 
   ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
+
   }
 }

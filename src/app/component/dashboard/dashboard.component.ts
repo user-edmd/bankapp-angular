@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OktaAuthStateService } from '@okta/okta-angular';
 import { Account } from 'src/app/common/account';
@@ -23,6 +23,8 @@ export class DashboardComponent {
   size: number = 8;
   total: number = 0;
   accId: number = 0;
+
+  readonly panelOpenState = signal(false);
   
 
   constructor(
@@ -53,6 +55,13 @@ export class DashboardComponent {
   getAccounts(): void {
     this.accountService.getAccountsFromUser2()
       .subscribe(accounts => this.accounts = accounts)
+  }
+
+  getTotalAccountBalance(): any {
+    const sum = this.accounts?.filter(account => account.accountBalance)
+    .reduce((sum, current) => sum + current.accountBalance, 0)
+
+    return sum;
   }
 
   openTransactions(accountId : number) {

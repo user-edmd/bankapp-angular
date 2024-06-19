@@ -32,6 +32,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatListModule} from '@angular/material/list';
+import {MatRadioModule} from '@angular/material/radio';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { ViewUserComponent } from './admin-component/view-user/view-user.component';
 import { ViewAccountComponent } from './admin-component/view-account/view-account.component';
@@ -44,6 +45,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatExpansionModule} from '@angular/material/expansion';
 import { TestsortingComponent } from './admin-component/testsorting/testsorting.component';
 import { AddUserComponent } from './admin-component/add-user/add-user.component';
 import { AddAccountComponent } from './admin-component/add-account/add-account.component';
@@ -110,5 +112,7 @@ const oktaAuth = new OktaAuth({
         MatProgressSpinnerModule,
         MatDialogModule,
         MatMenuModule,
+        MatExpansionModule,
+        MatRadioModule,
         OktaAuthModule.forRoot({ oktaAuth }), SpinnerComponent] })
 export class AppModule { }

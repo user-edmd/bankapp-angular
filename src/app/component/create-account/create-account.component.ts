@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, TemplateRef, ViewChild, inject, input } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatRadioChange } from '@angular/material/radio';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Account } from 'src/app/common/account';
 import { User } from 'src/app/common/user';
@@ -11,6 +14,10 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./create-account.component.css']
 })
 export class CreateAccountComponent {
+  onRadioButtonChange($event: MatRadioChange) {
+    this.account.accountType = $event.value;
+  }
+  @ViewChild('callAPIDialog') callAPIDialog: TemplateRef<any>;
   account: Account;
   user: User;
 
@@ -18,9 +25,15 @@ export class CreateAccountComponent {
     private router: Router,
     private accountService: AccountService,
     private userService: UserService) {
-      this.account = new Account;
-      this.userService.getUser()
+    this.account = new Account;
+    this.userService.getUser()
       .subscribe(user => this.user = user);
+  }
+
+  readonly dialog = inject(MatDialog);
+
+  openDialog() {
+    const dialogRef = this.dialog.open(this.callAPIDialog);
   }
 
   onSubmit() {
