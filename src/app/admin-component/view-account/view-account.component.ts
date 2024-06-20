@@ -40,6 +40,7 @@ export class ViewAccountComponent implements OnInit{
   }
 
   constructor(
+    private userService: UserService,
     private accountService: AccountService,
     private transactionService: TransactionService,
     private route: ActivatedRoute,
@@ -50,7 +51,12 @@ export class ViewAccountComponent implements OnInit{
     const routeParams = this.route.snapshot.paramMap;
     const accountIdFromRouter = Number(routeParams.get('id'));
     this.accountService.getAccountAdmin(accountIdFromRouter)
-    .subscribe(account => this.account = account);
+    .subscribe(account => {
+      this.account = account;
+      this.userService.getUserById(this.account!.userId).subscribe(
+        user => this.user = user);
+    });
+
 
     this.transactionService.getTransactions(accountIdFromRouter, 10, this.pageIndex).subscribe(({content, page}) => {
       this.dataSource = new MatTableDataSource<Transaction>(content);

@@ -13,6 +13,8 @@ export class ViewUserComponent implements OnInit {
 
   user: User | undefined;
   accounts: Account[] | undefined;
+  dataSource: any;
+  displayedColumns = ['id', 'accountNumber', 'type', 'balance', 'actions']
 
   constructor(
     private userService: UserService,
@@ -25,6 +27,7 @@ export class ViewUserComponent implements OnInit {
     this.userService.getUserById(userIdFromRouter).subscribe(user => {
       this.user = user;
       this.accounts = this.user.accountList;
+      this.dataSource = this.user.accountList;
     });
   }
 

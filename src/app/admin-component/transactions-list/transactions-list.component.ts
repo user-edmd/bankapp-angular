@@ -16,7 +16,7 @@ export class TransactionsListComponent {
   size: number;
   totalElements: number;
   currentPage = 0;
-  displayedColumns = ['id', 'date', 'type', 'amount']
+  displayedColumns = ['id', 'date', 'type', 'amount', 'actions']
   dataSource: any;
 
   handlePageEvent(pageEvent: PageEvent) {
