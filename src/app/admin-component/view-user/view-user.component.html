@@ -15,13 +15,13 @@
   </mat-toolbar>
   <table mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef> User ID </th>
+      <th mat-header-cell *matHeaderCellDef> Account ID </th>
       <td mat-cell *matCellDef="let account"> {{account.id}} </td>
     </ng-container>
 
     <ng-container matColumnDef="accountNumber">
       <th mat-header-cell *matHeaderCellDef> Account Number </th>
-      <td mat-cell *matCellDef="let account"> {{account.id}} </td>
+      <td mat-cell *matCellDef="let account"> {{account.accountNumber}} </td>
     </ng-container>
 
     <ng-container matColumnDef="type">
