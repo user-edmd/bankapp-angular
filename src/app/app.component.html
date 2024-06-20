@@ -25,14 +25,6 @@
             <a class="nav-link active" aria-current="page" href="#">About Us</a>
           </li>
         }
-        @if ((isAuthenticated$ | async) && (this.role !== "ADMIN")) {
-        <li class="nav-item">
-          <a class="nav-link text-underline-hover" aria-current="page" href="/editProfile">My Profile</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-underline-hover" aria-current="page" href="/addAccount">Add Account</a>
-        </li>
-        }
         @if (this.role === "ADMIN") {
           <li class="nav-item">
             <a class="nav-link text-underline-hover" aria-current="page" href="/users">Users</a>
