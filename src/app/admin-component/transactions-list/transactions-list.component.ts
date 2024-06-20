@@ -16,6 +16,8 @@ export class TransactionsListComponent {
   size: number;
   totalElements: number;
   currentPage = 0;
+  displayedColumns = ['id', 'date', 'type', 'amount']
+  dataSource: any;
 
   handlePageEvent(pageEvent: PageEvent) {
     this.transactionService.getAllTransactions(pageEvent.pageSize, pageEvent.pageIndex).subscribe(({content, page}) => {
@@ -24,6 +26,7 @@ export class TransactionsListComponent {
       pageEvent.length = page.totalElements;
       this.totalElements = page.totalElements;
       this.transactions = content;
+      this.dataSource = content;
     });
   }
 
@@ -36,6 +39,7 @@ export class TransactionsListComponent {
       this.size = page.size;
       this.totalElements = page.totalElements
       this.transactions = content;
+      this.dataSource = content;
     });
   }
 }

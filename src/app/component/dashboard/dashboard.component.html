@@ -82,7 +82,8 @@
           <mat-label>Transfer From</mat-label>
           <mat-select>
             @for (account of accounts; track account) {
-            <mat-option [value]="account.id">{{account.id}}</mat-option>
+            <mat-option [value]="account.id">{{account.accountType}} (...{{account.accountNumber | slice: 12
+              : 16}})</mat-option>
             }
           </mat-select>
         </mat-form-field>
@@ -90,7 +91,8 @@
           <mat-label>Transfer To</mat-label>
           <mat-select>
             @for (account of accounts; track account) {
-            <mat-option [value]="account.id">{{account.id}}</mat-option>
+            <mat-option [value]="account.id">{{account.accountType}} (...{{account.accountNumber | slice: 12
+              : 16}})</mat-option>
             }
           </mat-select>
         </mat-form-field>

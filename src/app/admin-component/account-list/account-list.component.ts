@@ -16,6 +16,8 @@ export class AccountListComponent {
   size: number;
   totalElements: number;
   currentPage = 0;
+  displayedColumns = ['id', 'accountNumber', 'accountType', 'accountBalance', 'actions']
+  dataSource: any;
 
   handlePageEvent(pageEvent: PageEvent) {
     this.accountService.getAccounts(pageEvent.pageSize, pageEvent.pageIndex).subscribe(({content, page}) => {
@@ -24,6 +26,7 @@ export class AccountListComponent {
       pageEvent.length = page.totalElements;
       this.totalElements = page.totalElements;
       this.accounts = content;
+      this.dataSource = content;
     });
   }
 
@@ -36,6 +39,7 @@ export class AccountListComponent {
       this.size = page.size;
       this.totalElements = page.totalElements
       this.accounts = content;
+      this.dataSource = content;
     });
   }
 }

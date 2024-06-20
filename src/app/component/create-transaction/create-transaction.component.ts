@@ -1,4 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, TemplateRef, ViewChild, inject } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatRadioChange } from '@angular/material/radio';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Account } from 'src/app/common/account';
 import { Transaction } from 'src/app/common/transaction';
@@ -17,6 +19,17 @@ export class CreateTransactionComponent {
   routeParams = this.route.snapshot.paramMap;
   accountIdFromRouter = Number(this.routeParams.get('id'));
   amountToCurrency: string
+
+  onRadioButtonChange($event: MatRadioChange) {
+    this.transaction.transactionType = $event.value;
+  }
+  @ViewChild('callAPIDialog') callAPIDialog: TemplateRef<any>;
+
+  readonly dialog = inject(MatDialog);
+
+  openDialog() {
+    const dialogRef = this.dialog.open(this.callAPIDialog);
+  }
 
   constructor(
     private route: ActivatedRoute,
