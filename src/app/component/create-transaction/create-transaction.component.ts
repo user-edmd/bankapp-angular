@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, TemplateRef, ViewChild, inject } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, TemplateRef, ViewChild, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatRadioChange } from '@angular/material/radio';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -19,17 +19,29 @@ export class CreateTransactionComponent implements OnInit {
 
   amountToCurrency: string
 
+  @Input() inputAccount: Account;
+  
+
+  @Output() 
+  myEvent = new EventEmitter<boolean>();
+
+  emitEvent() {
+    this.myEvent.emit(true);
+  }
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private transactionService: TransactionService,
-    private accountService: AccountService) { }
+    private accountService: AccountService) { 
+
+    }
 
   ngOnInit(): void {
     this.transaction = new Transaction;
     const routeParams = this.route.snapshot.paramMap;
     const accountIdFromRouter = Number(routeParams.get('id'));
-    this.accountService.getAccount(accountIdFromRouter)
+    this.accountService.getAccount(this.inputAccount.id)
     .subscribe(account => this.account = account);
   }
 
@@ -49,7 +61,8 @@ export class CreateTransactionComponent implements OnInit {
     this.transaction.accountId = Number(this.route.snapshot.paramMap.get('id'));
     this.transactionService.addTransaction(this.transaction, this.transaction.accountId).subscribe(
       () => {
-        this.router.navigate(['/account/',this.account.id]);
+        this.emitEvent();
+        // this.router.navigate(['/account/', this.account!.id]);
       }
     );
 

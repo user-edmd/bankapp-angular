@@ -57,7 +57,7 @@
     </div>
 </div> -->
 
-<div class="row">
+<!-- <div class="row">
   <div class="col-lg-8 my-1">
     <div class="mt-3">
       <mat-card class="my-1">
@@ -111,3 +111,36 @@
   <div class="col-lg-4">
   </div>
 </div>
+ -->
+
+<h2 mat-dialog-title>New Transaction</h2>
+<mat-dialog-content>
+  <form #transactionForm="ngForm" ngNativeValidate>
+      <mat-radio-group aria-label="Select an option" [(ngModel)]="transaction.transactionType" required
+        name="transactionType" (change)="onRadioButtonChange($event)">
+        <mat-radio-button value="Deposit">Deposit</mat-radio-button>
+        <br>
+        <mat-radio-button value="Withdraw">Withdraw</mat-radio-button>
+      </mat-radio-group>
+      <br>
+      <mat-form-field floatLabel="always">
+        <mat-label>Amount</mat-label>
+        <input matInput type="number" [(ngModel)]="transaction.amount" name="Amount" (keyup)="onKeydown($event)" placeholder="0" />
+        <span matTextPrefix>$&nbsp;</span>
+      </mat-form-field>
+      <div class="mb-3" id="inputAmountTest">
+        {{amountToCurrency}}
+      </div>
+      @if ((account.accountBalance < transaction.amount) && (transaction.transactionType === 'Withdraw')) {
+        <span style="color: red">Insufficient funds to withdraw</span>
+      } @else if (transaction.amount < 0) {
+        <span style="color: red">Cannot Withdraw or Deposit a Negative Amount</span>
+      }
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button mat-dialog-close  (click)="onSubmit()">Submit</button>
+</mat-dialog-actions>
+
+<!-- [disabled]="transaction.transactionType == null || transaction.amount <= 0 || (account!.accountBalance < transaction.amount) && (transaction.transactionType === 'Withdraw')" -->
