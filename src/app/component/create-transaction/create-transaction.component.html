@@ -58,79 +58,56 @@
 </div> -->
 
 <div class="row">
-    <div class="col-lg-8 my-1">
-      <div class="mt-3">
-        <mat-card class="my-1">
-            <mat-card-header>
-              <h6>Select a Transaction</h6>
-            </mat-card-header>
-            <mat-divider class="my-2"></mat-divider>
-            <form #transactionForm="ngForm" ngNativeValidate>
-              <mat-card-content>
-                <mat-radio-group aria-label="Select an option" [(ngModel)]="transaction.transactionType" required name="transactionType" (change)="onRadioButtonChange($event)">
-                    <mat-radio-button value="Deposit">Deposit</mat-radio-button>
-                  <br>
-                    <mat-radio-button value="Withdraw">Withdraw</mat-radio-button>
-                </mat-radio-group>
-                <br>
-                <mat-form-field floatLabel="always">
-                  <mat-label>Amount</mat-label>
-                  <input matInput type="number" (keyup)="onKeydown($event)" placeholder="0" />
-                  <span matTextPrefix>$&nbsp;</span>
-                </mat-form-field>
-                <div class="mb-3" id="inputAmountTest">
-                  {{amountToCurrency}}
-              </div>
-              </mat-card-content>
-              <mat-card-footer>
-                <button mat-button class="ms-2" [disabled]="account.accountType == null" (click)="openDialog()">Submit</button>
-                <a mat-button href="/dashboard">Return Home</a>
-              </mat-card-footer>
-            </form>
-          </mat-card>
-          <ng-template #callAPIDialog>
-            <h2 mat-dialog-title>New Transaction</h2>
-            <mat-dialog-content>
-              Are you sure you would like to make this transaction?
-            </mat-dialog-content>
-            <mat-dialog-actions>
-              <button mat-button mat-dialog-close>No</button>
-              <button mat-button mat-dialog-close cdkFocusInitial (click)="onSubmit()">Yes</button>
-            </mat-dialog-actions>
-          </ng-template>
-      </div>
-    </div>
-    <div class="col-lg-4">
-      <!-- <mat-card appearance="outlined" class="my-4">
+  <div class="col-lg-8 my-1">
+    <div class="mt-3">
+      <mat-card class="my-1">
         <mat-card-header>
-          <mat-card-title>{{account.accountType}}</mat-card-title>
-          <mat-card-subtitle>Account Number: {{account?.accountNumber}}</mat-card-subtitle>
+          <span class="me-auto">{{this.account.accountType}} ({{this.account.accountNumber}})</span>
+          <span>Balance: {{this.account.accountBalance | currency}}</span>
         </mat-card-header>
-        <mat-card-content>
-          <div style="font-size: 1.5rem;">{{account.accountBalance| currency}}</div>
-          <div style="font-size: .9rem; color: #666666; font-weight: 100;">Available Balance</div>
-        </mat-card-content>
-        <mat-card-actions align="end">
-          Account Number: {{account.accountNumber}}
-        </mat-card-actions>
+        <mat-divider class="my-2"></mat-divider>
+        <form #transactionForm="ngForm" ngNativeValidate>
+          <mat-card-content>
+            <mat-radio-group aria-label="Select an option" [(ngModel)]="transaction.transactionType" required
+              name="transactionType" (change)="onRadioButtonChange($event)">
+              <mat-radio-button value="Deposit">Deposit</mat-radio-button>
+              <br>
+              <mat-radio-button value="Withdraw">Withdraw</mat-radio-button>
+            </mat-radio-group>
+            <br>
+            <mat-form-field floatLabel="always">
+              <mat-label>Amount</mat-label>
+              <input matInput type="number" [(ngModel)]="transaction.amount" name="Amount" (keyup)="onKeydown($event)" placeholder="0" />
+              <span matTextPrefix>$&nbsp;</span>
+            </mat-form-field>
+            <div class="mb-3" id="inputAmountTest">
+              {{amountToCurrency}}
+            </div>
+            @if ((account.accountBalance < transaction.amount) && (transaction.transactionType === 'Withdraw')) {
+              <span style="color: red">Insufficient funds to withdraw</span>
+            } @else if (transaction.amount < 0) {
+              <span style="color: red">Cannot Withdraw or Deposit a Negative Amount</span>
+            }
+          </mat-card-content>
+          <mat-card-footer>
+            <button mat-button class="ms-2" [disabled]="transaction.transactionType == null || transaction.amount <= 0 || (account.accountBalance < transaction.amount) && (transaction.transactionType === 'Withdraw')"
+              (click)="openDialog()">Submit</button>
+            <a mat-button href="/dashboard">Return Home</a>
+          </mat-card-footer>
+        </form>
       </mat-card>
-      <mat-card appearance="outlined" class="my-4">
-        <mat-card-header>
-          <mat-card-title>Add Transaction</mat-card-title>
-          <mat-card-subtitle>Deposit or Withdraw</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-actions align="end">
-          <a mat-flat-button href="/account/{{account.id}}/addTransaction">New Transaction</a>
-        </mat-card-actions>
-      </mat-card>
-      <mat-card appearance="outlined" class="my-4">
-        <mat-card-header>
-          <mat-card-title>Transfer</mat-card-title>
-          <mat-card-subtitle>Transfer Money Between Accounts</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-actions align="end">
-          <a mat-flat-button href="/account/{{account.id}}/transfer">Transfer</a>
-        </mat-card-actions>
-      </mat-card> -->
+      <ng-template #callAPIDialog>
+        <h2 mat-dialog-title>New Transaction</h2>
+        <mat-dialog-content>
+          Are you sure you would like to make this transaction?
+        </mat-dialog-content>
+        <mat-dialog-actions>
+          <button mat-button mat-dialog-close>No</button>
+          <button mat-button mat-dialog-close cdkFocusInitial (click)="onSubmit()">Yes</button>
+        </mat-dialog-actions>
+      </ng-template>
     </div>
   </div>
+  <div class="col-lg-4">
+  </div>
+</div>

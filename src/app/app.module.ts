@@ -47,6 +47,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatRippleModule} from '@angular/material/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 import { TestsortingComponent } from './admin-component/testsorting/testsorting.component';
 import { AddUserComponent } from './admin-component/add-user/add-user.component';
 import { AddAccountComponent } from './admin-component/add-account/add-account.component';
@@ -116,5 +117,6 @@ const oktaAuth = new OktaAuth({
         MatExpansionModule,
         MatRadioModule,
         MatRippleModule,
+        MatDatepickerModule,
         OktaAuthModule.forRoot({ oktaAuth }), SpinnerComponent] })
 export class AppModule { }

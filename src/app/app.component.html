@@ -38,10 +38,10 @@
         }
       </ul>
       <ng-container *ngIf="(isAuthenticated$ | async) === false; else signout">
-        <button mat-raised-button color="primary" (click)="signIn()"><mat-icon>person</mat-icon> Sign in </button>
+        <button mat-raised-button (click)="signIn()"><mat-icon>login</mat-icon> Sign in </button>
       </ng-container>
       <ng-template #signout>
-        <button mat-raised-button color="primary" (click)="signOut()"><mat-icon>person</mat-icon>Sign out</button>
+        <button mat-raised-button (click)="signOut()"><mat-icon>logout</mat-icon>Sign out</button>
       </ng-template>
     </div>
   </div>

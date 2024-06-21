@@ -12,17 +12,31 @@ import { TransactionService } from 'src/app/services/transaction.service';
   templateUrl: './create-transaction.component.html',
   styleUrls: ['./create-transaction.component.css']
 })
-export class CreateTransactionComponent {
+export class CreateTransactionComponent implements OnInit {
   transaction: Transaction;
   transactionDate: Date;
-  account: Account
-  routeParams = this.route.snapshot.paramMap;
-  accountIdFromRouter = Number(this.routeParams.get('id'));
+  account: Account;
+
   amountToCurrency: string
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private transactionService: TransactionService,
+    private accountService: AccountService) { }
+
+  ngOnInit(): void {
+    this.transaction = new Transaction;
+    const routeParams = this.route.snapshot.paramMap;
+    const accountIdFromRouter = Number(routeParams.get('id'));
+    this.accountService.getAccount(accountIdFromRouter)
+    .subscribe(account => this.account = account);
+  }
 
   onRadioButtonChange($event: MatRadioChange) {
     this.transaction.transactionType = $event.value;
   }
+
   @ViewChild('callAPIDialog') callAPIDialog: TemplateRef<any>;
 
   readonly dialog = inject(MatDialog);
@@ -31,33 +45,21 @@ export class CreateTransactionComponent {
     const dialogRef = this.dialog.open(this.callAPIDialog);
   }
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private transactionService: TransactionService,
-    private accountService: AccountService) {
-      this.transaction = new Transaction;
-      this.accountService.getAccount(this.accountIdFromRouter)
-      .subscribe(account => this.account = account);
-  }
-
   onSubmit() {
     this.transaction.accountId = Number(this.route.snapshot.paramMap.get('id'));
-    this.transaction.date = this.transactionDate;
-    this.accountService.getAccount(this.accountIdFromRouter).subscribe(account => this.account = account);
     this.transactionService.addTransaction(this.transaction, this.transaction.accountId).subscribe(
       () => {
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/account/',this.account.id]);
       }
     );
-    
+
   }
 
   onKeydown(event: any) {
     let amountValue = event.target.value;
-      this.amountToCurrency = Number(amountValue).toLocaleString("en-US", {
-        style: "currency",
-        currency: "USD"
-      });
+    this.amountToCurrency = Number(amountValue).toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD"
+    });
   }
 }

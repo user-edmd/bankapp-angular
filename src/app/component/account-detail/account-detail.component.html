@@ -44,6 +44,10 @@
 <div class="row">
   <div class="col-lg-8 my-1">
     <div class="mt-3 mat-elevation-z8">
+      <mat-toolbar>
+        <span class="me-auto">{{this.account?.accountType}} ({{this.account?.accountNumber}})</span>
+        <span>Balance: {{this.account?.accountBalance | currency}}</span>
+      </mat-toolbar>
       <table mat-table [dataSource]="dataSource" mat-elevation-z24 matSort>
         <ng-container matColumnDef="date">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
@@ -57,7 +61,11 @@
     
         <ng-container matColumnDef="amount">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
-          <td mat-cell *matCellDef="let transaction"> {{transaction.amount | currency}} </td>
+          <td mat-cell *matCellDef="let transaction"> 
+            @if (transaction.transactionType == "Deposit") {
+              +
+            }
+            {{transaction.amount | currency}} </td>
         </ng-container>
     
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -75,19 +83,6 @@
     </div>
   </div>
   <div class="col-lg-4">
-    <mat-card appearance="raised" class="my-4">
-      <mat-card-header>
-        <mat-card-title>{{account?.accountType}}</mat-card-title>
-        <!-- <mat-card-subtitle>Account Number: {{account?.accountNumber}}</mat-card-subtitle> -->
-      </mat-card-header>
-      <mat-card-content>
-        <div style="font-size: 1.5rem;">{{account?.accountBalance| currency}}</div>
-        <div style="font-size: .9rem; color: #666666; font-weight: 100;">Available Balance</div>
-      </mat-card-content>
-      <mat-card-actions align="end">
-        Account Number: {{account?.accountNumber}}
-      </mat-card-actions>
-    </mat-card>
     <mat-card appearance="outlined" class="my-4">
       <mat-card-header>
         <mat-card-title>Add Transaction</mat-card-title>

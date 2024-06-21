@@ -1,4 +1,4 @@
-<div class="modal fade" id="editUserButton" tabindex="-1" aria-labelledby="editUserButtonLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="editUserButton" tabindex="-1" aria-labelledby="editUserButtonLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -58,11 +58,61 @@
                     <input type="date" min="1900-01-01" class="form-control" id="inputDob" [(ngModel)]="user.dob"
                         name="dob" required>
                 </div>
-                <!-- <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">Submit</button> -->
-                <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#editUserButton"
-                    [disabled]="userForm.invalid">Submit</button>
+                <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">Submit</button>
+                <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal"
+                    data-bs-target="#editUserButton" [disabled]="userForm.invalid">Submit</button>
                 <a class="btn btn-secondary" href="#" role="button">Return Home</a>
             </form>
         </div>
     </div>
-</div>
+</div> -->
+<mat-card>
+    <mat-card-header>Edit Profile</mat-card-header>
+    <mat-card-content>
+        <div>
+            <mat-form-field>
+                <input [(ngModel)]="user.username" name="username" placeholder="Email Address" type="text" 
+                required matInput>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <input placeholder="First Name" [(ngModel)]="user.firstName"
+                name="firstName" required matInput>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <input placeholder="Last Name" [(ngModel)]="user.lastName"
+                name="lastName" required matInput>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <input placeholder="Address" [(ngModel)]="user.address"
+                name="address" required matInput>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <input placeholder="Social Security Number" [(ngModel)]="user.ssn"
+                name="ssn" required matInput>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Choose a date</mat-label>
+                <input matInput [matDatepicker]="picker" formatYearRange="start"
+                [(ngModel)]="this.user.dob"
+                name="dob" 
+                required>
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+        </div>
+        <div>
+            <button mat-button (click)="onSubmit()">Submit</button>
+        </div>
+    </mat-card-content>
+</mat-card>
