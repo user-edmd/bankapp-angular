@@ -1,44 +1,6 @@
-<!-- <div class="card mt-2">
-  <h5 class="card-header">
-    Select an Account
-  </h5>
-  <div class="card-body">
-    <h5 class="card-title"></h5>
-    <form #accountForm="ngForm" (ngSubmit)="onSubmit()" ngNativeValidate>
-      <div class="form-check mb-3">
-        <input value="Checking" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
-          required [(ngModel)]="account.accountType">
-        <label class="form-check-label" for="flexRadioDefault1">
-          <strong><i>Checking Account</i></strong> - <p><strong>Introducing the Ultimate Checking Account</strong> -
-            where convenience meets flexibility, tailored just for you! In today’s fast-paced world, managing your
-            finances shouldn’t slow you down. That’s why we’ve crafted a checking account that not only meets your
-            everyday banking needs but also rewards you for doing so.</p>
-        </label>
-      </div>
-      <div class="form-check mb-3">
-        <input value="Savings" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
-          required [(ngModel)]="account.accountType">
-        <label class="form-check-label" for="flexRadioDefault2">
-          <strong><i>Savings Account</i></strong> - <p><strong>Introducing the Dream Saver Savings Account</strong>
-            where your financial aspirations become a reality. In a world where saving feels increasingly challenging,
-            we believe in offering a savings solution that not only secures your future but also rewards your commitment
-            to saving.</p>
-        </label>
-      </div>
-      <button type="button" class="btn btn-primary mx-2" data-bs-toggle="modal" data-bs-target="#addAccountButton"
-        [disabled]="accountForm.invalid">Submit</button>
-      <a class="btn btn-secondary" href="#" role="button">Return Home</a>
-    </form>
-  </div>
-</div> -->
-
-<mat-card class="my-1">
-  <mat-card-header>
-    <h6>Select an Account</h6>
-  </mat-card-header>
-  <mat-divider class="my-2"></mat-divider>
+<h2 mat-dialog-title>Select an Account</h2>
+<mat-dialog-content>
   <form #accForm="ngForm" ngNativeValidate>
-    <mat-card-content>
       <mat-radio-group aria-label="Select an option" [(ngModel)]="account.accountType" name="accountType" (change)="onRadioButtonChange($event)">
           <mat-radio-button value="Checking"><strong><i>Checking Account</i></strong>
             <p><strong>Introducing the Ultimate Checking Account</strong> -
@@ -54,38 +16,9 @@
               to saving.</p>
           </mat-radio-button>
       </mat-radio-group>
-    </mat-card-content>
-    <mat-card-footer>
-      <button mat-button class="ms-2" [disabled]="account.accountType == null" (click)="openDialog()">Submit</button>
-      <a mat-button href="/dashboard">Return Home</a>
-    </mat-card-footer>
   </form>
-</mat-card>
-<ng-template #callAPIDialog>
-  <h2 mat-dialog-title>Add Account</h2>
-  <mat-dialog-content>
-    Are you sure you would like to add this account?
-  </mat-dialog-content>
-  <mat-dialog-actions>
-    <button mat-button mat-dialog-close>No</button>
-    <button mat-button mat-dialog-close cdkFocusInitial (click)="onSubmit()">Yes</button>
-  </mat-dialog-actions>
-</ng-template>
-
-<!-- <div class="modal fade" id="addAccountButton" tabindex="-1" aria-labelledby="addAccountButtonLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="addAccountButtonLabel">Add Account</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Are you sure you would like to add this account?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="onSubmit()">Submit</button>
-      </div>
-    </div>
-  </div>
-</div> -->
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button mat-dialog-close  (click)="onSubmit()">Submit</button>
+</mat-dialog-actions>

@@ -1,5 +1,9 @@
 <div class="row">
   <div class="col-lg-8 my-1">
+    <div>
+      <a href="/dashboard"><button mat-raised-button
+          color="primary mt-2"><mat-icon>arrow_back</mat-icon> Return</button></a>
+    </div>
     <div class="mt-3 mat-elevation-z8">
       <mat-toolbar>
         <span class="me-auto">{{this.account?.accountType}} ({{this.account?.accountNumber}})</span>
@@ -33,10 +37,6 @@
       <mat-paginator [length]="this.totalElements" [pageSize]="this.size" [pageSizeOptions]="[5, 10, 20]"
         [showFirstLastButtons]="true" (page)="handlePageEvent($event)" aria-label="Select page">
       </mat-paginator>
-    </div>
-    <div>
-      <a href="/dashboard"><button mat-raised-button
-          color="primary mt-2"><mat-icon>arrow_back</mat-icon> Return</button></a>
     </div>
   </div>
   <div class="col-lg-4">

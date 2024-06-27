@@ -34,6 +34,8 @@ PWA
 Media Queries
 
 JUnit Tests
+junit tests for service
+junit for controller
 
 Spec and Karma Tests for Angular
 

@@ -14,6 +14,16 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./create-account.component.css']
 })
 export class CreateAccountComponent {
+
+  @Input() inputUser: User;
+
+  @Output() 
+  myEvent = new EventEmitter<boolean>();
+
+  emitEvent() {
+    this.myEvent.emit(true);
+  }
+
   onRadioButtonChange($event: MatRadioChange) {
     this.account.accountType = $event.value;
   }
@@ -40,7 +50,8 @@ export class CreateAccountComponent {
     this.account.userId = Number(this.user.id)
     this.accountService.createAccount(this.account).subscribe(
       () => {
-        this.router.navigate(['/dashboard']);
+        this.emitEvent();
+        // this.router.navigate(['/dashboard']);
       }
     );
   }

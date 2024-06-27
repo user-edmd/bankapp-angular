@@ -1,4 +1,5 @@
-import { Component, OnChanges, OnInit, SimpleChanges, signal } from '@angular/core';
+import { Component, EventEmitter, OnChanges, OnInit, Output, SimpleChanges, TemplateRef, ViewChild, inject, signal } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OktaAuthStateService } from '@okta/okta-angular';
 import { Account } from 'src/app/common/account';
@@ -63,40 +64,21 @@ export class DashboardComponent {
 
     return sum;
   }
+  
+  @ViewChild('callAPIDialog') callAPIDialog: TemplateRef<any>;
 
-  openTransactions(accountId : number) {
-    console.log(accountId)
-    this.transactionService.getTransactions(accountId, 5, 0)
-    
+  readonly dialog = inject(MatDialog);
+
+  openNewAccountDialog() {
+    let dialogRef = this.dialog.open(this.callAPIDialog);
   }
 
-  getTransactions2(accountId: number, page: number) {
-    this.accId = accountId;
-    this.transactionService.getTransactions(accountId, this.size, page).subscribe(({content, page}) => {
-      this.total = page.totalPages;
-      this.page = page.number;
-      this.transactions = content;
-    });
-  }
-
-  goToPage(pageSelected: number) {
-    if (this.page !== pageSelected)
-      this.getTransactions2(this.accId, pageSelected);
-  }
-
-  goToPrevOrNext(buttonSelected: string) {
-      if (buttonSelected === 'prev') {
-        if (this.page - 1 >= 0) {
-          this.page--
-          this.getTransactions2(this.accId, this.page);
-        }
-      } else if (buttonSelected === 'next') {
-        if (this.page + 1 < this.total) {
-          this.page++
-          this.getTransactions2(this.accId, this.page);
-        }
-      }
-      
+  handleEvent(event: boolean) {
+    if (event) {
+      console.log("handleEvent activated")
+      this.accountService.getAccountsFromUser2()
+      .subscribe(accounts => this.accounts = accounts)
+    }
   }
 
 }

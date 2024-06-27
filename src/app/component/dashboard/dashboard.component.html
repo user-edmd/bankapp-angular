@@ -56,7 +56,7 @@
   <div class="col-lg-4">
     <mat-card appearance="outlined" class="my-1">
       <mat-card-header>
-        <mat-card-title>{{fullName}}</mat-card-title>
+        <mat-card-title>{{user?.firstName}} {{user?.lastName}}</mat-card-title>
         <mat-card-subtitle>{{user?.username}}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-actions align="end">
@@ -69,7 +69,7 @@
         <mat-card-subtitle>Add Checking or Savings</mat-card-subtitle>
       </mat-card-header>
       <mat-card-actions align="end">
-        <a mat-flat-button href="/addAccount">New Account</a>
+        <a mat-flat-button (click)="openNewAccountDialog()">New Account</a>
       </mat-card-actions>
     </mat-card>
     <mat-card appearance="outlined" class="my-4">
@@ -121,3 +121,7 @@
     </mat-accordion>
   </div>
 </div>
+
+<ng-template #callAPIDialog>
+  <app-create-account [inputUser]="this.user!" (myEvent)="handleEvent($event)"></app-create-account>
+</ng-template>
