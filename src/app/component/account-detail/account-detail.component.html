@@ -23,7 +23,7 @@
         <ng-container matColumnDef="amount">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
           <td mat-cell *matCellDef="let transaction"> 
-            @if (transaction.transactionType == "Deposit") {
+            @if (transaction.amount > 0) {
               +
             }
             {{transaction.amount | currency}} </td>
@@ -55,7 +55,7 @@
         <mat-card-subtitle>Transfer Money Between Accounts</mat-card-subtitle>
       </mat-card-header>
       <mat-card-actions align="end">
-        <a mat-flat-button href="/account/{{account?.id}}/transfer">Transfer</a>
+        <a mat-flat-button href="/transfer">Transfer</a>
       </mat-card-actions>
     </mat-card>
   </div>

@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Account } from 'src/app/common/account';
 import { TransferForm } from 'src/app/common/transfer-form';
+import { User } from 'src/app/common/user';
 import { AccountService } from 'src/app/services/account.service';
 import { TransactionService } from 'src/app/services/transaction.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-transfer',
@@ -13,43 +15,60 @@ import { TransactionService } from 'src/app/services/transaction.service';
 export class TransferComponent implements OnInit {
   accounts: Account[] = []
   transferForm: TransferForm
-  routeParams = this.route.snapshot.paramMap;
-  accountIdFromRouter = Number(this.routeParams.get('id'));
   amountToCurrency: string
   accountFrom: Account
-  accountTo: Account | undefined
+  accountTo: Account
+  user: User
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private transactionService: TransactionService,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private userService: UserService
   ) {
     this.transferForm = new TransferForm();
   }
 
-
-
   ngOnInit(): void {
-    this.accountService.getAccount(this.accountIdFromRouter).subscribe
-      (account => {
-        this.accountFrom = account;
-        this.accountService.getAccountsFromUser(this.accountFrom.userId)
-          .subscribe(accounts => { this.accounts = accounts })
-      });
+    this.userService.getUser()
+    .subscribe(user => this.user = user);
+    this.accountService.getAccountsFromUser2()
+    .subscribe(accounts => this.accounts = accounts);
+
   }
-  // getAccounts(): void {
-  //   this.accountService.getAccountsFromUser(this.accountFrom.userId)
-  //     .subscribe(accounts => { this.accounts = accounts })
-  // }
 
   onSubmit() {
+    this.transferForm.accountIdFrom = this.accountFrom.id;
+    this.transferForm.accountIdTo = this.accountTo.id;
     this.transactionService.transferMoney(this.transferForm).subscribe(
       () => {
         this.router.navigate(['/dashboard']);
       }
     );
 
+  }
+
+  accountsAreSame(): boolean {
+    if (this.accountFrom != undefined && this.accountTo != undefined) {
+      if (this.accountFrom == this.accountTo)
+        return true;
+    }
+    return false;
+  }
+
+  accountBalanceInsufficient(): boolean {
+    if (this.accountFrom != undefined) {
+      if (this.accountFrom.accountBalance < this.transferForm.amountToTransfer )
+        return true;
+    }
+    return false;
+  }
+
+  submit() {
+    console.log(this.transferForm);
+    console.log(this.transferForm.accountIdTo);
+    console.log(this.transferForm.amountToTransfer);
   }
   
 

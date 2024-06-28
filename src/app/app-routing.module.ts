@@ -39,7 +39,7 @@ const routes: Routes = [
   { path: 'addAccountToUser/:id', component: AddAccountComponent },
   { path: 'editUser/:id', component: EditProfileComponent },
   { path: 'account/:id/addTransaction', component: CreateTransactionComponent },
-  { path: 'account/:id/transfer', component: TransferComponent },
+  { path: 'transfer', component: TransferComponent },
   { path: 'editProfile', component: EditUserComponent },
   { path: 'unauthorized', component: UnauthorizedComponent },
   { path: '500', component: UnauthorizedComponent },
