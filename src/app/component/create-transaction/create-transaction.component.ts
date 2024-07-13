@@ -31,7 +31,6 @@ export class CreateTransactionComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private transactionService: TransactionService,
     private accountService: AccountService) { 
 
@@ -39,8 +38,6 @@ export class CreateTransactionComponent implements OnInit {
 
   ngOnInit(): void {
     this.transaction = new Transaction;
-    const routeParams = this.route.snapshot.paramMap;
-    const accountIdFromRouter = Number(routeParams.get('id'));
     this.accountService.getAccount(this.inputAccount.id)
     .subscribe(account => this.account = account);
   }

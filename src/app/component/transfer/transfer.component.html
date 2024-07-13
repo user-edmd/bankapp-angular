@@ -55,50 +55,58 @@
         </div>
     </div>
 </div> -->
-<h4>Transfer</h4>
-<form #transferAccountForm="ngForm" (ngSubmit)="onSubmit()">
-    <p>
-        <mat-form-field appearance="outline">
-            <mat-label>Account From</mat-label>
-            <mat-select [(ngModel)]="accountFrom" name="accountFrom" required>
-                @for (account of accounts; track account) {
-                <mat-option [disabled]="account.accountBalance == 0" [value]="account">{{account.accountType}}: {{account.accountNumber}} (Balance:
-                    {{account.accountBalance | currency}})</mat-option>
+<mat-card>
+    <mat-card-header>Transfer</mat-card-header>
+    <mat-card-content>
+        <form #transferAccountForm="ngForm" (ngSubmit)="onSubmit()">
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Account From</mat-label>
+                    <mat-select [(ngModel)]="accountFrom" name="accountFrom" required>
+                        @for (account of accounts; track account) {
+                        <mat-option [disabled]="account.accountBalance == 0" [value]="account">{{account.accountType}}
+                            (<strong><span>&#183;</span><span>&#183;</span><span>&#183;</span></strong>{{account.accountNumber | slice: 12 : 16}}), Balance:
+                            {{account.accountBalance | currency}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Account To</mat-label>
+                    <mat-select [(ngModel)]="accountTo" name="accountTo" [disabled]="accountFrom == null" required>
+                        @for (account of accounts; track account) {
+                        <mat-option [disabled]="accountFrom == account" [value]="account">{{account.accountType}}
+                            (<strong><span>&#183;</span><span>&#183;</span><span>&#183;</span></strong>{{account.accountNumber | slice: 12 : 16}}), Balance:
+                            {{account.accountBalance | currency}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Amount to Transfer</mat-label>
+                    <input matInput type="number" [(ngModel)]="transferForm.amountToTransfer" name="amountToTransfer"
+                        placeholder="0" required />
+                    <span matTextPrefix>$&nbsp;</span>
+                </mat-form-field>
+            </p>
+            @if(accountsAreSame()) {
+            <p class="warning-desc"><mat-icon>error</mat-icon>Cannot transfer to same account.</p>
+            }
+            @if(accountBalanceInsufficient()) {
+            <p class="warning-desc"><mat-icon>error</mat-icon>Insufficient balance from incoming account. Amount to
+                transfer
+                must be less than or equal to {{accountFrom.accountBalance | currency}}</p>
+            }
+            @if(transferForm.amountToTransfer <= 0) { <p class="warning-desc"><mat-icon>error</mat-icon>Amount must be
+                greater
+                than $0.00</p>
                 }
-            </mat-select>
-        </mat-form-field>
-    </p>
-    <p>
-        <mat-form-field appearance="outline">
-            <mat-label>Account To</mat-label>
-            <mat-select [(ngModel)]="accountTo" name="accountTo" [disabled]="accountFrom == null" required>
-                @for (account of accounts; track account) {
-                <mat-option [disabled]="accountFrom == account" [value]="account">{{account.accountType}}:
-                    {{account.accountNumber}} (Balance:
-                    {{account.accountBalance | currency}})</mat-option>
-                }
-            </mat-select>
-        </mat-form-field>
-    </p>
-    <p>
-        <mat-form-field appearance="outline">
-            <mat-label>Amount to Transfer</mat-label>
-            <input matInput type="number" [(ngModel)]="transferForm.amountToTransfer" name="amountToTransfer"
-                placeholder="0" required />
-            <span matTextPrefix>$&nbsp;</span>
-        </mat-form-field>
-    </p>
-    @if(accountsAreSame()) {
-    <p class="warning-desc"><mat-icon>error</mat-icon>Cannot transfer to same account.</p>
-    }
-    @if(accountBalanceInsufficient()) {
-    <p class="warning-desc"><mat-icon>error</mat-icon>Insufficient balance from incoming account. Amount to transfer
-        must be less than or equal to {{accountFrom.accountBalance | currency}}</p>
-    }
-    @if(transferForm.amountToTransfer <= 0) { <p class="warning-desc"><mat-icon>error</mat-icon>Amount must be greater
-        than $0.00</p>
-        }
-        <button mat-button class="me-2"
-            [disabled]="transferAccountForm.invalid ||  accountsAreSame() || transferForm.amountToTransfer <= 0 || accountBalanceInsufficient()">Submit</button>
-            <a mat-button href="/dashboard">Return</a>
-</form>
+                <button mat-button class="me-2"
+                    [disabled]="transferAccountForm.invalid ||  accountsAreSame() || transferForm.amountToTransfer <= 0 || accountBalanceInsufficient()">Submit</button>
+                <a mat-button href="/dashboard">Return</a>
+        </form>
+    </mat-card-content>
+
+</mat-card>

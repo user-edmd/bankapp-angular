@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>Select an Account</h2>
 <mat-dialog-content>
-  <form #accForm="ngForm" ngNativeValidate>
+  <form #accForm="ngForm" ngNativeValidate (ngSubmit)="onSubmit()">
       <mat-radio-group aria-label="Select an option" [(ngModel)]="account.accountType" name="accountType" (change)="onRadioButtonChange($event)">
           <mat-radio-button value="Checking"><strong><i>Checking Account</i></strong>
             <p><strong>Introducing the Ultimate Checking Account</strong> -
@@ -20,5 +20,5 @@
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button mat-dialog-close  (click)="onSubmit()">Submit</button>
+  <button mat-button mat-dialog-close [disabled]="accForm.invalid || account.accountType == null">Submit</button>
 </mat-dialog-actions>
